@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { HomePage } from '@/components/pages/home/HomePage'
 import { studioUrl } from '@/sanity/lib/api'
 import { loadHomePage } from '@/sanity/loader/loadQuery'
+import AuthButton from '@/components/auth/AuthButton'
 const HomePagePreview = dynamic(
   () => import('@/components/pages/home/HomePagePreview'),
 )
@@ -28,5 +29,10 @@ export default async function IndexRoute() {
     )
   }
 
-  return <HomePage data={initial.data} />
+  return (
+    <>
+      <HomePage data={initial.data} />
+      <AuthButton />
+    </>
+  )
 }
