@@ -14,11 +14,13 @@ import * as resolve from '@/sanity/plugins/resolve'
 import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings'
 import page from '@/sanity/schemas/documents/page'
 import project from '@/sanity/schemas/documents/project'
-import duration from '@/sanity/schemas/objects/duration'
-import milestone from '@/sanity/schemas/objects/milestone'
-import timeline from '@/sanity/schemas/objects/timeline'
 import home from '@/sanity/schemas/singletons/home'
 import settings from '@/sanity/schemas/singletons/settings'
+
+import hero from './sanity/schemas/objects/blocks/hero'
+import link from './sanity/schemas/objects/link'
+import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
+import richText from './sanity/schemas/objects/richText'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
@@ -36,12 +38,14 @@ export default defineConfig({
       home,
       settings,
       // Documents
-      duration,
       page,
       project,
       // Objects
-      milestone,
-      timeline,
+      richText,
+      restrictedRichText,
+      link,
+      // block objects
+      hero,
     ],
   },
   plugins: [

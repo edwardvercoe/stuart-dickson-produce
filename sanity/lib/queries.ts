@@ -1,18 +1,10 @@
 import { groq } from 'next-sanity'
 
+import { PageBuilder } from './../../components/shared/PageBuilder'
+
 export const homePageQuery = groq`
   *[_type == "home"][0]{
-    _id,
-    overview,
-    showcaseProjects[]->{
-      _type,
-      coverImage,
-      overview,
-      "slug": slug.current,
-      tags,
-      title,
-    },
-    title,
+   ...,
   }
 `
 
@@ -51,4 +43,7 @@ export const settingsQuery = groq`
     },
     ogImage,
   }
+`
+// @TODO: finish query for page builder
+const PageBuilderQuery = groq`
 `
