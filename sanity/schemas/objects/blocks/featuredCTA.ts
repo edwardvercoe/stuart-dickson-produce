@@ -1,23 +1,23 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
+// write a schema for featuredCTA with a headline, description, image and an array of up to two buttons
 
-// write a hero schema with a title, subtitle, background image, array of max two buttons
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
   type: 'object',
-  name: 'hero',
-  title: 'Hero',
+  name: 'featuredCTA',
+  title: 'Featured CTA',
   fields: [
     defineField({
-      type: 'string',
+      type: 'text',
       name: 'title',
       title: 'Title',
+      rows: 3,
       validation: (rule) => rule.required(),
     }),
     defineField({
       type: 'restrictedRichText',
-      name: 'subtitle',
-      title: 'Subtitle',
-      validation: (rule) => rule.required(),
+      name: 'description',
+      title: 'Description',
     }),
     defineField({
       type: 'image',
@@ -43,7 +43,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        title: `Hero: ${title}`,
+        title: `Featured CTA: ${title}`,
       }
     },
   },

@@ -9,6 +9,9 @@ type PortableTextBlockProps = {
 }
 
 const PortableTextBlock = ({ data }: PortableTextBlockProps) => {
+  if (!data) {
+    return null
+  }
   return (
     <section>
       <div>

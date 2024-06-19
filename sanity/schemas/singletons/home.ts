@@ -64,10 +64,10 @@ export default defineType({
       type: 'array',
       of: [
         {
-          type: 'image',
+          type: 'hero',
         },
         {
-          type: 'hero',
+          type: 'featuredCTA',
         },
       ],
     }),

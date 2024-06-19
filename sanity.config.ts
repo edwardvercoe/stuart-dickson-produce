@@ -17,6 +17,7 @@ import project from '@/sanity/schemas/documents/project'
 import home from '@/sanity/schemas/singletons/home'
 import settings from '@/sanity/schemas/singletons/settings'
 
+import featuredCTA from './sanity/schemas/objects/blocks/featuredCTA'
 import hero from './sanity/schemas/objects/blocks/hero'
 import link from './sanity/schemas/objects/link'
 import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
@@ -46,6 +47,7 @@ export default defineConfig({
       link,
       // block objects
       hero,
+      featuredCTA,
     ],
   },
   plugins: [
