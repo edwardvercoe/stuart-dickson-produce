@@ -2,7 +2,6 @@ import React from 'react'
 
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
-import Button from '@/components/shared/Button'
 
 type HomeHeroProps = {
   data: any
