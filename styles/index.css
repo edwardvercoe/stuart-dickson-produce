@@ -17,25 +17,3 @@ ul {
 ol {
   list-style-type: disc;
 }
-
-h1, h2, h3, h4 {
-  font-family: Quincy CF;
-}
-
-p {
-  font-family: Poppins;
-}
-
-.button {
-  padding: 0.8rem 1rem;
-  cursor: pointer;
-  background-color: #FF7F09;
-  color: whitesmoke;
-  box-shadow: 1px 1px 1px 1px #ccc;
-}
-
-.button--secondary {
-  background-color: transparent;
-  border: 1px solid #FF7F09;
-  color: black
-}

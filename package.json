@@ -18,7 +18,7 @@
     "@next/env": "14.2.3",
     "@sanity/demo": "2.0.0",
     "@sanity/icons": "2.11.8",
-    "@sanity/image-url": "1.0.2",
+    "@sanity/image-url": "^1.0.2",
     "@sanity/preview-url-secret": "1.6.13",
     "@sanity/react-loader": "1.9.19",
     "@sanity/ui": "2.1.11",
