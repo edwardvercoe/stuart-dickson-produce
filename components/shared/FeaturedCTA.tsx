@@ -1,51 +1,48 @@
 import React from 'react'
+
+import SanityImg from '@/components/SanityComponents/SanityImg'
+import SanityLink from '@/components/SanityComponents/SanityLink'
+import Button from '@/components/shared/Button'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
-import imageUrlBuilder from '@sanity/image-url';
-import { client } from '@/sanity/lib/client';
-
-const builder = imageUrlBuilder(client);
-  
-function urlFor(source) {
-  return builder.image(source);
-}
-
 type FeaturedCTAProps = {
   data: any
 }
 
-
 const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
-  console.log(data);
-
-  const { title, backgroundImage, buttons, description } = data;  
-    return (
-      <div 
-        className="flex p-6 bg-cover bg-center items-center bg-white" 
-        style={{
-          minHeight: '600px',
-          backgroundImage: `url(${urlFor(backgroundImage.asset._ref)})`
-        }}
-      >
-        <div className='md:w-1/2  text-white '>
-          <h1 className="h1 text-6xl font-extrabold leading-6xl text-left -mb-4">{title}</h1>
-          <br />
-          <PortableTextBlock data={description} />
+  const { title, backgroundImage, buttons, description } = data
+  return (
+    <section className="full-bleed">
+      <figure className="absolute top-0 left-0 w-full h-full">
+        <SanityImg
+          src={backgroundImage}
+          className="w-full h-full object-cover object-center"
+        />
+      </figure>
+      <div className="flex p-6 bg-cover bg-center items-center min-h-[600px] relative">
+        <div className="md:w-1/2 text-white relative">
+          <h1 className="text-6xl font-extrabold text-left">{title}</h1>
+          <div>
+            <PortableTextBlock data={description} />
+          </div>
           {buttons && (
             <div className="flex gap-4 mt-4">
-              {buttons.map((button, index) => (
-                <a 
-                  key={index}
-                  href={button.internalLink} 
-                  className={`px-4 py-2 cursor-pointer shadow-md bg-white text-black border border-black'}`}
-                >
-                  {button.linkText}
-                </a>
-              ))}
+              {buttons && (
+                <div className="flex gap-4 mt-4">
+                  {buttons.map((button, index) => (
+                    <SanityLink data={button} key={button._key}>
+                      <Button variant={index === 0 ? 'primary' : 'secondary'}>
+                        {button.linkText}
+                      </Button>
+                    </SanityLink>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
       </div>
-    );
-  };
-    
+    </section>
+  )
+}
+
 export default FeaturedCTA

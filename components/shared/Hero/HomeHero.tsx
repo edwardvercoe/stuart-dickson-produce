@@ -1,50 +1,46 @@
-import React from 'react';
-import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock';
-import imageUrlBuilder from '@sanity/image-url';
-import { client } from '@/sanity/lib/client';
+import React from 'react'
 
-const builder = imageUrlBuilder(client);
-
-function urlFor(source) {
-  return builder.image(source);
-}
+import SanityImg from '@/components/SanityComponents/SanityImg'
+import SanityLink from '@/components/SanityComponents/SanityLink'
+import Button from '@/components/shared/Button'
+import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 
 type HomeHeroProps = {
-  data: any;
-};
+  data: any
+}
 
 const HomeHero = ({ data }: HomeHeroProps) => {
-  const { title, subtitle, backgroundImage, buttons } = data;
-
+  const { title, subtitle, backgroundImage, buttons } = data
   return (
-    <div 
-      className="flex p-6 bg-auto bg-no-repeat bg-right items-center" 
-      style={{
-        minHeight: '600px',
-        backgroundColor: '#EAE3DD',
-        backgroundImage: `url(${urlFor(backgroundImage.asset._ref)})`
-      }}
-    >
-      <div className='md:w-1/2'>
-        <h1 className="h1 text-6xl font-extrabold leading-6xl text-left -mb-4">{title}</h1>
-        <br />
-        <PortableTextBlock data={subtitle} />
-        {buttons && (
-          <div className="flex gap-4 mt-4">
-            {buttons.map((button, index) => (
-              <a 
-                key={index}
-                href={button.internalLink} 
-                className={`px-4 py-2 cursor-pointer shadow-md ${index === 0 ? 'bg-custom-orange text-white' : 'bg-none text-black border border-custom-orange'}`}
-              >
-                {button.linkText}
-              </a>
-            ))}
-          </div>
-        )}
+    <section className="full-bleed">
+      <figure className="absolute top-0 left-0 w-full h-full">
+        <SanityImg
+          src={backgroundImage}
+          className="w-full h-full object-cover object-center"
+        />
+      </figure>
+      <div className="flex p-6 bg-auto bg-no-repeat bg-right items-center min-h-[800px] relative">
+        <div className="md:w-1/2 relative">
+          <h1 className="h1 text-6xl font-extrabold leading-6xl text-left -mb-4">
+            {title}
+          </h1>
+          <br />
+          <PortableTextBlock data={subtitle} />
+          {buttons && (
+            <div className="flex gap-4 mt-4">
+              {buttons.map((button, index) => (
+                <SanityLink data={button} key={button._key}>
+                  <Button variant={index === 0 ? 'primary' : 'secondary'}>
+                    {button.linkText}
+                  </Button>
+                </SanityLink>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
+    </section>
+  )
+}
 
-export default HomeHero;
+export default HomeHero

@@ -15,7 +15,7 @@ module.exports = {
         sans: 'var(--font-poppins)',
       },
       colors: {
-        'custom-orange': '#FF7F09',
+        'accent-orange': '#FF7F09',
       },
     },
   },
