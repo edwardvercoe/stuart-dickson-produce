@@ -1,8 +1,11 @@
+import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
+
 import { PageBuilder } from '@/components/shared/PageBuilder'
 import type { HomePagePayload } from '@/types'
 
 export interface HomePageProps {
   data: HomePagePayload | null
+  encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
 export function HomePage({ data }: HomePageProps) {
