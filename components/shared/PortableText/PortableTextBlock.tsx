@@ -13,11 +13,9 @@ const PortableTextBlock = ({ data }: PortableTextBlockProps) => {
     return null
   }
   return (
-    <section>
-      <div>
-        <PortableText value={data} components={Components} />
-      </div>
-    </section>
+    <div>
+      <PortableText value={data} components={Components} />
+    </div>
   )
 }
 

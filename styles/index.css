@@ -17,3 +17,23 @@ ul {
 ol {
   list-style-type: disc;
 }
+
+section {
+  @apply relative;
+  @apply py-0;
+}
+section > div {
+  @apply mx-auto;
+  @apply max-w-[1440px];
+}
+
+section,
+nav,
+footer,
+.nav-menu {
+  @apply px-5 md:px-8;
+}
+
+.full-bleed {
+  @apply px-0 md:px-0;
+}

@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         sans: 'var(--font-poppins)',
       },
+      colors: {
+        'accent-orange': '#FF7F09',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],
