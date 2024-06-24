@@ -15,6 +15,7 @@ const HomeHero = ({ data }: HomeHeroProps) => {
     <section className="full-bleed">
       <figure className="absolute top-0 left-0 w-full h-full">
         <SanityImg
+          loading="eager"
           src={backgroundImage}
           className="w-full h-full object-cover object-center"
         />
