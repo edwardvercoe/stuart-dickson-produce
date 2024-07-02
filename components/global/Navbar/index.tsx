@@ -3,7 +3,7 @@ import { draftMode } from 'next/headers'
 
 import { loadSettings } from '@/sanity/loader/loadQuery'
 
-import NavbarLayout from './NavbarLayout'
+import NavbarLayout from './Navigation'
 const NavbarPreview = dynamic(() => import('./NavbarPreview'))
 
 export async function Navbar() {

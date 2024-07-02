@@ -56,10 +56,9 @@ export const projectBySlugQuery = groq`
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
     footer,
-    menuItems[]->{
-      _type,
-      "slug": slug.current,
-      title
+    menuItems[] {
+      ...,
+      "internalLink" : internalLink->{"slug": slug.current,_type},
     },
     ogImage,
   }

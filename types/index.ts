@@ -59,8 +59,19 @@ export interface ProjectPayload {
   title?: string
 }
 
+type LinkType = {
+  _type: 'link'
+  linkText?: string | undefined
+  linkType?: 'internal' | 'external' | 'anchor' | undefined
+  externalUrl?: string | undefined
+  internalLink?: any
+  newWindow?: boolean | undefined
+  anchor?: string | undefined
+  slug?: string | undefined
+}
+
 export interface SettingsPayload {
   footer?: PortableTextBlock[]
-  menuItems?: MenuItem[]
+  menuItems?: LinkType[]
   ogImage?: Image
 }

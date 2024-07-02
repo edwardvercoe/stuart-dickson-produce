@@ -12,23 +12,11 @@ export default defineType({
     defineField({
       name: 'menuItems',
       title: 'Menu Item list',
-      description: 'Links displayed on the header of your site.',
+      description: 'Links displayed on the header and footer of your site.',
       type: 'array',
       of: [
         {
-          title: 'Reference',
-          type: 'reference',
-          to: [
-            {
-              type: 'home',
-            },
-            {
-              type: 'page',
-            },
-            {
-              type: 'project',
-            },
-          ],
+          type: 'link',
         },
       ],
     }),

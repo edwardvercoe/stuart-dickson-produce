@@ -2,7 +2,7 @@
 
 import { useSettings } from '@/sanity/loader/useQuery'
 
-import NavbarLayout from './NavbarLayout'
+import NavbarLayout from './Navigation'
 
 type Props = {
   initial: Parameters<typeof useSettings>[0]

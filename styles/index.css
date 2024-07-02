@@ -31,7 +31,7 @@ section,
 nav,
 footer,
 .nav-menu {
-  @apply px-5 md:px-8;
+  @apply px-5 md:px-8 lg:px-12;
 }
 
 .full-bleed {

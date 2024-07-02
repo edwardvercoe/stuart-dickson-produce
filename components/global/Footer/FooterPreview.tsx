@@ -2,7 +2,7 @@
 
 import { useSettings } from '@/sanity/loader/useQuery'
 
-import FooterLayout from './FooterLayout'
+import FooterLayout from './Footer'
 
 type Props = {
   initial: Parameters<typeof useSettings>[0]

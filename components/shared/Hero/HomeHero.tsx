@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react'
 import React from 'react'
 
 import SanityImg from '@/components/SanityComponents/SanityImg'
@@ -20,7 +21,7 @@ const HomeHero = ({ data }: HomeHeroProps) => {
           className="w-full h-full object-cover object-center"
         />
       </figure>
-      <div className="flex p-6 bg-auto bg-no-repeat bg-right items-center min-h-[800px] relative">
+      <div className="flex p-6 bg-auto bg-no-repeat bg-right items-center min-h-[800px] h-[100vh] relative">
         <div className="md:w-1/2 relative">
           <h1 className="h1 text-6xl font-extrabold leading-6xl text-left -mb-4">
             {title}
@@ -31,7 +32,12 @@ const HomeHero = ({ data }: HomeHeroProps) => {
             <div className="flex gap-4 mt-4">
               {buttons.map((button, index) => (
                 <SanityLink data={button} key={button._key}>
-                  <Button variant={index === 0 ? 'primary' : 'secondary'}>
+                  <Button
+                    variant={index === 0 ? 'primary' : 'secondary'}
+                    iconRight={
+                      index === 0 && <ArrowRight className="text-accent" />
+                    }
+                  >
                     {button.linkText}
                   </Button>
                 </SanityLink>
