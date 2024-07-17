@@ -1,3 +1,7 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+import Logo from '@/assets/svg/logoMin.svg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
 import type { MenuItem, SettingsPayload } from '@/types'
 
@@ -8,16 +12,21 @@ export default function Navbar(props: NavbarProps) {
   const { data } = props
   const menuItems = data?.menuItems || ([] as MenuItem[])
   return (
-    <nav className="fixed w-full top-0 left-0 z-10 flex flex-wrap items-center bg-white/80 py-4 backdrop-blur">
-      {menuItems && (
-        <div className="flex gap-4">
-          {menuItems.map((item, index) => (
-            <SanityLink data={item} key={item._key}>
-              {item.linkText}
-            </SanityLink>
-          ))}
-        </div>
-      )}
+    <nav className="fixed w-full top-0 left-0 z-10 bg-white/80 py-4 backdrop-blur">
+      <div className="flex justify-between items-center">
+        <Link href="/">
+          <Image src={Logo} alt="logo" width={70} height={70} />
+        </Link>
+        {menuItems && (
+          <div className="flex gap-4">
+            {menuItems.map((item, index) => (
+              <SanityLink data={item} key={item._key}>
+                {item.linkText}
+              </SanityLink>
+            ))}
+          </div>
+        )}
+      </div>
     </nav>
   )
 }

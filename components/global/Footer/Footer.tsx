@@ -1,7 +1,8 @@
-import type { PortableTextBlock } from 'next-sanity'
+import Image from 'next/image'
 
+import LogoWhite from '@/assets/svg/logoWhite.svg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import type { MenuItem, SettingsPayload } from '@/types'
 
 interface FooterProps {
@@ -9,19 +10,21 @@ interface FooterProps {
 }
 export default function Footer(props: FooterProps) {
   const { data } = props
-  const footer = data?.footer || ([] as PortableTextBlock[])
+  const footer = data?.footer || []
   const menuItems = data?.menuItems || ([] as MenuItem[])
 
   return (
     <footer className="bottom-0 w-full text-white bg-brand-black py-12">
       <div className="flex sm:gap-10 flex-col sm:flex-row pb-6">
         <div className="flex-1">
-          <p>Stuart Dickson Produce</p>
-          <div className="max-w-[560px]">
-            <p className="text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+          <div className="pb-4">
+            <Image src={LogoWhite} alt="logo" width={70} height={70} />
+          </div>
+          <div className="max-w-[560px] pb-6 sm:pb-0">
+            <PortableTextBlock
+              data={footer}
+              className="text-xs text-white/80"
+            />
           </div>
         </div>
         <div className="flex-1">

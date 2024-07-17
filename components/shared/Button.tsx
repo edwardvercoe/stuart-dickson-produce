@@ -14,13 +14,13 @@ const Button = ({ variant = 'primary', children, iconRight }: ButtonProps) => {
       type="button"
       className={cn(
         'py-4 px-6 bg-accent text-brand-black rounded-full border border-brand-black',
-        iconRight && 'flex justify-between items-center py-2 pr-2',
+        iconRight && 'flex justify-between items-center pr-2 py-2',
         variant === 'secondary' && 'bg-white text-black border-transparent',
       )}
     >
       <span className=" font-medium">{children}</span>
       {iconRight && (
-        <span className="ml-4 flex items-center justify-center bg-brand-black rounded-full p-2">
+        <span className="ml-4 flex items-center justify-center bg-brand-black rounded-full size-10">
           {iconRight}
         </span>
       )}

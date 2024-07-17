@@ -9,10 +9,16 @@ type FeaturedCTAProps = {
 }
 
 const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
-  const { title, backgroundImage, buttons, description } = data
+  const {
+    title,
+    backgroundImage,
+    buttons,
+    description,
+    variation = 'left',
+  } = data
   return (
     <section className="full-bleed">
-      <figure className="absolute top-0 left-0 w-full h-full">
+      <figure className="absolute top-0 left-0 w-full h-full gradient-left">
         <SanityImg
           src={backgroundImage}
           className="w-full h-full object-cover object-center"

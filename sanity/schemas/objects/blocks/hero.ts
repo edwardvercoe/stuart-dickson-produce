@@ -26,6 +26,11 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      type: 'image',
+      name: 'foregroundImage',
+      title: 'Foreground Image',
+    }),
+    defineField({
       type: 'array',
       name: 'buttons',
       title: 'Buttons',
