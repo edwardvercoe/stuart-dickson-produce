@@ -37,8 +37,7 @@ export interface HomePagePayload {
 }
 
 export interface PagePayload {
-  body?: PortableTextBlock[]
-  name?: string
+  pageBuilder?: any
   overview?: PortableTextBlock[]
   title?: string
   slug?: string

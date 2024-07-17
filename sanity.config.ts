@@ -17,8 +17,12 @@ import project from '@/sanity/schemas/documents/project'
 import home from '@/sanity/schemas/singletons/home'
 import settings from '@/sanity/schemas/singletons/settings'
 
+import carouselCTA from './sanity/schemas/objects/blocks/carouselCTA'
+import carouselItem from './sanity/schemas/objects/blocks/carouselItem'
 import featuredCTA from './sanity/schemas/objects/blocks/featuredCTA'
 import hero from './sanity/schemas/objects/blocks/hero'
+import twoColText from './sanity/schemas/objects/blocks/twoColText'
+import twoImages from './sanity/schemas/objects/blocks/twoImages'
 import link from './sanity/schemas/objects/link'
 import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
 import richText from './sanity/schemas/objects/richText'
@@ -48,6 +52,10 @@ export default defineConfig({
       // block objects
       hero,
       featuredCTA,
+      carouselCTA,
+      carouselItem,
+      twoColText,
+      twoImages,
     ],
   },
   plugins: [

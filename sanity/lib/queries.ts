@@ -30,11 +30,8 @@ export const homePageQuery = groq`
 
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
-    _id,
-    body,
-    overview,
-    title,
-    "slug": slug.current,
+    ...,
+    ${PageBuilderQuery}
   }
 `
 

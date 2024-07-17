@@ -1,6 +1,8 @@
 import { HomeIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import pageBuilder from '../objects/pageBuilder'
+
 export default defineType({
   name: 'home',
   title: 'Home',
@@ -16,6 +18,7 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+    pageBuilder,
     // defineField({
     //   name: 'overview',
     //   description:
@@ -58,19 +61,6 @@ export default defineType({
     //   ],
     //   // validation: (rule) => rule.max(155).required(),
     // }),
-    defineField({
-      name: 'pageBuilder',
-      title: 'Page Builder',
-      type: 'array',
-      of: [
-        {
-          type: 'hero',
-        },
-        {
-          type: 'featuredCTA',
-        },
-      ],
-    }),
   ],
   preview: {
     select: {

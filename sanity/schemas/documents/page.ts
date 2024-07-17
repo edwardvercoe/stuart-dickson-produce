@@ -1,6 +1,8 @@
 import { DocumentIcon, ImageIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import pageBuilder from '../objects/pageBuilder'
+
 export default defineType({
   type: 'document',
   name: 'page',
@@ -22,6 +24,7 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    pageBuilder,
   ],
   preview: {
     select: {
