@@ -51,3 +51,16 @@ footer,
     rgba(0, 0, 0, 0) 80%
   );
 }
+
+@keyframes scaleDown {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.scale-down-animation {
+  animation: scaleDown 6.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}

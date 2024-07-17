@@ -15,11 +15,11 @@ const HomeHero = ({ data }: HomeHeroProps) => {
   return (
     <>
       <section className="full-bleed">
-        <figure className="absolute top-0 left-0 w-full h-full  gradient-left">
+        <figure className="absolute top-0 left-0 w-full h-full  gradient-left overflow-hidden">
           <SanityImg
             loading="eager"
             src={backgroundImage}
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center scale-down-animation"
           />
         </figure>
         {foregroundImage && (
