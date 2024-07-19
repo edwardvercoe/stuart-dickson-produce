@@ -17,6 +17,8 @@ module.exports = {
       colors: {
         accent: '#D1F349',
         'brand-black': '#0D1615',
+        'brand-darker-green': '#263000',
+        'brand-gray': '#667085',
       },
     },
   },
