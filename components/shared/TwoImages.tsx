@@ -11,15 +11,18 @@ const TwoImages = ({ data }: TwoImagesProps) => {
 
   return (
     <section>
-      {/* you can remove the border when you're done - its just for testing */}
-      <div className="border border-red-400 border-4 border-dotted">
+      <div className="flex my-8">
+      <div className='flex-[3_3_0%] flex flex-col justify-end'>
+        AVAILABLEFORCONTACT<br />
+      agricultural@gmail.com
+
+      {/* //PortableText goes here?? // */}
         <p>variation: {variation}</p>
-
-        <p>image left:</p>
-        <SanityImg src={imageLeft} />
-
-        <p>image right:</p>
-        <SanityImg src={imageRight} />
+</div>
+<div className='flex-[7_7_0%] flex flex-row gap-4'>
+        <SanityImg src={imageLeft} className='w-2/3 h-full object-cover'/>
+        <SanityImg src={imageRight} className='w-1/3 h-full object-cover'/>
+        </div>
       </div>
     </section>
   )
