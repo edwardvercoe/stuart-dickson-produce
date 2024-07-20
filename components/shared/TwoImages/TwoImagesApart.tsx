@@ -5,10 +5,10 @@ type TwoImagesProps = {
 }
 
 const TwoImagesApart = ({ data }: TwoImagesProps) => {
-  const { variation = 'apart', imageLeft, imageRight } = data
+  const { imageLeft, imageRight, text } = data
   return (
     <section>
-      <div>TwoImages {variation}</div>
+      <div>TwoImagesApart.tsx</div>
     </section>
   )
 }

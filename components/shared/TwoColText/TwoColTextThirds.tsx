@@ -7,26 +7,25 @@ type TwoColTextProps = {
 }
 
 const TwoColTextThirds = ({ data }: TwoColTextProps) => {
-  console.log(data)
-  const { variation, leftColumn, rightColumn } = data
+  const { leftColumn, rightColumn } = data
   return (
     <section className="py-10">
       <div>
-        <div className="flex">
-          <div className="flex-[3_3_0%] flex-row flex">
+        <div className="flex flex-col md:flex-row ">
+          <div className="w-full md:w-1/3 flex-row flex">
             <span className="text-orange-500 text-lg">||</span>
             <PortableTextBlock
               data={leftColumn}
               className="pl-2 text-lg text-brand-darker-green font-bold leading-7 text-left"
             />
           </div>
-          <div className="flex-[7_7_0%]">
+          <div className="w-fulll md:w-2/3">
             {rightColumn.map((item, index) => (
               <div
                 key={index}
                 className={
                   index === 0
-                    ? 'text-5xl text-brand-darker-green pb-8'
+                    ? 'text-3xl lg:text-5xl text-brand-darker-green pb-8'
                     : 'text-brand-gray'
                 }
               >

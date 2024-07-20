@@ -9,7 +9,7 @@ const TwoColTextHalf = ({ data }: TwoColTextProps) => {
 
   return (
     <section className="py-10">
-      <div>TwoColTextHalf</div>
+      <div>TwoColTextHalf.tsx</div>
     </section>
   )
 }
