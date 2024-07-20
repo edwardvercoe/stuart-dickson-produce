@@ -5,8 +5,8 @@ import FeaturedCTA from '@/components/shared/FeaturedCTA'
 import HomeHero from '@/components/shared/Hero/HomeHero'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 
-import TwoColText from './TwoColText'
-import TwoImages from './TwoImages'
+import TwoColText from './TwoColText/TwoColText'
+import TwoImages from './TwoImages/TwoImages'
 
 type PageBuilderProps = {
   data: any
