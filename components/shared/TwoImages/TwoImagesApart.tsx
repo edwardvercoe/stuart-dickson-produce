@@ -17,7 +17,7 @@ const TwoImagesApart = ({ data }: TwoImagesProps) => {
       key={index}
       className={
         index === 0
-          ? 'flex text-brand-darker-green'
+          ? 'flex text-brand-darker-green text-2xl font-bold py-8'
           : 'text-brand-gray'
       }
     >
@@ -27,7 +27,7 @@ const TwoImagesApart = ({ data }: TwoImagesProps) => {
   ))}
   <SanityImg src={imageLeft} className="w-1/2 h-full object-cover" />
            </div>
-                <div className='w-1/2 justify-end'>
+                <div className='w-1/2 flex justify-end'>
         <SanityImg src={imageRight} className="w-3/4 h-4/5 object-cover" />           
         </div>
   </div>
