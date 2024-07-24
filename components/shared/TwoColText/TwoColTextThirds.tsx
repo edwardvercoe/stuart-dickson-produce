@@ -9,7 +9,7 @@ type TwoColTextProps = {
 const TwoColTextThirds = ({ data }: TwoColTextProps) => {
   const { leftColumn, rightColumn } = data
   return (
-    <section className="py-10">
+    <section className="py-10 md:py-20">
       <div>
         <div className="flex flex-col md:flex-row ">
           <div className="w-full md:w-1/3 flex-row flex">

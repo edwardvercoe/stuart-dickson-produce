@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
+import EVLogo from '@/assets/svg/edward-vercoe-logo-right-align.svg'
 import LogoWhite from '@/assets/svg/logoWhite.svg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import type { MenuItem, SettingsPayload } from '@/types'
-
 interface FooterProps {
   data: SettingsPayload
 }
@@ -39,11 +40,20 @@ export default function Footer(props: FooterProps) {
           )}
         </div>
       </div>
-      <div className="border-t border-gray-400 py-6">
-        <p className="text-xs">
-          © Copyright {new Date().getFullYear()}, Stuart Dickson Produce All
-          Rights Reserved
-        </p>
+      <div className="border-t border-gray-400 py-6 flex flex-row justify-between gap-4">
+        <div>
+          <p className="text-xs">
+            © Copyright {new Date().getFullYear()}, Stuart Dickson Produce All
+            Rights Reserved
+          </p>
+        </div>
+        <Link
+          href="https://www.edwardvercoe.dev"
+          target="_blank"
+          className="opacity-80 hover:opacity-100 transition-opacity"
+        >
+          <Image src={EVLogo} alt="logo" width="134" height="39" />
+        </Link>
       </div>
     </footer>
   )
