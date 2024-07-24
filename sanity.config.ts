@@ -12,8 +12,8 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
 import * as resolve from '@/sanity/plugins/resolve'
 import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings'
+import farm from '@/sanity/schemas/documents/farm'
 import page from '@/sanity/schemas/documents/page'
-import project from '@/sanity/schemas/documents/project'
 import home from '@/sanity/schemas/singletons/home'
 import settings from '@/sanity/schemas/singletons/settings'
 
@@ -44,7 +44,7 @@ export default defineConfig({
       settings,
       // Documents
       page,
-      project,
+      farm,
       // Objects
       richText,
       restrictedRichText,

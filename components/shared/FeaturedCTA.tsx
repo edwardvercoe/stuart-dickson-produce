@@ -4,6 +4,7 @@ import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
 import Button from '@/components/shared/Button'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
+import { cn } from '@/lib/utils'
 type FeaturedCTAProps = {
   data: any
 }
@@ -19,7 +20,12 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
   } = data
   return (
     <section className="full-bleed">
-      <figure className="absolute top-0 left-0 w-full h-full gradient-left">
+      <figure
+        className={cn(
+          'absolute top-0 left-0 w-full h-full gradient-left',
+          variation === 'centered' && 'gradient-full',
+        )}
+      >
         <SanityImg
           src={backgroundImage}
           className="w-full h-full object-cover object-center"
@@ -34,10 +40,21 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
           />
         </figure>
       )}
-      <div className="flex p-6 bg-cover bg-center items-center min-h-[600px] relative">
-        <div className="md:w-1/2 text-white relative">
+      <div
+        className={cn(
+          'flex p-6 bg-cover bg-center items-center min-h-[600px] relative bleed-padding-x',
+          variation === 'centered' && 'justify-center text-center',
+        )}
+      >
+        <div
+          className={cn(
+            'max-w-[620px] text-white relative',
+            variation === 'centered' &&
+              'flex items-center justify-center flex-col',
+          )}
+        >
           <div className="pb-6">
-            <h1 className="text-6xl font-extrabold text-left">{title}</h1>
+            <h1 className="text-6xl font-extrabold">{title}</h1>
           </div>
           <div className="max-w-[520px]">
             <PortableTextBlock data={description} />

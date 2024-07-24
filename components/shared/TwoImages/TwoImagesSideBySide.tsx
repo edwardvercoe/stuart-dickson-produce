@@ -13,7 +13,7 @@ const TwoImagesSideBySide = ({ data }: TwoImagesProps) => {
   return (
     <section className="py-10 md:py-20">
       <div className="flex">
-        <div className="w-full md:w-1/3 flex flex-col justify-end">
+        <div className="w-full md:w-1/3 flex flex-col justify-end md:pr-4">
           <PortableTextBlock data={text} />
         </div>
         <div className="w-full md:w-2/3 flex flex-row gap-4">

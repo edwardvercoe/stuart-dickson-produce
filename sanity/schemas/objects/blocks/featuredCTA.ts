@@ -8,6 +8,17 @@ export default defineType({
   title: 'Featured CTA',
   fields: [
     defineField({
+      name: 'variation',
+      title: 'Variation',
+      type: 'string',
+      options: {
+        list: ['left', 'centered'],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      initialValue: 'left',
+    }),
+    defineField({
       type: 'text',
       name: 'title',
       title: 'Title',
