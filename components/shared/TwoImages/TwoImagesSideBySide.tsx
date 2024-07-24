@@ -11,8 +11,8 @@ const TwoImagesSideBySide = ({ data }: TwoImagesProps) => {
   const { imageLeft, imageRight, text } = data
 
   return (
-    <section>
-      <div className="flex my-8">
+    <section className="py-10 md:py-20">
+      <div className="flex">
         <div className="w-full md:w-1/3 flex flex-col justify-end">
           <PortableTextBlock data={text} />
         </div>
