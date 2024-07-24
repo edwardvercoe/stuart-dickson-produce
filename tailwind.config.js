@@ -20,6 +20,7 @@ module.exports = {
         'brand-darker-green': '#263000',
         'brand-gray': '#667085',
         'global-bg': '#FDFDF0',
+        'brand-orange': '#FB5711',
       },
     },
   },

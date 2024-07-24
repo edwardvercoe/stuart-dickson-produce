@@ -18,6 +18,13 @@ const PageBuilderQuery = groq`
       "internalLink" : internalLink->{"slug": slug.current,_type}
       },
     },
+    _type == "carouselCTA" => {
+      ...,
+      carouselItems[] {
+        ...,
+        "page": page->{...,"slug": slug.current,_type},
+      },
+    },
   }
 `
 

@@ -19,12 +19,14 @@ export default {
       title: 'Background Image',
       name: 'backgroundImage',
       type: 'image',
+      validation: (Rule) => Rule.required(),
     },
     {
-      title: 'Page',
+      title: 'Link to Page or Farm',
       name: 'page',
       type: 'reference',
-      to: [{ type: 'page' }],
+      description: 'Select a page or farm to link to',
+      to: [{ type: 'page' }, { type: 'farm' }],
     },
   ],
 }

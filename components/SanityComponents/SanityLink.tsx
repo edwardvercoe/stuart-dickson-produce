@@ -67,4 +67,13 @@ export const SanityLink = ({
   return <span>{children}</span>
 }
 
+export const InternalLinkWrapper = ({ documentType, slug, children }) => {
+  const href = resolveHref(documentType, slug)
+  return (
+    <Link href={href} className="relative">
+      {children}
+    </Link>
+  )
+}
+
 export default SanityLink
