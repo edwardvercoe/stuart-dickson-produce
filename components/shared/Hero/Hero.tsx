@@ -88,9 +88,9 @@ const Hero = ({ data, variation }: HeroProps) => {
         </div>
       </section>
       <section className="full-bleed h-4 flex flex-row relative w-full">
-        <div className="bg-[#17601A] flex-1" />
-        <div className="bg-[#17601A]/60 flex-1" />
-        <div className="bg-[#D8EDD9] flex-1" />
+        <div className="bg-brand-mahogany flex-1" />
+        <div className="bg-brand-orange flex-1" />
+        <div className="bg-accent flex-1" />
       </section>
     </>
   )

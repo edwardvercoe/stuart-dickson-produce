@@ -12,7 +12,7 @@ export default function Navbar(props: NavbarProps) {
   const { data } = props
   const menuItems = data?.menuItems || ([] as MenuItem[])
   return (
-    <nav className="fixed w-full top-0 left-0 z-40 bg-global-bg py-4 shadow-md">
+    <nav className="fixed w-full top-0 left-0 z-40 bg-secondary  py-4 shadow-md">
       <div className="flex justify-between items-center">
         <Link href="/">
           <Image src={Logo} alt="logo" width={70} height={70} />

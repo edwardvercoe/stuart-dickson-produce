@@ -13,7 +13,7 @@ const Button = ({ variant = 'primary', children, iconRight }: ButtonProps) => {
     <button
       type="button"
       className={cn(
-        'py-4 px-6 bg-accent text-brand-black rounded-full border border-brand-black',
+        'py-4 px-6 bg-accent text-brand-black rounded-full',
         iconRight && 'flex justify-between items-center pr-2 py-2',
         variant === 'secondary' && 'bg-white text-black border-transparent',
       )}
