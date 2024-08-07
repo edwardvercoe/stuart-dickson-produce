@@ -2,9 +2,11 @@ import type { PortableTextBlock } from 'next-sanity'
 import type { Image } from 'sanity'
 
 export interface MenuItem {
-  _type: string
+  _key?: any
+  _type?: string
   slug?: string
   title?: string
+  linkText?: string
 }
 
 export interface MilestoneItem {

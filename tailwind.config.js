@@ -12,7 +12,7 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        sans: 'var(--font-poppins)',
+        sans: 'var(--font-rubik)',
       },
       colors: {
         accent: '#F2A71B',
