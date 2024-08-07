@@ -45,11 +45,11 @@ export default function Navbar(props: NavbarProps) {
         </div>
         {menuItems && (
           <div className="w-4/6">
-            <div className="flex gap-4 items-center justify-center w-auto rounded-full bg-white/20  text-black backdrop-blur-sm p-4 shadow">
+            <div className="flex gap-4 items-center justify-center w-auto rounded-full bg-brand-black/60  text-white backdrop-blur-sm p-4 shadow">
               {newMenuItems.map((item, index) => {
                 if (!item._key)
                   return (
-                    <div key={index} className="bg-black h-[1px] w-24"></div>
+                    <div key={index} className="bg-white h-[1px] w-24"></div>
                   )
                 return (
                   // @ts-ignore
