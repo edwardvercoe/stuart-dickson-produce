@@ -50,17 +50,29 @@ const Hero = ({ data, variation }: HeroProps) => {
             variation === 'home' && 'min-h-[800px] h-[100vh]',
           )}
         >
-          <div className="w-full max-w-[560px] relative">
+          <div className="w-full relative">
             <div className="pb-8">
-              <h1 className="h1 text-6xl font-extrabold leading-6xl text-left -mb-4 text-white">
+              <h1
+                className={cn(
+                  'h1 text-6xl font-extrabold leading-6xl text-left text-white',
+                  variation === 'home' &&
+                    ' text-2xl pb-4 font-normal text-gray-300',
+                )}
+              >
                 {title}
               </h1>
             </div>
+            {subtitle && (
+              <PortableTextBlock
+                className={cn(
+                  'text-white pb-8 max-w-[520px]',
+                  variation === 'home' &&
+                    'text-5xl max-w-[800px] leading-[1.15]',
+                )}
+                data={subtitle}
+              />
+            )}
 
-            <PortableTextBlock
-              className="text-white pb-8 max-w-[520px]"
-              data={subtitle}
-            />
             {buttons && (
               <div className="flex gap-4 mt-4">
                 {buttons.map((button, index) => (

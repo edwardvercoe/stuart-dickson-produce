@@ -62,7 +62,7 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
           {carouselItems.map((item: any, index: number) => (
             <SwiperSlide key={item._key}>
               <SlideWrapper item={item}>
-                <div className="bg-[#D8EDD9] min-h-[600px] relative flex flex-col">
+                <div className="bg-[#D8EDD9] min-h-[600px] relative flex flex-col ">
                   <figure
                     className={cn(
                       'absolute top-0 left-0 w-full h-full gradient-full',
@@ -73,9 +73,18 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                       className="w-full h-full object-cover object-center"
                     />
                   </figure>
-                  <div className="flex-grow relative max-w-[600px] bleed-padding-x py-20 text-white flex flex-col justify-between h-full gap-8">
+                  <div className=" flex-grow relative max-w-[600px] bleed-padding-x py-20 text-white flex flex-col justify-between h-full gap-8">
                     <div>
-                      <h2 className="h2 ">{item.title}</h2>
+                      <div>
+                        {item?.subtitle && (
+                          <div className="pb-3">
+                            <h4 className="text-gray-200">{item?.subtitle}</h4>
+                          </div>
+                        )}
+                        <div>
+                          <h2 className="h2 ">{item.title}</h2>
+                        </div>
+                      </div>
                     </div>
 
                     <div className="flex flex-row gap-4">

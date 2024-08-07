@@ -10,7 +10,16 @@ p:not(:last-child) {
 }
 
 .h2 {
-  @apply lg:text-6xl md:text-5xl text-3xl;
+  @apply md:text-5xl text-3xl;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-medium;
 }
 
 ol,
@@ -22,13 +31,20 @@ ol {
   list-style-type: disc;
 }
 
+.full-bleed {
+  @apply px-0 md:px-0;
+}
+
 section {
   @apply relative;
-  @apply py-0;
 }
-section > div {
+
+.inner-container {
   @apply mx-auto;
   @apply max-w-[1560px];
+}
+section:not(.full-bleed) > div {
+  @apply inner-container;
 }
 
 section,
@@ -37,10 +53,6 @@ footer,
 .nav-menu,
 .bleed-padding-x {
   @apply px-5 md:px-8 lg:px-12;
-}
-
-.full-bleed {
-  @apply px-0 md:px-0;
 }
 
 .gradient-left:after {
@@ -97,4 +109,26 @@ footer,
 .navigation-ball:before {
   content: '';
   @apply absolute size-36 opacity-50 bg-brand-orange rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[0];
+}
+
+.carousel__freeform {
+  .swiper-slide {
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    figure {
+      height: 500px;
+      @apply w-auto;
+      @apply relative;
+      img {
+        @apply w-full h-full;
+      }
+    }
+  }
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
 }

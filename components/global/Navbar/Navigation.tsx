@@ -28,7 +28,7 @@ export default function Navbar(props: NavbarProps) {
   const newMenuItems: MenuItem[] = insertEmptyObjects(menuItems)
 
   return (
-    <nav className="fixed w-full top-0 left-0 z-40 bg-secondary  py-4 shadow-md">
+    <nav className="fixed w-full top-0 left-0 z-40  py-4 ">
       <div className="flex justify-between items-center w-full">
         <div className="w-1/6">
           <Link href="/" className="relative block w-[70px] h-[70px]">
@@ -44,22 +44,21 @@ export default function Navbar(props: NavbarProps) {
           </Link>
         </div>
         {menuItems && (
-          <div className="flex gap-4 items-center justify-center w-4/6">
-            {newMenuItems.map((item, index) => {
-              if (!item._key)
+          <div className="w-4/6">
+            <div className="flex gap-4 items-center justify-center w-auto rounded-full bg-white/20  text-black backdrop-blur-sm p-4 shadow">
+              {newMenuItems.map((item, index) => {
+                if (!item._key)
+                  return (
+                    <div key={index} className="bg-black h-[1px] w-24"></div>
+                  )
                 return (
-                  <div
-                    key={index}
-                    className="bg-brand-black h-[1px] w-32"
-                  ></div>
+                  // @ts-ignore
+                  <SanityLink data={item} key={item._key}>
+                    <span className="uppercase">{item.linkText}</span>
+                  </SanityLink>
                 )
-              return (
-                // @ts-ignore
-                <SanityLink data={item} key={item._key}>
-                  <span className="uppercase">{item.linkText}</span>
-                </SanityLink>
-              )
-            })}
+              })}
+            </div>
           </div>
         )}
         <div className="w-1/6" />

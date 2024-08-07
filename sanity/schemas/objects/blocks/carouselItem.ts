@@ -11,6 +11,11 @@ export default {
       type: 'string',
     },
     {
+      title: 'Subtitle',
+      name: 'subtitle',
+      type: 'string',
+    },
+    {
       title: 'Caption',
       name: 'caption',
       type: 'string',

@@ -26,6 +26,12 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      type: 'text',
+      name: 'subtitle',
+      title: 'Subtitle',
+      rows: 1,
+    }),
+    defineField({
       type: 'restrictedRichText',
       name: 'description',
       title: 'Description',

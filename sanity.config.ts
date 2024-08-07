@@ -21,6 +21,7 @@ import carouselCTA from './sanity/schemas/objects/blocks/carouselCTA'
 import carouselItem from './sanity/schemas/objects/blocks/carouselItem'
 import featuredCTA from './sanity/schemas/objects/blocks/featuredCTA'
 import hero from './sanity/schemas/objects/blocks/hero'
+import imageCarousel from './sanity/schemas/objects/blocks/imageCarousel'
 import twoColText from './sanity/schemas/objects/blocks/twoColText'
 import twoImages from './sanity/schemas/objects/blocks/twoImages'
 import link from './sanity/schemas/objects/link'
@@ -56,6 +57,7 @@ export default defineConfig({
       carouselItem,
       twoColText,
       twoImages,
+      imageCarousel,
     ],
   },
   plugins: [

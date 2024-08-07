@@ -12,6 +12,7 @@ type FeaturedCTAProps = {
 const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
   const {
     title,
+    subtitle,
     backgroundImage,
     buttons,
     description,
@@ -53,8 +54,13 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
               'flex items-center justify-center flex-col',
           )}
         >
+          {subtitle && (
+            <div className="pb-3">
+              <h4 className="text-gray-200">{subtitle}</h4>
+            </div>
+          )}
           <div className="pb-6">
-            <h1 className="text-6xl font-extrabold">{title}</h1>
+            <h2 className="text-5xl font-medium">{title}</h2>
           </div>
           <div className="max-w-[520px]">
             <PortableTextBlock data={description} />

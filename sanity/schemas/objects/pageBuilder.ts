@@ -1,5 +1,5 @@
 // write page builder schema
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineField } from 'sanity'
 
 const pageBuilder = defineField({
   name: 'pageBuilder',
@@ -20,6 +20,9 @@ const pageBuilder = defineField({
     },
     {
       type: 'twoImages',
+    },
+    {
+      type: 'imageCarousel',
     },
   ],
 })

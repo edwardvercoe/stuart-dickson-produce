@@ -1,4 +1,4 @@
-import './globals.css'
+import './globals.scss'
 
 import { Rubik } from 'next/font/google'
 

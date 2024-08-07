@@ -17,7 +17,6 @@ export default defineType({
       type: 'restrictedRichText',
       name: 'subtitle',
       title: 'Subtitle',
-      validation: (rule) => rule.required(),
     }),
     defineField({
       type: 'image',

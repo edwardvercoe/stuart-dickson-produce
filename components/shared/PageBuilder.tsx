@@ -5,6 +5,7 @@ import FeaturedCTA from '@/components/shared/FeaturedCTA'
 import Hero from '@/components/shared/Hero/Hero'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 
+import ImageCarousel from './ImageCarousel'
 import TwoColText from './TwoColText/TwoColText'
 import TwoImages from './TwoImages/TwoImages'
 
@@ -30,6 +31,8 @@ export const PageBuilder = ({ data, variation }: PageBuilderProps) => {
             return <TwoColText data={block} key={block._key} />
           case 'twoImages':
             return <TwoImages data={block} key={block._key} />
+          case 'imageCarousel':
+            return <ImageCarousel data={block} key={block._key} />
           default:
             return null
         }
