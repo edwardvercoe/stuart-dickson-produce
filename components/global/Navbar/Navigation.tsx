@@ -31,13 +31,13 @@ export default function Navbar(props: NavbarProps) {
     <nav className="fixed w-full top-0 left-0 z-40  py-4 ">
       <div className="flex justify-between items-center w-full">
         <div className="w-1/6">
-          <Link href="/" className="relative block w-[70px] h-[70px]">
+          <Link href="/" className="relative block w-[90px] h-[90px]">
             <Image
               src={crest262}
               alt="logo"
-              width={70}
-              height={70}
-              className="absolute top-0 left-0 invert"
+              width={90}
+              height={90}
+              className="absolute top-0 left-0 z-10"
             />
 
             <SpinningLogo />

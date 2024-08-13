@@ -20,14 +20,14 @@ const SpinningLogo = () => {
       style={{
         rotate,
       }}
-      className="relative origin-center w-[70px] h-[70px]"
+      className="relative origin-center w-[90px] h-[90px]"
     >
       <Image
         src={crestNumberless}
         alt="logo"
-        width={70}
-        height={70}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 origin-center invert"
+        width={90}
+        height={90}
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 origin-center rounded-full bg-black/20"
       />
     </motion.div>
   )

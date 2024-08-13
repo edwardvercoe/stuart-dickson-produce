@@ -51,12 +51,12 @@ const Hero = ({ data, variation }: HeroProps) => {
           )}
         >
           <div className="w-full relative">
-            <div className="pb-8">
+            <div>
               <h1
                 className={cn(
-                  'h1 text-6xl font-extrabold leading-6xl text-left text-white',
+                  'h1 text-6xl font-extrabold leading-6xl text-left text-white pb-8',
                   variation === 'home' &&
-                    ' text-2xl pb-4 font-normal text-gray-300',
+                    ' text-2xl pb-0 font-normal text-gray-300 pb-4',
                 )}
               >
                 {title}

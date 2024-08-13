@@ -97,32 +97,34 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div
-          data-navigation
-          className="absolute right-[15%] bottom-16 flex flex-row items-center justify-center gap-4"
-        >
-          <button
-            className="size-16 flex items-center justify-center"
-            type="button"
-            onClick={() => swiperRef.current?.slidePrev()}
+        {carouselItems.length > 1 && (
+          <div
+            data-navigation
+            className="absolute right-[15%] bottom-16 flex flex-row items-center justify-center gap-4"
           >
-            <MoveLeft size={40} color="white" className="relative z-10" />
-          </button>
-          <div className="size-32 bg-brand-orange text-white rounded-full flex items-center justify-center navigation-ball relative z-10">
-            <div className="relative">
-              <span>{currentSlide + 1}</span>
-              <span>/</span>
-              <span>{carouselItems.length}</span>
+            <button
+              className="size-16 flex items-center justify-center"
+              type="button"
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <MoveLeft size={40} color="white" className="relative z-10" />
+            </button>
+            <div className="size-32 bg-brand-orange text-white rounded-full flex items-center justify-center navigation-ball relative z-10">
+              <div className="relative">
+                <span>{currentSlide + 1}</span>
+                <span>/</span>
+                <span>{carouselItems.length}</span>
+              </div>
             </div>
+            <button
+              className="size-16 flex items-center justify-center"
+              type="button"
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <MoveRight size={40} color="white" className="relative z-10" />
+            </button>
           </div>
-          <button
-            className="size-16 flex items-center justify-center"
-            type="button"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <MoveRight size={40} color="white" className="relative z-10" />
-          </button>
-        </div>
+        )}
       </div>
     </section>
   )
