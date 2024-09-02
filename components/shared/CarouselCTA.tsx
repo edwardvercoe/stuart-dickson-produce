@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 
 import SanityImg from '../SanityComponents/SanityImg'
 import { InternalLinkWrapper } from '../SanityComponents/SanityLink'
+import PortableTextBlock from './PortableText/PortableTextBlock'
 
 type CarouselCTAProps = {
   data: any
@@ -84,6 +85,11 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                         <div>
                           <h2 className="h2 ">{item.title}</h2>
                         </div>
+                        {item?.description && (
+                          <div className="max-w-[520px] pt-8">
+                            <PortableTextBlock data={item?.description} />
+                          </div>
+                        )}
                       </div>
                     </div>
 

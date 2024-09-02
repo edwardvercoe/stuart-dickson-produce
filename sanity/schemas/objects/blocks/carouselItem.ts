@@ -16,6 +16,11 @@ export default {
       type: 'string',
     },
     {
+      title: 'Description',
+      name: 'description',
+      type: 'restrictedRichText',
+    },
+    {
       title: 'Caption',
       name: 'caption',
       type: 'string',
