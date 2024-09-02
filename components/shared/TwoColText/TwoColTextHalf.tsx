@@ -1,4 +1,5 @@
 import React from 'react'
+
 import PortableTextBlock from '../PortableText/PortableTextBlock'
 
 type TwoColTextProps = {
@@ -25,7 +26,7 @@ const TwoColTextHalf = ({ data }: TwoColTextProps) => {
                 {index === 0 && (
                   <span className="text-orange-500 mr-2">||</span>
                 )}
-                <PortableTextBlock data={item} />
+                <PortableTextBlock data={item} className="sm:pr-16" />
               </div>
             ))}
           </div>

@@ -1,3 +1,4 @@
+import { MapPin } from 'lucide-react'
 import React from 'react'
 
 import SanityImg from '@/components/SanityComponents/SanityImg'
@@ -18,6 +19,7 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
     description,
     foregroundImage,
     variation = 'left',
+    caption,
   } = data
   return (
     <section className="full-bleed">

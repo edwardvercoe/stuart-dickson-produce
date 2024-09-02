@@ -36,6 +36,11 @@ export default defineType({
       name: 'description',
       title: 'Description',
     }),
+    {
+      title: 'Caption',
+      name: 'caption',
+      type: 'string',
+    },
     defineField({
       type: 'image',
       name: 'backgroundImage',
