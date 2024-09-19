@@ -28,9 +28,7 @@ import link from './sanity/schemas/objects/link'
 import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
 import richText from './sanity/schemas/objects/richText'
 
-const title =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
-  'Next.js Personal Website with Sanity.io'
+const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'SDP'
 
 export default defineConfig({
   basePath: studioUrl,

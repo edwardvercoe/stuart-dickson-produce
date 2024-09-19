@@ -1,7 +1,8 @@
+import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-import BrandArrowAccent from '@/assets/svg/brandArrowAccent.svg'
+import BrandArrowAccent from '@/assets/svg/brand-arrow-accent.svg'
 import MouseSVG from '@/assets/svg/mouse.svg'
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
@@ -14,7 +15,14 @@ type HeroProps = {
 }
 
 const Hero = ({ data, variation }: HeroProps) => {
-  const { title, subtitle, backgroundImage, buttons, foregroundImage } = data
+  const {
+    title,
+    subtitle,
+    backgroundImage,
+    buttons,
+    foregroundImage,
+    caption,
+  } = data
 
   return (
     <>
@@ -46,17 +54,17 @@ const Hero = ({ data, variation }: HeroProps) => {
         )}
         <div
           className={cn(
-            'flex pb-4 md:p-6 items-center min-h-[600px] relative bleed-padding-x',
+            'flex flex-col pb-4 md:p-6 justify-center items-center min-h-[600px] relative bleed-padding-x',
             variation === 'home' && 'min-h-[800px] h-[100vh]',
           )}
         >
-          <div className="w-full relative">
+          <div className="flex-1 w-full relative flex flex-col justify-center">
             <div>
               <h1
                 className={cn(
-                  'h1 text-6xl font-extrabold leading-6xl text-left text-white pb-8',
+                  'h1 text-2xl font-normal leading-6xl text-left text-gray-300 pb-4 lg:pb-8',
                   variation === 'home' &&
-                    ' text-2xl pb-0 font-normal text-gray-300 pb-4',
+                    ' text-2xl font-normal text-gray-300 pb-4',
                 )}
               >
                 {title}
@@ -65,7 +73,7 @@ const Hero = ({ data, variation }: HeroProps) => {
             {subtitle && (
               <PortableTextBlock
                 className={cn(
-                  'text-white pb-8 max-w-[520px]',
+                  'text-white pb-8  sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
                   variation === 'home' &&
                     'text-5xl max-w-[800px] leading-[1.15]',
                 )}
@@ -97,6 +105,12 @@ const Hero = ({ data, variation }: HeroProps) => {
               </div>
             )}
           </div>
+          {caption && (
+            <div className="flex flex-row gap-4 w-full">
+              <MapPin stroke="white" strokeWidth={1} />
+              <p className="text-white">{caption}</p>
+            </div>
+          )}
         </div>
       </section>
       <section className="full-bleed h-4 flex flex-row relative w-full">

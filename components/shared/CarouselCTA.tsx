@@ -11,7 +11,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { cn } from '@/lib/utils'
 
 import SanityImg from '../SanityComponents/SanityImg'
-import { InternalLinkWrapper } from '../SanityComponents/SanityLink'
+import SanityLink, { InternalLinkWrapper } from '../SanityComponents/SanityLink'
+import Button from './Button'
 import PortableTextBlock from './PortableText/PortableTextBlock'
 
 type CarouselCTAProps = {
@@ -25,24 +26,14 @@ const SlideWrapper = ({
   item: any
   children: React.ReactNode
 }) => {
-  if (item?.page?.slug) {
-    return (
-      <InternalLinkWrapper
-        documentType={item?.page?._type}
-        slug={item?.page?.slug}
-      >
-        {children}
-      </InternalLinkWrapper>
-    )
-  } else {
-    return <div className="relative">{children}</div>
-  }
+  return <div className="relative">{children}</div>
 }
 
 const CarouselCTA = ({ data }: CarouselCTAProps) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const swiperRef = useRef<SwiperType>()
   const { carouselItems } = data
+
   return (
     <section className="full-bleed">
       <div className="relative">
@@ -88,6 +79,25 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                         {item?.description && (
                           <div className="max-w-[520px] pt-8">
                             <PortableTextBlock data={item?.description} />
+                          </div>
+                        )}
+                        {item?.buttons && (
+                          <div className="flex gap-4 mt-4">
+                            {item?.buttons && (
+                              <div className="flex gap-4 mt-4">
+                                {item?.buttons.map((button, index) => (
+                                  <SanityLink data={button} key={button._key}>
+                                    <Button
+                                      variant={
+                                        index === 0 ? 'primary' : 'secondary'
+                                      }
+                                    >
+                                      {button.linkText}
+                                    </Button>
+                                  </SanityLink>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>

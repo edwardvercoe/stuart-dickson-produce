@@ -23,6 +23,10 @@ const PageBuilderQuery = groq`
       carouselItems[] {
         ...,
         "page": page->{...,"slug": slug.current,_type},
+        buttons[] {
+        ...,
+        "internalLink" : internalLink->{"slug": slug.current,_type}
+        },
       },
     },
   }
@@ -64,6 +68,7 @@ export const settingsQuery = groq`
       ...,
       "internalLink" : internalLink->{"slug": slug.current,_type},
     },
+    contactDetails,
     ogImage,
   }
 `

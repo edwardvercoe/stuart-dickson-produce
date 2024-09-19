@@ -49,6 +49,11 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'contactDetails',
+      title: 'Contact Details',
+      type: 'restrictedRichText',
+    }),
+    defineField({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',

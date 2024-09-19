@@ -75,4 +75,5 @@ export interface SettingsPayload {
   footer?: PortableTextBlock[]
   menuItems?: LinkType[]
   ogImage?: Image
+  contactDetails?: PortableTextBlock[]
 }

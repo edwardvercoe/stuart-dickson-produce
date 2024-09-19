@@ -19,7 +19,7 @@ const TwoColTextHalf = ({ data }: TwoColTextProps) => {
                 key={index}
                 className={
                   index === 0
-                    ? 'flex items-center text-brand-darker-green'
+                    ? 'flex text-brand-darker-green'
                     : 'text-brand-gray'
                 }
               >

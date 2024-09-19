@@ -31,12 +31,17 @@ export default {
       type: 'image',
       validation: (Rule) => Rule.required(),
     },
+
     {
-      title: 'Link to Page or Farm',
-      name: 'page',
-      type: 'reference',
-      description: 'Select a page or farm to link to',
-      to: [{ type: 'page' }, { type: 'farm' }],
+      type: 'array',
+      name: 'buttons',
+      title: 'Buttons',
+      of: [
+        {
+          type: 'link',
+        },
+      ],
+      validation: (rule) => rule.max(2),
     },
   ],
 }

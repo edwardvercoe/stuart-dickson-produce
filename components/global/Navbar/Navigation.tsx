@@ -1,10 +1,13 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 import crest262 from '@/assets/img/crest-262.png'
 import SanityLink from '@/components/SanityComponents/SanityLink'
 import type { MenuItem, SettingsPayload } from '@/types'
 
+import NavMenu from './NavMenu'
 import SpinningLogo from './SpinningLogo'
 
 interface NavbarProps {
@@ -23,12 +26,13 @@ export default function Navbar(props: NavbarProps) {
       return acc
     }, [] as MenuItem[])
   }
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Assign newMenuItems with the correct type
   const newMenuItems: MenuItem[] = insertEmptyObjects(menuItems)
 
   return (
-    <nav className="fixed w-full top-0 left-0 z-40  py-4 ">
+    <nav className="fixed w-full top-0 left-0 z-[999]  py-4 ">
       <div className="flex justify-between items-center w-full">
         <div className="w-1/6">
           <Link href="/" className="relative block w-[90px] h-[90px]">
@@ -44,7 +48,7 @@ export default function Navbar(props: NavbarProps) {
           </Link>
         </div>
         {menuItems && (
-          <div className="w-4/6">
+          <div className="w-4/6 hidden md:block">
             <div className="flex gap-4 items-center justify-center w-auto rounded-full bg-brand-black/60  text-white backdrop-blur-sm p-4 shadow">
               {newMenuItems.map((item, index) => {
                 if (!item._key)
@@ -54,7 +58,9 @@ export default function Navbar(props: NavbarProps) {
                 return (
                   // @ts-ignore
                   <SanityLink data={item} key={item._key}>
-                    <span className="uppercase">{item.linkText}</span>
+                    <span className="uppercase hover:text-brand-orange transition-colors">
+                      {item.linkText}
+                    </span>
                   </SanityLink>
                 )
               })}
@@ -62,6 +68,11 @@ export default function Navbar(props: NavbarProps) {
           </div>
         )}
         <div className="w-1/6" />
+        <NavMenu
+          navData={data}
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+        />
       </div>
     </nav>
   )

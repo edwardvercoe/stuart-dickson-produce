@@ -40,6 +40,11 @@ export default defineType({
       ],
       validation: (rule) => rule.max(2),
     }),
+    {
+      title: 'Caption',
+      name: 'caption',
+      type: 'string',
+    },
   ],
   preview: {
     select: {

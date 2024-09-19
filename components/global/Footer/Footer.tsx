@@ -24,10 +24,18 @@ export default function Footer(props: FooterProps) {
       <footer className="bottom-0 w-full text-white bg-brand-black py-12">
         <div className="flex sm:gap-10 flex-col sm:flex-row pb-6">
           <div className="flex-1">
-            <div className="pb-4">
+            <div className="pb-4 flex flex-col sm:flex-row gap-4 sm:gap-8">
               <Image src={LogoWhite} alt="logo" width={70} height={70} />
+              {data?.contactDetails && (
+                <div className="contact-details">
+                  <PortableTextBlock
+                    data={data?.contactDetails}
+                    className="text-xs text-white/80"
+                  />
+                </div>
+              )}
             </div>
-            <div className="max-w-[560px] pb-6 sm:pb-0">
+            <div className="max-w-[560px] pb-6 sm:pb-0 ">
               <PortableTextBlock
                 data={footer}
                 className="text-xs text-white/80"
