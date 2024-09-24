@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
+
 type SanityLinkProps = {
   data: LinkType
   children: React.ReactNode
   internalLink?: boolean
+  className?: string
 }
 
 type LinkType = {
@@ -41,6 +44,7 @@ export const SanityLink = ({
   data,
   children,
   internalLink = false,
+  className,
 }: SanityLinkProps) => {
   if (!data) {
     return <span>{children}</span>
@@ -51,11 +55,16 @@ export const SanityLink = ({
       data.internalLink?._type || data._type,
       data.internalLink?.slug || data.slug,
     )
-    return <Link href={href}>{children}</Link>
+    return (
+      <Link className={cn(className)} href={href}>
+        {children}
+      </Link>
+    )
   }
   if (data?.linkType === 'external') {
     return (
       <a
+        className={cn(className)}
         href={data?.externalUrl}
         target={data?.newWindow ? '_blank' : ''}
         rel="noreferrer"
@@ -67,10 +76,15 @@ export const SanityLink = ({
   return <span>{children}</span>
 }
 
-export const InternalLinkWrapper = ({ documentType, slug, children }) => {
+export const InternalLinkWrapper = ({
+  documentType,
+  slug,
+  children,
+  className,
+}) => {
   const href = resolveHref(documentType, slug)
   return (
-    <Link href={href} className="relative">
+    <Link href={href} className={cn('relative', className)}>
       {children}
     </Link>
   )

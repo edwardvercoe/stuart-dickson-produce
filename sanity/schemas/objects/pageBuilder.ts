@@ -24,6 +24,9 @@ const pageBuilder = defineField({
     {
       type: 'imageCarousel',
     },
+    {
+      type: 'googleMaps',
+    },
   ],
 })
 

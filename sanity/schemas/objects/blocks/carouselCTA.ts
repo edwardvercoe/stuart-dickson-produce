@@ -1,5 +1,3 @@
-// write schema for carouselCTA block
-
 const carouselCTA = {
   title: 'Carousel CTA',
   name: 'carouselCTA',

@@ -75,17 +75,18 @@ const Hero = ({ data, variation }: HeroProps) => {
                 className={cn(
                   'text-white pb-8  sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
                   variation === 'home' &&
-                    'text-5xl max-w-[800px] leading-[1.15]',
+                    'text-2xl sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
                 )}
                 data={subtitle}
               />
             )}
 
             {buttons && (
-              <div className="flex gap-4 mt-4">
+              <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
                 {buttons.map((button, index) => (
                   <SanityLink data={button} key={button._key}>
                     <Button
+                      className="w-full sm:w-auto"
                       variant={index === 0 ? 'primary' : 'secondary'}
                       iconRight={
                         index === 0 && (

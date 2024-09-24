@@ -45,7 +45,7 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
       )}
       <div
         className={cn(
-          'flex p-6 bg-cover bg-center items-center min-h-[600px] relative bleed-padding-x',
+          'flex p-6 items-center min-h-[600px] relative bleed-padding-x',
           variation === 'centered' && 'justify-center text-center',
         )}
       >
@@ -62,7 +62,9 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
             </div>
           )}
           <div className="pb-6">
-            <h2 className="text-5xl font-medium">{title}</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-medium">
+              {title}
+            </h2>
           </div>
           <div className="max-w-[520px]">
             <PortableTextBlock data={description} />
@@ -70,10 +72,13 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
           {buttons && (
             <div className="flex gap-4 mt-4">
               {buttons && (
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
                   {buttons.map((button, index) => (
                     <SanityLink data={button} key={button._key}>
-                      <Button variant={index === 0 ? 'primary' : 'secondary'}>
+                      <Button
+                        variant={index === 0 ? 'primary' : 'secondary'}
+                        className="w-full sm:w-auto"
+                      >
                         {button.linkText}
                       </Button>
                     </SanityLink>

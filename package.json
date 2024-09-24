@@ -17,6 +17,7 @@
   "dependencies": {
     "@next/env": "14.2.3",
     "@radix-ui/react-dialog": "^1.1.1",
+    "@react-google-maps/api": "^2.19.3",
     "@sanity/demo": "2.0.0",
     "@sanity/icons": "2.11.8",
     "@sanity/image-url": "1.0.2",

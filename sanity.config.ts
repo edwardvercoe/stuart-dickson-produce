@@ -20,6 +20,7 @@ import settings from '@/sanity/schemas/singletons/settings'
 import carouselCTA from './sanity/schemas/objects/blocks/carouselCTA'
 import carouselItem from './sanity/schemas/objects/blocks/carouselItem'
 import featuredCTA from './sanity/schemas/objects/blocks/featuredCTA'
+import googleMaps from './sanity/schemas/objects/blocks/googleMaps'
 import hero from './sanity/schemas/objects/blocks/hero'
 import imageCarousel from './sanity/schemas/objects/blocks/imageCarousel'
 import twoColText from './sanity/schemas/objects/blocks/twoColText'
@@ -56,6 +57,7 @@ export default defineConfig({
       twoColText,
       twoImages,
       imageCarousel,
+      googleMaps,
     ],
   },
   plugins: [

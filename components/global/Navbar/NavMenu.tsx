@@ -53,7 +53,10 @@ export const NavMenu = ({
           <div className="pt-24">
             <ul className="list-none p-0 text-left text-2xl flex flex-col gap-8">
               <li>
-                <Link href="/">
+                <Link
+                  href="/"
+                  onClick={() => setIsMenuOpen((prevState) => !prevState)}
+                >
                   <span>HOME</span>
                 </Link>
               </li>
@@ -65,6 +68,7 @@ export const NavMenu = ({
                     variants={linkVariants}
                     transition={{ delay: 0.3 + index * 0.1 }}
                     whileInView="animate"
+                    onClick={() => setIsMenuOpen((prevState) => !prevState)}
                   >
                     <SanityLink data={link}>
                       <span>{link?.linkText || ''}</span>

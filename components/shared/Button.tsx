@@ -6,16 +6,23 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary'
   children: React.ReactNode
   iconRight?: React.ReactNode
+  className?: string
 }
 
-const Button = ({ variant = 'primary', children, iconRight }: ButtonProps) => {
+const Button = ({
+  variant = 'primary',
+  children,
+  iconRight,
+  className,
+}: ButtonProps) => {
   return (
     <button
       type="button"
       className={cn(
         'py-4 px-6 bg-accent text-brand-black rounded-full',
-        iconRight && 'flex justify-between items-center pr-2 py-2',
+        iconRight && 'flex justify-center items-center pr-2 py-2',
         variant === 'secondary' && 'bg-white text-black border-transparent',
+        className,
       )}
     >
       <span className=" font-medium">{children}</span>
