@@ -50,7 +50,7 @@ export const NavMenu = ({
       </SheetTrigger>
       <SheetContent className="z-[99] bg-brand-black text-white border-none min-h-screen flex flex-col">
         <SheetHeader>
-          <div className="pt-24">
+          <div className="pt-32">
             <ul className="list-none p-0 text-left text-2xl flex flex-col gap-8">
               <li>
                 <Link
