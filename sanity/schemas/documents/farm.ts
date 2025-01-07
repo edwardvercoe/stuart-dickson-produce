@@ -37,5 +37,10 @@ export default defineType({
       type: 'image',
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'seo',
+      type: 'seo',
+      title: 'SEO Content',
+    }),
   ],
 })

@@ -6,6 +6,11 @@ const googleMaps = {
   type: 'object',
   fields: [
     defineField({
+      name: 'coordinates',
+      title: 'Coordinates',
+      type: 'geopoint',
+    }),
+    defineField({
       type: 'array',
       name: 'buttons',
       title: 'Buttons',

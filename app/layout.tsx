@@ -1,5 +1,6 @@
 import './globals.scss'
 
+import { GoogleTagManager } from '@next/third-parties/google'
 import { Rubik } from 'next/font/google'
 
 const rubik = Rubik({
@@ -15,6 +16,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className={` ${rubik.variable}`}>
+      {process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      )}
       <body>{children}</body>
     </html>
   )

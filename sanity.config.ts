@@ -3,6 +3,7 @@
  * This config is used to set up Sanity Studio that's mounted on the `app/studio/[[...index]]/Studio.tsx` route
  */
 
+import { googleMapsInput } from '@sanity/google-maps-input'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
@@ -28,8 +29,10 @@ import twoImages from './sanity/schemas/objects/blocks/twoImages'
 import link from './sanity/schemas/objects/link'
 import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
 import richText from './sanity/schemas/objects/richText'
+import seo from './sanity/schemas/objects/seo'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'SDP'
+const mapsAPI = process.env.NEXT_PUBLIC_SANITY_GOOGLE_MAPS_API || ''
 
 export default defineConfig({
   basePath: studioUrl,
@@ -49,6 +52,7 @@ export default defineConfig({
       richText,
       restrictedRichText,
       link,
+      seo,
       // block objects
       hero,
       featuredCTA,
@@ -79,5 +83,8 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    googleMapsInput({
+      apiKey: mapsAPI,
+    }),
   ],
 })

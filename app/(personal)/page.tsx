@@ -2,13 +2,22 @@ import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 
-import AuthButton from '@/components/auth/AuthButton'
 import { HomePage } from '@/components/pages/home/HomePage'
+import { defineSanityMetadata } from '@/lib/utils'
 import { studioUrl } from '@/sanity/lib/api'
-import { loadHomePage } from '@/sanity/loader/loadQuery'
+import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
 const HomePagePreview = dynamic(
   () => import('@/components/pages/home/HomePagePreview'),
 )
+
+export async function generateMetadata() {
+  const [{ data: settings }, { data: homePage }] = await Promise.all([
+    loadSettings(),
+    loadHomePage(),
+  ])
+
+  return defineSanityMetadata(homePage, settings)
+}
 
 export default async function IndexRoute() {
   const initial = await loadHomePage()

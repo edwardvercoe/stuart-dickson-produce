@@ -25,7 +25,13 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     pageBuilder,
+    defineField({
+      name: 'seo',
+      type: 'seo',
+      title: 'SEO Content',
+    }),
   ],
+
   preview: {
     select: {
       title: 'title',

@@ -5,26 +5,22 @@ import { notFound } from 'next/navigation'
 import { toPlainText } from 'next-sanity'
 
 import { Page } from '@/components/pages/page/Page'
+import { defineSanityMetadata } from '@/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
-import { loadPage } from '@/sanity/loader/loadQuery'
+import { loadPage, loadSettings } from '@/sanity/loader/loadQuery'
 const PagePreview = dynamic(() => import('@/components/pages/page/PagePreview'))
 
 type Props = {
   params: { slug: string }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { data: page } = await loadPage(params.slug)
+export async function generateMetadata({ params }: Props) {
+  const [{ data: settings }, { data: page }] = await Promise.all([
+    loadSettings(),
+    loadPage(params.slug),
+  ])
 
-  return {
-    title: page?.title,
-    description: page?.overview
-      ? toPlainText(page.overview)
-      : (await parent).description,
-  }
+  return defineSanityMetadata(page, settings)
 }
 
 export function generateStaticParams() {

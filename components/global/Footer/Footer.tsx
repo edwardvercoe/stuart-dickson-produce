@@ -13,7 +13,6 @@ export default function Footer(props: FooterProps) {
   const { data } = props
   const footer = data?.footer || []
   const menuItems = data?.menuItems || ([] as MenuItem[])
-
   return (
     <>
       <section className="full-bleed h-4 flex flex-row relative w-full">
@@ -50,6 +49,7 @@ export default function Footer(props: FooterProps) {
                     {item.linkText}
                   </SanityLink>
                 ))}
+                <Link href="/accreditation">ACCREDITATION</Link>
               </div>
             )}
           </div>

@@ -48,27 +48,17 @@ export const pagesBySlugQuery = groq`
 
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    client,
-    coverImage,
-    description,
-    duration,
-    overview,
-    site,
+    ...,
     "slug": slug.current,
-    tags,
-    title,
   }
 `
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
-    footer,
+    ...,
     menuItems[] {
       ...,
       "internalLink" : internalLink->{"slug": slug.current,_type},
     },
-    contactDetails,
-    ogImage,
   }
 `

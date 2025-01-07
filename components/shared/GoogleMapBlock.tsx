@@ -10,7 +10,7 @@ type MapProps = {
 }
 
 export const GoogleMapBlock = ({ data }: MapProps) => {
-  const { buttons } = data
+  const { buttons, coordinates } = data
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''
 
   const defaultLocation = useMemo(
@@ -27,8 +27,11 @@ export const GoogleMapBlock = ({ data }: MapProps) => {
   }
 
   const location = useMemo(
-    () => ({ lat: defaultLocation.lat, lng: defaultLocation.lng }),
-    [defaultLocation],
+    () => ({
+      lat: coordinates?.lat ?? defaultLocation.lat,
+      lng: coordinates?.lng ?? defaultLocation.lng,
+    }),
+    [coordinates, defaultLocation],
   )
 
   const { isLoaded } = useLoadScript({
