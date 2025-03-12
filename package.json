@@ -27,8 +27,6 @@
     "@sanity/react-loader": "1.9.19",
     "@sanity/ui": "2.1.11",
     "@sanity/vision": "3.43.0",
-    "@supabase/ssr": "^0.3.0",
-    "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/typography": "0.5.13",
     "class-variance-authority": "^0.7.1",
     "classnames": "2.5.1",
