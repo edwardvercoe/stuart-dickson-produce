@@ -1,6 +1,7 @@
 /* Import Tailwind */
 @import "tailwindcss";
-
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
 @theme {
   --radius: 0.5rem;
   --font-sans: var(--font-rubik);
