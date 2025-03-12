@@ -41,11 +41,11 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 ### Outdated Dependencies
 
 - Several core dependencies are using older versions, including:
-  - Tailwind CSS
+  - ✅ Tailwind CSS (Updated to v4)
   - Next.js
   - React
   - Sanity
-- Recommendation: Update all dependencies to their latest stable versions
+- Recommendation: Update remaining dependencies to their latest stable versions
 - Assessment:
   - Some breaking changes are expected but should be straightforward to resolve
   - No significant problems anticipated during the update process
