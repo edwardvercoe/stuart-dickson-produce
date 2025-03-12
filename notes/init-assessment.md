@@ -44,9 +44,17 @@ This assessment provides an overview of the current state of the Stuart Dickson 
   - ✅ Tailwind CSS (Updated to v4)
   - Next.js
   - React
-  - Sanity
+  - ✅ Sanity (Updated to 3.79.0)
 - ✅ Removed unnecessary @sanity/demo package
-- Recommendation: Update remaining dependencies to their latest stable versions
+- ✅ Updated all Sanity-related packages:
+  - @sanity/icons to 3.7.0
+  - @sanity/preview-url-secret to 2.1.5
+  - @sanity/react-loader to 1.10.47
+  - @sanity/ui to 2.15.5
+  - @sanity/vision to 3.79.0
+  - sanity-image to 1.0.0
+  - sanity-plugin-asset-source-unsplash to 3.0.3
+- Recommendation: Update remaining core dependencies (Next.js and React) to their latest stable versions
 - Assessment:
   - Some breaking changes are expected but should be straightforward to resolve
   - No significant problems anticipated during the update process
@@ -66,15 +74,15 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### CSS Implementation Issues
 
-- The project uses SCSS, which is not recommended for modern projects
+- ✅ RESOLVED: Converted SCSS to standard CSS and removed redundant files
 - There's an inconsistent mix of:
   - Tailwind CSS utility classes
-  - Two custom global.scss files (one appears unused)
-  - Global CSS styles applied in one of the SCSS files
+  - ✅ Removed redundant global.scss files
+  - ✅ Converted global SCSS styles to standard CSS
 - Recommendation:
-  - Convert SCSS to standard CSS
+  - ✅ Convert SCSS to standard CSS (Completed)
   - Consistently use Tailwind utility classes throughout the project
-  - Remove redundant stylesheet files
+  - ✅ Remove redundant stylesheet files (Completed)
 
 ### TypeScript Type Safety
 
@@ -106,6 +114,15 @@ This assessment provides an overview of the current state of the Stuart Dickson 
   - This creates an unwanted horizontal scrollbar
   - Recommendation: Implement text wrapping for the email or use a more responsive container
 
+### Accessibility Issues
+
+- Button implementation problems:
+  - Incorrect nesting of `<button>` elements inside `<a>` tags
+  - This creates accessibility issues and is invalid HTML
+  - Affects multiple components including CTAs and navigation
+  - Recommendation: Refactor to use either buttons or links appropriately, not both nested
+  - Impact: Affects screen readers and keyboard navigation
+
 ## Recommendations by Priority
 
 ### High Priority (Technical Debt & Critical UX Issues)
@@ -129,36 +146,43 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
    - Effort: Medium-High
 
-6. ☐ Standardize the CSS approach:
+6. ✅ Standardize the CSS approach:
 
-   - Convert SCSS to CSS
+   - ✅ Convert SCSS to CSS (Completed)
    - Use Tailwind utility classes consistently
-   - Remove redundant stylesheet files
+   - ✅ Remove redundant stylesheet files (Completed)
    - Effort: Medium
 
 7. ☐ Improve mobile menu usability:
+
    - Use a more recognizable menu icon
    - Add contrast to ensure visibility against all backgrounds
    - Fix content overflow issues in the expanded menu
    - Effort: Medium
 
+8. ☐ Fix accessibility issues:
+   - Refactor button/link implementations
+   - Ensure proper HTML semantics
+   - Improve screen reader compatibility
+   - Effort: Medium
+
 ### Lower Priority (Cleanup & Enhancements)
 
-8. ✅ Remove unnecessary Netlify configuration files
+9. ✅ Remove unnecessary Netlify configuration files
 
    - Effort: Low
    - Status: Completed
    - Action: Removed netlify.toml configuration file
 
-9. ☐ Improve type safety by implementing auto-generated types from Sanity schemas
+10. ☐ Improve type safety by implementing auto-generated types from Sanity schemas
 
-   - Effort: Medium
+    - Effort: Medium
 
-10. ☐ Enhance the image slider with clear visual indicators
+11. ☐ Enhance the image slider with clear visual indicators
 
     - Effort: Low
 
-11. ✅ Remove Supabase integration if confirmed unnecessary
+12. ✅ Remove Supabase integration if confirmed unnecessary
     - Effort: Low
     - Status: Completed
     - Actions taken:
