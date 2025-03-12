@@ -48,7 +48,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### Unused Supabase Integration
 
-✓ RESOLVED: Supabase integration has been completely removed
+✅ RESOLVED: Supabase integration has been completely removed
 
 - Previously included:
   - Authentication functionality
@@ -105,33 +105,33 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### High Priority (Technical Debt & Critical UX Issues)
 
-1. Update all core dependencies to their latest stable versions
+1. ☐ Update all core dependencies to their latest stable versions
    - Effort: Medium
-2. Fix horizontal scrolling issue caused by long email address
+2. ☐ Fix horizontal scrolling issue caused by long email address
 
    - Effort: Low
 
-3. Optimize hero images on mobile to improve user experience
+3. ☐ Optimize hero images on mobile to improve user experience
 
    - Effort: Low
 
-4. Fix image scaling problems on large screens (portrait cutoff issues)
+4. ☐ Fix image scaling problems on large screens (portrait cutoff issues)
    - Effort: Low
 
 ### Medium Priority (Modernization & Improvements)
 
-5. Modernize the Sanity-Next.js integration to follow current best practices
+5. ☐ Modernize the Sanity-Next.js integration to follow current best practices
 
    - Effort: Medium-High
 
-6. Standardize the CSS approach:
+6. ☐ Standardize the CSS approach:
 
    - Convert SCSS to CSS
    - Use Tailwind utility classes consistently
    - Remove redundant stylesheet files
    - Effort: Medium
 
-7. Improve mobile menu usability:
+7. ☐ Improve mobile menu usability:
    - Use a more recognizable menu icon
    - Add contrast to ensure visibility against all backgrounds
    - Fix content overflow issues in the expanded menu
@@ -139,19 +139,19 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### Lower Priority (Cleanup & Enhancements)
 
-8. Remove unnecessary Netlify configuration files
+8. ☐ Remove unnecessary Netlify configuration files
 
    - Effort: Low
 
-9. Improve type safety by implementing auto-generated types from Sanity schemas
+9. ☐ Improve type safety by implementing auto-generated types from Sanity schemas
 
    - Effort: Medium
 
-10. Enhance the image slider with clear visual indicators
+10. ☐ Enhance the image slider with clear visual indicators
 
     - Effort: Low
 
-11. ✓ Remove Supabase integration if confirmed unnecessary
+11. ✅ Remove Supabase integration if confirmed unnecessary
     - Effort: Low
     - Status: Completed
     - Actions taken:
