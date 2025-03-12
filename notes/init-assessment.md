@@ -45,6 +45,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
   - Next.js
   - React
   - Sanity
+- ✅ Removed unnecessary @sanity/demo package
 - Recommendation: Update remaining dependencies to their latest stable versions
 - Assessment:
   - Some breaking changes are expected but should be straightforward to resolve
