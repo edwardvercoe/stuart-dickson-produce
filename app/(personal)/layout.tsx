@@ -1,4 +1,4 @@
-import '@/styles/globals.scss'
+import '@/app/globals.css'
 
 import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
