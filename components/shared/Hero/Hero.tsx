@@ -6,9 +6,10 @@ import BrandArrowAccent from '@/assets/svg/brand-arrow-accent.svg'
 import MouseSVG from '@/assets/svg/mouse.svg'
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
-import Button from '@/components/shared/Button'
+import { buttonStyles } from '@/components/shared/Button'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import { cn } from '@/lib/utils'
+
 type HeroProps = {
   data: any
   variation?: string
@@ -83,26 +84,32 @@ const Hero = ({ data, variation }: HeroProps) => {
 
             {buttons && (
               <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
-                {buttons.map((button, index) => (
-                  <SanityLink data={button} key={button._key}>
-                    <Button
-                      className="w-full sm:w-auto"
-                      variant={index === 0 ? 'primary' : 'secondary'}
-                      iconRight={
-                        index === 0 && (
+                {buttons.map((button, index) => {
+                  const hasIcon = index === 0
+                  return (
+                    <SanityLink
+                      key={button._key}
+                      data={button}
+                      className={buttonStyles({
+                        variant: index === 0 ? 'primary' : 'secondary',
+                        iconRight: hasIcon,
+                        className: 'w-full sm:w-auto'
+                      })}
+                    >
+                      <span className="font-medium">{button.linkText}</span>
+                      {hasIcon && (
+                        <span className="ml-4 flex items-center justify-center bg-brand-black rounded-full size-10">
                           <Image
                             src={BrandArrowAccent}
                             alt="brand arrow icon"
                             height={16}
                             width={16}
                           />
-                        )
-                      }
-                    >
-                      {button.linkText}
-                    </Button>
-                  </SanityLink>
-                ))}
+                        </span>
+                      )}
+                    </SanityLink>
+                  )
+                })}
               </div>
             )}
           </div>

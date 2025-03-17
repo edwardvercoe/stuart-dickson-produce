@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils'
 
 import SanityImg from '../SanityComponents/SanityImg'
 import SanityLink, { InternalLinkWrapper } from '../SanityComponents/SanityLink'
-import Button from './Button'
+import { buttonStyles } from './Button'
 import PortableTextBlock from './PortableText/PortableTextBlock'
 
 type CarouselCTAProps = {
@@ -83,21 +83,18 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                         )}
                         {item?.buttons && (
                           <div className="flex gap-4 mt-4">
-                            {item?.buttons && (
-                              <div className="flex gap-4 mt-4">
-                                {item?.buttons.map((button, index) => (
-                                  <SanityLink data={button} key={button._key}>
-                                    <Button
-                                      variant={
-                                        index === 0 ? 'primary' : 'secondary'
-                                      }
-                                    >
-                                      {button.linkText}
-                                    </Button>
-                                  </SanityLink>
-                                ))}
-                              </div>
-                            )}
+                            {item?.buttons.map((button, index) => (
+                              <SanityLink
+                                key={button._key}
+                                data={button}
+                                className={buttonStyles({
+                                  variant: index === 0 ? 'primary' : 'secondary',
+                                  className: 'w-full sm:w-auto'
+                                })}
+                              >
+                                <span className="font-medium">{button.linkText}</span>
+                              </SanityLink>
+                            ))}
                           </div>
                         )}
                       </div>

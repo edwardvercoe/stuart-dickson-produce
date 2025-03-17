@@ -117,12 +117,11 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### Accessibility Issues
 
-- Button implementation problems:
-  - Incorrect nesting of `<button>` elements inside `<a>` tags
-  - This creates accessibility issues and is invalid HTML
-  - Affects multiple components including CTAs and navigation
-  - Recommendation: Refactor to use either buttons or links appropriately, not both nested
-  - Impact: Affects screen readers and keyboard navigation
+- ✅ Button implementation problems:
+  - Previous issue: Incorrect nesting of `<button>` elements inside `<a>` tags
+  - Resolution: Refactored to use buttonStyles directly on link elements
+  - Fixed across Hero, CarouselCTA, FeaturedCTA, and GoogleMapBlock components
+  - Impact: Improved screen reader compatibility and HTML semantics
 
 ## Recommendations by Priority
 
@@ -168,11 +167,17 @@ This assessment provides an overview of the current state of the Stuart Dickson 
    - Fix content overflow issues in the expanded menu
    - Effort: Medium
 
-8. ☐ Fix accessibility issues:
-   - Refactor button/link implementations
-   - Ensure proper HTML semantics
-   - Improve screen reader compatibility
+8. ✅ Fix accessibility issues:
+   - ✅ Refactored button/link implementations
+   - ✅ Ensured proper HTML semantics
+   - ✅ Improved screen reader compatibility
    - Effort: Medium
+   - Status: Completed
+   - Actions taken:
+     - Extracted button styles to reusable function
+     - Applied styles directly to link elements
+     - Removed invalid button nesting
+     - Maintained consistent visual appearance
 
 ### Lower Priority (Cleanup & Enhancements)
 

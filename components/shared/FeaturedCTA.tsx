@@ -3,9 +3,10 @@ import React from 'react'
 
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
-import Button from '@/components/shared/Button'
+import { buttonStyles } from '@/components/shared/Button'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import { cn } from '@/lib/utils'
+
 type FeaturedCTAProps = {
   data: any
 }
@@ -74,13 +75,15 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
               {buttons && (
                 <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
                   {buttons.map((button, index) => (
-                    <SanityLink data={button} key={button._key}>
-                      <Button
-                        variant={index === 0 ? 'primary' : 'secondary'}
-                        className="w-full sm:w-auto"
-                      >
-                        {button.linkText}
-                      </Button>
+                    <SanityLink
+                      key={button._key}
+                      data={button}
+                      className={buttonStyles({
+                        variant: index === 0 ? 'primary' : 'secondary',
+                        className: 'w-full sm:w-auto'
+                      })}
+                    >
+                      <span className="font-medium">{button.linkText}</span>
                     </SanityLink>
                   ))}
                 </div>
