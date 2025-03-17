@@ -197,6 +197,23 @@
     width: 100%;
     height: 100%;
   }
+
+  /* Add email wrapping styles */
+  .contact-details {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  .contact-details a {
+    color: var(--color-brand-orange);
+    display: inline-block;
+    max-width: 100%;
+    word-break: break-all;
+  }
 }
 
 /* Import burger button styles - we'll convert this next */
