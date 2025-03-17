@@ -40,10 +40,10 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### Outdated Dependencies
 
-- Several core dependencies are using older versions, including:
+- Several core dependencies have been updated:
   - ✅ Tailwind CSS (Updated to v4)
-  - Next.js
-  - React
+  - ✅ Next.js (Updated to 15.2.2)
+  - ✅ React (Updated to 19.0.0)
   - ✅ Sanity (Updated to 3.79.0)
 - ✅ Removed unnecessary @sanity/demo package
 - ✅ Updated all Sanity-related packages:
@@ -54,10 +54,10 @@ This assessment provides an overview of the current state of the Stuart Dickson 
   - @sanity/vision to 3.79.0
   - sanity-image to 1.0.0
   - sanity-plugin-asset-source-unsplash to 3.0.3
-- Recommendation: Update remaining core dependencies (Next.js and React) to their latest stable versions
+- ✅ All core dependencies are now on their latest stable versions
 - Assessment:
-  - Some breaking changes are expected but should be straightforward to resolve
-  - No significant problems anticipated during the update process
+  - Breaking changes have been handled through automated codemods
+  - Manual testing required to ensure full compatibility
 
 ### Unused Supabase Integration
 
@@ -127,8 +127,15 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### High Priority (Technical Debt & Critical UX Issues)
 
-1. ☐ Update all core dependencies to their latest stable versions
+1. ✅ Update all core dependencies to their latest stable versions
+
    - Effort: Medium
+   - Status: Completed
+   - Actions taken:
+     - Updated Next.js to 15.2.2
+     - Updated React to 19.0.0
+     - Applied automated codemods for compatibility
+
 2. ☐ Fix horizontal scrolling issue caused by long email address
 
    - Effort: Low

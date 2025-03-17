@@ -29,7 +29,7 @@ export const SanityImg = ({
   mode = 'cover',
   loading,
   className = '',
-}: SanityImgProps): ReactElement => {
+}: SanityImgProps): ReactElement<any> => {
   const altText = src?.asset?.altText ?? 'Image'
   if (!src) {
     console.error('SanityImg component received undefined `src` object.')

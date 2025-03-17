@@ -31,7 +31,7 @@ const SlideWrapper = ({
 
 const CarouselCTA = ({ data }: CarouselCTAProps) => {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const swiperRef = useRef<SwiperType>()
+  const swiperRef = useRef<SwiperType>(undefined)
   const { carouselItems } = data
 
   return (

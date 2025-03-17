@@ -47,20 +47,18 @@ export default async function IndexRoute({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      <div className="flex min-h-screen flex-col bg-secondary text-black">
-        <Suspense>
-          <Navbar />
-        </Suspense>
-        <div className=" flex-grow">
-          <Suspense>{children}</Suspense>
-        </div>
-        <Suspense>
-          <Footer />
-        </Suspense>
+  return (<>
+    <div className="flex min-h-screen flex-col bg-secondary text-black">
+      <Suspense>
+        <Navbar />
+      </Suspense>
+      <div className=" flex-grow">
+        <Suspense>{children}</Suspense>
       </div>
-      {draftMode().isEnabled && <LiveVisualEditing />}
-    </>
-  )
+      <Suspense>
+        <Footer />
+      </Suspense>
+    </div>
+    {(await draftMode()).isEnabled && <LiveVisualEditing />}
+  </>);
 }
