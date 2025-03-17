@@ -1,6 +1,7 @@
 import React from 'react'
-
-import PortableTextBlock from '../PortableText/PortableTextBlock'
+import { PortableText } from "@portabletext/react"
+import Components from '../PortableText/PortableTextComponents'
+import { cn } from '@/lib/utils'
 
 type TwoColTextProps = {
   data: any
@@ -28,19 +29,17 @@ const TwoColTextHalf = ({ data }: TwoColTextProps) => {
                     ||
                   </span>
                 )}
-                <PortableTextBlock
-                  data={item}
-                  className="sm:pr-16 max-sm:text-xl"
-                />
+                <div className="sm:pr-16 max-sm:text-xl">
+                  <PortableText value={item} components={Components} />
+                </div>
               </div>
             ))}
           </div>
 
           <div className="w-full md:w-1/2">
-            <PortableTextBlock
-              data={rightColumn}
-              className="text-xl sm:text-2xl text-brand-gray pb-8"
-            />
+            <div className="text-xl sm:text-2xl text-brand-gray pb-8">
+              <PortableText value={rightColumn} components={Components} />
+            </div>
           </div>
         </div>
       </div>

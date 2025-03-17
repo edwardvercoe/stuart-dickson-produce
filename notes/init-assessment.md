@@ -136,9 +136,15 @@ This assessment provides an overview of the current state of the Stuart Dickson 
      - Updated React to 19.0.0
      - Applied automated codemods for compatibility
 
-2. ☐ Fix horizontal scrolling issue caused by long email address
+2. ✅ Fix horizontal scrolling issue caused by long email address
 
    - Effort: Low
+   - Status: Completed
+   - Actions taken:
+     - Added email handling logic to PortableTextComponents
+     - Updated TwoColText components to use PortableText with custom components
+     - Implemented consistent email wrapping across all content sections
+     - Added proper styling for wrapped email addresses
 
 3. ☐ Optimize hero images on mobile to improve user experience
 
