@@ -179,40 +179,113 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: auto;
+    height: auto;
+    opacity: 0.5;
+    transition: opacity 300ms ease-out;
+    width: 85% !important;
+  }
+
+  .carousel__freeform .swiper-slide-active {
+    opacity: 1;
+  }
+
+  .carousel__freeform .swiper-slide.swiper-slide-duplicate-active {
+    opacity: 1;
   }
 
   .carousel__freeform .swiper-slide figure {
-    height: 500px;
-    width: auto;
+    height: 400px;
+    width: 100%;
     position: relative;
   }
 
   .carousel__freeform .swiper-slide figure img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .carousel__freeform .swiper {
     width: 100%;
     height: 100%;
+    padding: 0;
+    overflow: visible;
+    -webkit-transform: translate3d(0,0,0);
   }
 
-  /* Add email wrapping styles */
-  .contact-details {
-    word-wrap: break-word;
+  .carousel__freeform .swiper-wrapper {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+  }
+
+  /* Carousel Pagination */
+  .carousel__freeform .swiper-pagination {
+    bottom: 0;
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .carousel__freeform .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    background: rgba(242, 167, 27, 0.3) !important;
+    opacity: 1 !important;
+    border: none !important;
+    margin: 0 6px !important;
+    transition: all 300ms ease !important;
+  }
+
+  .carousel__freeform .swiper-pagination-bullet-active {
+    background: #F2A71B !important;
+    transform: scale(1.2) !important;
+  }
+
+  @media (min-width: 768px) {
+    .carousel__freeform .swiper-slide figure {
+      height: 500px;
+    }
+  }
+
+  @media (min-width: 1024px) {    
+    .carousel__freeform .swiper-slide figure {
+      height: 600px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .carousel__freeform .swiper-slide {
+      width: 65% !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel__freeform .swiper-slide {
+      width: 55% !important;
+    }
+  }
+
+  /* Email handling - for both mailto links and class */
+  a[href^="mailto:"],
+  .mailto {
+    word-break: break-all;
     overflow-wrap: break-word;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    max-width: 100%;
-  }
-
-  .contact-details a {
-    color: var(--color-brand-orange);
     display: inline-block;
     max-width: 100%;
-    word-break: break-all;
+  }
+
+  /* Color only for actual links */
+  a[href^="mailto:"] {
+    color: var(--color-brand-orange);
+  }
+
+  /* Contact details container */
+  .contact-details {
+    max-width: 100%;
   }
 }
 
