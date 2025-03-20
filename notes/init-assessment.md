@@ -119,7 +119,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
   - White menu icon disappears against white backgrounds
   - When open, some content (email, route descriptions) gets cut off on mobile screens
   - Recommendation: Improve mobile menu with a more recognizable icon, add contrast or background to ensure visibility, and fix content overflow issues
-- Email address overflow:
+- ✅ Email address overflow:
   - The email address displayed on the website is very long and extends beyond the screen width on mobile
   - This creates an unwanted horizontal scrollbar
   - Recommendation: Implement text wrapping for the email or use a more responsive container
