@@ -8,10 +8,11 @@ import { sanityFetchWithDefaults } from '@/sanity/lib/live'
 import type { PagePayload, SettingsPayload } from '@/types'
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }> | { slug: string }
 }
 
 export async function generateMetadata({ params }: Props) {
+  const resolvedParams = await params
   const [{ data: settings }, { data: page }] = await Promise.all([
     sanityFetchWithDefaults<SettingsPayload>({
       query: settingsQuery,
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: Props) {
     }),
     sanityFetchWithDefaults<PagePayload>({
       query: pagesBySlugQuery,
-      params: { slug: params.slug },
+      params: { slug: resolvedParams.slug },
       stega: false,
     }),
   ])
@@ -32,9 +33,10 @@ export function generateStaticParams() {
 }
 
 export default async function PageSlugRoute({ params }: Props) {
+  const resolvedParams = await params
   const { data } = await sanityFetchWithDefaults<PagePayload>({
     query: pagesBySlugQuery,
-    params: { slug: params.slug },
+    params: { slug: resolvedParams.slug },
   })
 
   if (!data) {
