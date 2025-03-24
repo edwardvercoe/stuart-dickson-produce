@@ -1,9 +1,9 @@
 import React from 'react'
+import type { Page, Home } from '@/types/sanity.types'
 
 import CarouselCTA from '@/components/shared/CarouselCTA'
 import FeaturedCTA from '@/components/shared/FeaturedCTA'
 import Hero from '@/components/shared/Hero/Hero'
-import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 
 import GoogleMapBlock from './GoogleMapBlock'
 import ImageCarousel from './ImageCarousel'
@@ -11,17 +11,15 @@ import TwoColText from './TwoColText/TwoColText'
 import TwoImages from './TwoImages/TwoImages'
 
 type PageBuilderProps = {
-  data: any
+  data: NonNullable<Page['pageBuilder'] | Home['pageBuilder']>
   variation?: string
 }
 
 export const PageBuilder = ({ data, variation }: PageBuilderProps) => {
   return (
     <>
-      {data?.map((block: any) => {
+      {data?.map((block) => {
         switch (block._type) {
-          case 'richText':
-            return <PortableTextBlock data={block} key={block._key} />
           case 'hero':
             return <Hero data={block} key={block._key} variation={variation} />
           case 'featuredCTA':

@@ -1,6 +1,7 @@
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import type { Hero as HeroType } from '@/types/sanity.types'
 
 import BrandArrowAccent from '@/assets/svg/brand-arrow-accent.svg'
 import MouseSVG from '@/assets/svg/mouse.svg'
@@ -11,8 +12,8 @@ import PortableTextBlock from '@/components/shared/PortableText/PortableTextBloc
 import { cn } from '@/lib/utils'
 
 type HeroProps = {
-  data: any
-  variation?: string
+  data: HeroType
+  variation?: 'home'
 }
 
 const Hero = ({ data, variation }: HeroProps) => {
@@ -32,11 +33,13 @@ const Hero = ({ data, variation }: HeroProps) => {
         !variation && 'min-h-[600px]'
       )}>
         <div className="absolute inset-0 gradient-left">
-          <SanityImg
-            loading="eager"
-            src={backgroundImage}
-            className="w-full h-full object-cover object-center xl:object-top scale-down-animation"
-          />
+          {backgroundImage && (
+            <SanityImg
+              loading="eager"
+              src={backgroundImage}
+              className="w-full h-full object-cover object-center xl:object-top scale-down-animation"
+            />
+          )}
           {variation === 'home' && (
             <Image
               src={MouseSVG}

@@ -1,12 +1,13 @@
 'use client'
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api'
 import React, { useMemo } from 'react'
+import type { GoogleMaps } from '@/types/sanity.types'
 
 import SanityLink from '../SanityComponents/SanityLink'
 import { buttonStyles } from './Button'
 
 type MapProps = {
-  data: any
+  data: GoogleMaps
 }
 
 export const GoogleMapBlock = ({ data }: MapProps) => {

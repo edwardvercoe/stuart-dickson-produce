@@ -2,8 +2,11 @@
   "name": "sanity-template-template-nextjs-personal-website",
   "private": true,
   "scripts": {
+    "predev": "pnpm typegen",
+    "prebuild": "pnpm typegen",
     "build": "next build",
     "dev": "next",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate",
     "format": "npx prettier --write . --ignore-path .gitignore",
     "lint": "next lint .",
     "lint:fix": "npm run format && npm run lint -- --fix",

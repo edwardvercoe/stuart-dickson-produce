@@ -1,5 +1,6 @@
 import type { PortableTextBlock } from 'next-sanity'
 import type { Image } from 'sanity'
+import type { Hero, FeaturedCTA, CarouselCTA, TwoColText, TwoImages, ImageCarousel, GoogleMaps } from './sanity.types'
 
 export interface MenuItem {
   _key?: any
@@ -31,15 +32,24 @@ export interface ShowcaseProject {
 
 // Page payloads
 
+type PageBuilderBlock = 
+  | ({ _key: string } & Hero)
+  | ({ _key: string } & FeaturedCTA)
+  | ({ _key: string } & CarouselCTA)
+  | ({ _key: string } & TwoColText)
+  | ({ _key: string } & TwoImages)
+  | ({ _key: string } & ImageCarousel)
+  | ({ _key: string } & GoogleMaps)
+
 export interface HomePagePayload {
   footer?: PortableTextBlock[]
-  pageBuilder?: any
+  pageBuilder?: PageBuilderBlock[]
   title?: string
   overview?: PortableTextBlock[]
 }
 
 export interface PagePayload {
-  pageBuilder?: any
+  pageBuilder?: PageBuilderBlock[]
   overview?: PortableTextBlock[]
   title?: string
   slug?: string

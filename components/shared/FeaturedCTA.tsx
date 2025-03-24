@@ -1,5 +1,6 @@
 import { MapPin } from 'lucide-react'
 import React from 'react'
+import type { FeaturedCTA as FeaturedCTAType } from '@/types/sanity.types'
 
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
@@ -8,7 +9,7 @@ import PortableTextBlock from '@/components/shared/PortableText/PortableTextBloc
 import { cn } from '@/lib/utils'
 
 type FeaturedCTAProps = {
-  data: any
+  data: FeaturedCTAType
 }
 
 const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
@@ -30,10 +31,12 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
           variation === 'centered' && 'gradient-full',
         )}
       >
-        <SanityImg
-          src={backgroundImage}
-          className="w-full h-full object-cover object-center xl:object-top"
-        />
+        {backgroundImage && (
+          <SanityImg
+            src={backgroundImage}
+            className="w-full h-full object-cover object-center xl:object-top"
+          />
+        )}
       </figure>
       {foregroundImage && (
         <figure className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] h-[20vw] shadow-2xl">
@@ -67,27 +70,27 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
               {title}
             </h2>
           </div>
-          <div className="max-w-[520px]">
-            <PortableTextBlock data={description} />
-          </div>
+          {description && (
+            <div className="max-w-[520px]">
+              <PortableTextBlock data={description} />
+            </div>
+          )}
           {buttons && (
             <div className="flex gap-4 mt-4">
-              {buttons && (
-                <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
-                  {buttons.map((button, index) => (
-                    <SanityLink
-                      key={button._key}
-                      data={button}
-                      className={buttonStyles({
-                        variant: index === 0 ? 'primary' : 'secondary',
-                        className: 'w-full sm:w-auto'
-                      })}
-                    >
-                      <span className="font-medium">{button.linkText}</span>
-                    </SanityLink>
-                  ))}
-                </div>
-              )}
+              <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
+                {buttons.map((button, index) => (
+                  <SanityLink
+                    key={button._key}
+                    data={button}
+                    className={buttonStyles({
+                      variant: index === 0 ? 'primary' : 'secondary',
+                      className: 'w-full sm:w-auto'
+                    })}
+                  >
+                    <span className="font-medium">{button.linkText}</span>
+                  </SanityLink>
+                ))}
+              </div>
             </div>
           )}
         </div>

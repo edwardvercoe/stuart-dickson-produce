@@ -80,7 +80,7 @@ export type Geopoint = {
 
 export type ImageCarousel = {
   _type: 'imageCarousel'
-  images: Array<{
+  images?: Array<{
     asset?: {
       _ref: string
       _type: 'reference'
@@ -203,7 +203,7 @@ export type CarouselItem = {
     _key: string
   }>
   caption?: string
-  backgroundImage: {
+  backgroundImage?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -233,7 +233,7 @@ export type CarouselCTA = {
 export type FeaturedCTA = {
   _type: 'featuredCTA'
   variation?: 'left' | 'centered'
-  title: string
+  title?: string
   subtitle?: string
   description?: Array<{
     children?: Array<{
@@ -254,7 +254,7 @@ export type FeaturedCTA = {
     _key: string
   }>
   caption?: string
-  backgroundImage: {
+  backgroundImage?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -285,7 +285,7 @@ export type FeaturedCTA = {
 
 export type Hero = {
   _type: 'hero'
-  title: string
+  title?: string
   subtitle?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -304,7 +304,7 @@ export type Hero = {
     _type: 'block'
     _key: string
   }>
-  backgroundImage: {
+  backgroundImage?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -337,7 +337,7 @@ export type Hero = {
 export type Link = {
   _type: 'link'
   linkText?: string
-  linkType: 'internal' | 'external' | 'anchor'
+  linkType?: 'internal' | 'external' | 'anchor'
   externalUrl?: string
   internalLink?:
     | {
@@ -400,10 +400,10 @@ export type Farm = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  slug: Slug
+  title?: string
+  slug?: Slug
   summary?: RestrictedRichText
-  coverImage: {
+  coverImage?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -423,8 +423,8 @@ export type Page = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
-  slug: Slug
+  title?: string
+  slug?: Slug
   pageBuilder?: Array<
     | ({
         _key: string
@@ -453,7 +453,7 @@ export type Page = {
 
 export type Slug = {
   _type: 'slug'
-  current: string
+  current?: string
   source?: string
 }
 
@@ -496,7 +496,7 @@ export type Home = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
   pageBuilder?: Array<
     | ({
         _key: string

@@ -2,20 +2,10 @@
 'use client'
 import { ReactElement } from 'react'
 import { SanityImage } from 'sanity-image'
+import type { ImageCrop, ImageHotspot, SanityImageObject } from '@/types/component.types'
 
 import { dataset, projectId } from '@/sanity/lib/api'
 import { urlForImage } from '@/sanity/lib/utils'
-
-export type SanityImageObject = {
-  _type: 'image'
-  _key?: string
-  asset: {
-    _ref: string
-    _type: string
-    altText?: string
-    _id: string
-  }
-}
 
 type SanityImgProps = {
   src: SanityImageObject
@@ -29,24 +19,38 @@ export const SanityImg = ({
   mode = 'cover',
   loading,
   className = '',
-}: SanityImgProps): ReactElement<any> => {
-  const altText = src?.asset?.altText ?? 'Image'
+}: SanityImgProps): ReactElement => {
   if (!src) {
     console.error('SanityImg component received undefined `src` object.')
     return <></>
   }
+
   const previewUrl = urlForImage(src)?.width(24)?.height(24)?.blur(20)?.url()
+
+  // Convert Sanity crop/hotspot to format expected by sanity-image
+  const crop: ImageCrop | undefined = src.crop ? {
+    left: src.crop.left ?? 0,
+    right: src.crop.right ?? 0,
+    top: src.crop.top ?? 0,
+    bottom: src.crop.bottom ?? 0
+  } : undefined
+
+  const hotspot: ImageHotspot | undefined = src.hotspot ? {
+    x: src.hotspot.x ?? 0.5,
+    y: src.hotspot.y ?? 0.5
+  } : undefined
 
   return (
     <SanityImage
-      // Pass the Sanity Image ID (`_id`) (e.g., `image-abcde12345-1200x800-jpg`)
-      id={src.asset._ref || src.asset._id}
+      id={src.asset._ref}
       baseUrl={`https://cdn.sanity.io/images/${projectId}/${dataset}/`}
-      alt={altText}
+      alt="Image" // We'll need to handle alt text differently since it's on the asset
       preview={previewUrl}
       mode={mode}
       loading={loading || 'lazy'}
-      className={`${className}`}
+      className={className}
+      crop={crop}
+      hotspot={hotspot}
     />
   )
 }

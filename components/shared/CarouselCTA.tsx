@@ -4,26 +4,27 @@ import 'swiper/css'
 
 import { MapPin, MoveLeft, MoveRight } from 'lucide-react'
 import React, { useRef, useState } from 'react'
-import { Swiper as SwiperType } from 'swiper'
+import type { Swiper as SwiperType } from 'swiper'
 import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import type { CarouselCTA as CarouselCTAType, CarouselItem } from '@/types/sanity.types'
 
 import { cn } from '@/lib/utils'
 
 import SanityImg from '../SanityComponents/SanityImg'
-import SanityLink, { InternalLinkWrapper } from '../SanityComponents/SanityLink'
+import SanityLink from '../SanityComponents/SanityLink'
 import { buttonStyles } from './Button'
 import PortableTextBlock from './PortableText/PortableTextBlock'
 
 type CarouselCTAProps = {
-  data: any
+  data: CarouselCTAType
 }
 
 const SlideWrapper = ({
   item,
   children,
 }: {
-  item: any
+  item: CarouselItem
   children: React.ReactNode
 }) => {
   return <div className="relative">{children}</div>
@@ -31,7 +32,7 @@ const SlideWrapper = ({
 
 const CarouselCTA = ({ data }: CarouselCTAProps) => {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const swiperRef = useRef<SwiperType>(undefined)
+  const swiperRef = useRef<SwiperType | null>(null)
   const { carouselItems } = data
 
   return (
@@ -51,7 +52,7 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
             setCurrentSlide(swiper.activeIndex)
           }}
         >
-          {carouselItems.map((item: any, index: number) => (
+          {carouselItems?.map((item, index) => (
             <SwiperSlide key={item._key}>
               <SlideWrapper item={item}>
                 <div className="bg-[#D8EDD9] min-h-[600px] relative flex flex-col ">
@@ -60,30 +61,32 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                       'absolute top-0 left-0 w-full h-full gradient-full',
                     )}
                   >
-                    <SanityImg
-                      src={item.backgroundImage}
-                      className="w-full h-full object-cover object-center"
-                    />
+                    {item.backgroundImage && (
+                      <SanityImg
+                        src={item.backgroundImage}
+                        className="w-full h-full object-cover object-center"
+                      />
+                    )}
                   </figure>
                   <div className=" flex-grow relative max-w-[600px] bleed-padding-x py-20 text-white flex flex-col justify-between h-full gap-8">
                     <div>
                       <div>
-                        {item?.subtitle && (
+                        {item.subtitle && (
                           <div className="pb-3">
-                            <h4 className="text-gray-200">{item?.subtitle}</h4>
+                            <h4 className="text-gray-200">{item.subtitle}</h4>
                           </div>
                         )}
                         <div>
                           <h2 className="h2 ">{item.title}</h2>
                         </div>
-                        {item?.description && (
+                        {item.description && (
                           <div className="max-w-[520px] pt-8">
-                            <PortableTextBlock data={item?.description} />
+                            <PortableTextBlock data={item.description} />
                           </div>
                         )}
-                        {item?.buttons && (
+                        {item.buttons && (
                           <div className="flex gap-4 mt-4">
-                            {item?.buttons.map((button, index) => (
+                            {item.buttons.map((button, index) => (
                               <SanityLink
                                 key={button._key}
                                 data={button}
@@ -100,17 +103,19 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                       </div>
                     </div>
 
-                    <div className="flex flex-row gap-4">
-                      <MapPin stroke="white" strokeWidth={1} />
-                      <p>{item.caption}</p>
-                    </div>
+                    {item.caption && (
+                      <div className="flex flex-row gap-4">
+                        <MapPin stroke="white" strokeWidth={1} />
+                        <p>{item.caption}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </SlideWrapper>
             </SwiperSlide>
           ))}
         </Swiper>
-        {carouselItems.length > 1 && (
+        {carouselItems && carouselItems.length > 1 && (
           <div
             data-navigation
             className="absolute right-[15%] bottom-16 flex flex-row items-center justify-center gap-4"
