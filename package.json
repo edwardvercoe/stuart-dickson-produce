@@ -45,12 +45,12 @@
     "sanity-plugin-asset-source-unsplash": "3.0.3",
     "server-only": "0.0.1",
     "styled-components": "6.1.15",
-    "swiper": "^11.2.5",
+    "swiper": "^11.2.6",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.13",
+    "@tailwindcss/postcss": "^4.0.15",
     "@types/react": "19.0.10",
     "eslint": "8.57.0",
     "eslint-config-next": "15.2.2",
