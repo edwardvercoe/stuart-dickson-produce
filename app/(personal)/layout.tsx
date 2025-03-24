@@ -11,6 +11,7 @@ import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { sanityFetchWithDefaults } from '@/sanity/lib/live'
 import { settingsQuery, homePageQuery } from '@/sanity/lib/queries'
 import type { SettingsPayload, HomePagePayload } from '@/types'
+import { DisableDraftMode } from '@/components/DisableDraftMode'
 
 export async function generateMetadata(): Promise<Metadata> {
   const [
@@ -72,11 +73,7 @@ export default async function IndexRoute({
             <>
               <div data-sanity-live>{children}</div>
               <VisualEditing />
-              <div className="text-center fixed bottom-0 left-0 right-0 bg-black text-white z-[999] py-4">
-                <p>
-                  Draft MODE ON
-                </p>
-              </div>
+              <DisableDraftMode />
             </>
           ) : (
             <Suspense>

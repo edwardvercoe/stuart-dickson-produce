@@ -17,8 +17,5 @@ experimental_taintUniqueValue(
 
 // Export a function that can only be used server-side
 export function getToken() {
-  if (typeof window !== 'undefined') {
-    throw new Error('Token can only be used server-side')
-  }
   return token
 }

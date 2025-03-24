@@ -1,19 +1,12 @@
 import { createClient } from 'next-sanity'
 
-import {
-  apiVersion,
-  dataset,
-  projectId,
-  revalidateSecret,
-  studioUrl,
-} from '@/sanity/lib/api'
+import { apiVersion, dataset, projectId, studioUrl } from './api'
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  // If webhook revalidation is setup we want the freshest content, if not then it's best to use the speedy CDN
-  useCdn: revalidateSecret ? false : true,
+  useCdn: true,
   perspective: 'published',
   stega: {
     studioUrl,
@@ -22,7 +15,6 @@ export const client = createClient({
       if (props.sourcePath.at(-1) === 'title') {
         return true
       }
-
       return props.filterDefault(props)
     },
   },
@@ -40,6 +32,16 @@ export function getServerClient() {
   })
 }
 
+// Create a preview-mode client that includes the token
+export function getPreviewClient() {
+  return client.withConfig({
+    token: process.env.SANITY_API_READ_TOKEN,
+    useCdn: false,
+    perspective: 'previewDrafts',
+  })
+}
+
+// Log warning about stega usage
 console.warn(
   'This template is using stega to embed Content Source Maps, see more information here: https://www.sanity.io/docs/loaders-and-overlays#26cf681fadd4',
 )
