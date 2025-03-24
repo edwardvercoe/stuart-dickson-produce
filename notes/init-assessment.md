@@ -96,12 +96,12 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### UI/UX Issues
 
-- Hero images on mobile:
+- ✅ Hero images on mobile:
   - Images are too tall, making it unclear that there's more content below
   - Recommendation: Reduce the height of hero images on mobile screens
-- Image scaling problems on large screens:
+- ☐ Fix image scaling problems on large screens
   - Portraits not displaying properly (people's heads are getting cut off)
-  - Recommendation: Improve image handling for better responsiveness across screen sizes
+  - Effort: Low
 - ✅ Image slider visibility and interaction:
   - Previous issues:
     - Slider was not clearly identifiable as interactive
@@ -168,25 +168,32 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### Medium Priority (Modernization & Improvements)
 
-5. ☐ Modernize the Sanity-Next.js integration to follow current best practices
+5. ✅ Fix image scaling problems on large screens
+
+   - Previous issue: Portraits not displaying properly (people's heads were getting cut off)
+   - Resolution: Added `xl:object-top` class to ensure proper portrait framing on large screens
+   - Effort: Low
+   - Status: Completed
+
+6. ☐ Modernize the Sanity-Next.js integration to follow current best practices
 
    - Effort: Medium-High
 
-6. ✅ Standardize the CSS approach:
+7. ✅ Standardize the CSS approach:
 
    - ✅ Convert SCSS to CSS (Completed)
    - Use Tailwind utility classes consistently
    - ✅ Remove redundant stylesheet files (Completed)
    - Effort: Medium
 
-7. ☐ Improve mobile menu usability:
+8. ☐ Improve mobile menu usability:
 
    - Use a more recognizable menu icon
    - Add contrast to ensure visibility against all backgrounds
    - Fix content overflow issues in the expanded menu
    - Effort: Medium
 
-8. ✅ Fix accessibility issues:
+9. ✅ Fix accessibility issues:
    - ✅ Refactored button/link implementations
    - ✅ Ensured proper HTML semantics
    - ✅ Improved screen reader compatibility
@@ -200,21 +207,21 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 
 ### Lower Priority (Cleanup & Enhancements)
 
-9. ✅ Remove unnecessary Netlify configuration files
+10. ✅ Remove unnecessary Netlify configuration files
 
-   - Effort: Low
-   - Status: Completed
-   - Action: Removed netlify.toml configuration file
+    - Effort: Low
+    - Status: Completed
+    - Action: Removed netlify.toml configuration file
 
-10. ☐ Improve type safety by implementing auto-generated types from Sanity schemas
+11. ☐ Improve type safety by implementing auto-generated types from Sanity schemas
 
     - Effort: Medium
 
-11. ☐ Enhance the image slider with clear visual indicators
+12. ☐ Enhance the image slider with clear visual indicators
 
     - Effort: Low
 
-12. ✅ Remove Supabase integration if confirmed unnecessary
+13. ✅ Remove Supabase integration if confirmed unnecessary
     - Effort: Low
     - Status: Completed
     - Actions taken:
