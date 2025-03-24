@@ -35,7 +35,7 @@ const Hero = ({ data, variation }: HeroProps) => {
           <SanityImg
             loading="eager"
             src={backgroundImage}
-            className="w-full h-full object-cover object-center scale-down-animation"
+            className="w-full h-full object-cover object-center xl:object-top scale-down-animation"
           />
           {variation === 'home' && (
             <Image
@@ -52,7 +52,7 @@ const Hero = ({ data, variation }: HeroProps) => {
             <SanityImg
               loading="eager"
               src={foregroundImage}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-center xl:object-top"
             />
           </div>
         )}

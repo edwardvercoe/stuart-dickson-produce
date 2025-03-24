@@ -32,7 +32,7 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
       >
         <SanityImg
           src={backgroundImage}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center xl:object-top"
         />
       </figure>
       {foregroundImage && (
@@ -40,7 +40,7 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
           <SanityImg
             loading="eager"
             src={foregroundImage}
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center xl:object-top"
           />
         </figure>
       )}
