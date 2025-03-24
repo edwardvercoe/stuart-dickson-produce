@@ -2,6 +2,7 @@
 // Before using it, import and render "<SanityLive />" in your layout, see
 // https://github.com/sanity-io/next-sanity#live-content-api for more information.
 import { defineLive, type QueryParams } from 'next-sanity'
+import { draftMode } from 'next/headers'
 import { client } from './client'
 import { getToken } from './token'
 
@@ -20,9 +21,10 @@ export async function sanityFetchWithDefaults<T>(options: {
   tags?: string[]
   stega?: boolean
 }) {
+  const { isEnabled: isDraftMode } = await draftMode()
   const result = await sanityFetch<string>({
     ...options,
-    stega: options.stega ?? true,
+    stega: options.stega ?? isDraftMode,
   })
   return result as unknown as { data: T }
 }

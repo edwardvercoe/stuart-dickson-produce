@@ -66,7 +66,8 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                       />
                     )}
                   </figure>
-                  <Container className="relative h-full">
+                  <div className="px-5 md:px-8 lg:px-12">
+ <Container className="relative h-full">
                     <div className="flex flex-col justify-between h-full py-20 gap-8">
                       <div className="max-w-[600px] text-white">
                         <div>
@@ -110,6 +111,8 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                       )}
                     </div>
                   </Container>
+                  </div>
+                 
                 </div>
               </SlideWrapper>
             </SwiperSlide>
