@@ -35,9 +35,9 @@ const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'SDP'
 const mapsAPI = process.env.NEXT_PUBLIC_SANITY_GOOGLE_MAPS_API || ''
 
 export default defineConfig({
-  basePath: studioUrl,
-  projectId: projectId || '',
-  dataset: dataset || '',
+  basePath: '/studio',
+  projectId,
+  dataset,
   title,
   schema: {
     // If you want more content types, you can add them to this array
@@ -65,13 +65,10 @@ export default defineConfig({
     ],
   },
   plugins: [
-    structureTool({
-      structure: pageStructure([home, settings]),
-    }),
+    structureTool(),
     presentationTool({
-      resolve,
       previewUrl: {
-        previewMode: {
+        draftMode: {
           enable: '/api/draft',
         },
       },

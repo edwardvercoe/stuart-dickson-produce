@@ -28,6 +28,18 @@ export const client = createClient({
   },
 })
 
+// Create a server-only client that includes the token
+export function getServerClient() {
+  if (typeof window !== 'undefined') {
+    throw new Error('Server client can only be used server-side')
+  }
+  return client.withConfig({
+    token: process.env.SANITY_API_READ_TOKEN,
+    useCdn: false,
+    perspective: 'published',
+  })
+}
+
 console.warn(
   'This template is using stega to embed Content Source Maps, see more information here: https://www.sanity.io/docs/loaders-and-overlays#26cf681fadd4',
 )

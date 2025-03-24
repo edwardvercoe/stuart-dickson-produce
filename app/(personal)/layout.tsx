@@ -1,19 +1,17 @@
 import '@/app/globals.css'
 
 import type { Metadata, Viewport } from 'next'
-import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
-import { Suspense } from 'react'
+import { VisualEditing } from 'next-sanity'
 
 import { Footer } from '@/components/global/Footer'
 import { Navbar } from '@/components/global/Navbar'
+import { SanityLive } from '@/sanity/lib/live'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
 
-const LiveVisualEditing = dynamic(
-  () => import('@/sanity/loader/LiveVisualEditing'),
-)
 
 export async function generateMetadata(): Promise<Metadata> {
   const [{ data: settings }, { data: homePage }] = await Promise.all([
@@ -22,6 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   ])
 
   const ogImage = urlForOpenGraphImage(settings?.ogImage)
+  
   return {
     title: homePage?.title
       ? {
@@ -47,18 +46,36 @@ export default async function IndexRoute({
 }: {
   children: React.ReactNode
 }) {
-  return (<>
-    <div className="flex min-h-screen flex-col bg-secondary text-black">
-      <Suspense>
-        <Navbar />
-      </Suspense>
-      <div className=" flex-grow">
-        <Suspense>{children}</Suspense>
+  const isDraftMode = (await draftMode()).isEnabled
+
+  return (
+    <>
+      <div className="flex min-h-screen flex-col bg-secondary text-black">
+        <Suspense>
+          <Navbar />
+        </Suspense>
+
+        <div className="flex-grow">
+          {isDraftMode ? (
+            <>
+              <div data-sanity-live>{children}</div>
+              <VisualEditing />
+            </>
+          ) : (
+            <Suspense>
+              {children}
+            </Suspense>
+          )}
+        </div>
+
+        <Suspense>
+          <Footer />
+        </Suspense>
       </div>
+
       <Suspense>
-        <Footer />
+        <SanityLive />
       </Suspense>
-    </div>
-    {(await draftMode()).isEnabled && <LiveVisualEditing />}
-  </>);
+    </>
+  )
 }

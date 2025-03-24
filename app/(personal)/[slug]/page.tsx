@@ -1,21 +1,27 @@
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
+
 import { Page } from '@/components/pages/page/Page'
 import { defineSanityMetadata } from '@/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
-import { loadPage, loadSettings } from '@/sanity/loader/loadQuery'
-const PagePreview = dynamic(() => import('@/components/pages/page/PagePreview'))
+import { pagesBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
+import { sanityFetchWithDefaults } from '@/sanity/lib/live'
+import type { PagePayload, SettingsPayload } from '@/types'
 
 type Props = {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }
 
-export async function generateMetadata(props: Props) {
-  const params = await props.params;
+export async function generateMetadata({ params }: Props) {
   const [{ data: settings }, { data: page }] = await Promise.all([
-    loadSettings(),
-    loadPage(params.slug),
+    sanityFetchWithDefaults<SettingsPayload>({
+      query: settingsQuery,
+      stega: false,
+    }),
+    sanityFetchWithDefaults<PagePayload>({
+      query: pagesBySlugQuery,
+      params: { slug: params.slug },
+      stega: false,
+    }),
   ])
 
   return defineSanityMetadata(page, settings)
@@ -25,17 +31,15 @@ export function generateStaticParams() {
   return generateStaticSlugs('page')
 }
 
-export default async function PageSlugRoute(props: Props) {
-  const params = await props.params;
-  const initial = await loadPage(params.slug)
+export default async function PageSlugRoute({ params }: Props) {
+  const { data } = await sanityFetchWithDefaults<PagePayload>({
+    query: pagesBySlugQuery,
+    params: { slug: params.slug },
+  })
 
-  if ((await draftMode()).isEnabled) {
-    return <PagePreview params={params} initial={initial} />
-  }
-
-  if (!initial.data) {
+  if (!data) {
     notFound()
   }
 
-  return <Page data={initial.data} />
+  return <Page data={data} />
 }

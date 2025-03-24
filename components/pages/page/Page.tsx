@@ -10,10 +10,7 @@ export function Page({ data }: PageProps) {
   const { pageBuilder = [] } = data ?? {}
 
   return (
-    <div>
-      {/* Page Builder */}
       <PageBuilder data={pageBuilder} />
-    </div>
   )
 }
 

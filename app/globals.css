@@ -289,8 +289,6 @@
   }
 }
 
-/* Import burger button styles - we'll convert this next */
-@import '../components/global/Navbar/burger-button.css';
 
 /* Contact details */
 .contact-details a {

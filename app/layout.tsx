@@ -2,6 +2,8 @@ import './globals.css'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Rubik } from 'next/font/google'
+import { draftMode } from 'next/headers'
+
 
 const rubik = Rubik({
   variable: '--font-rubik',
@@ -14,12 +16,15 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
     <html lang="en" className={` ${rubik.variable}`}>
       {process.env.NEXT_PUBLIC_GTM_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GTM_ID} />
       )}
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   )
 }

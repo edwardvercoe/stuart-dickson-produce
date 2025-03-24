@@ -13,10 +13,7 @@ export function HomePage({ data }: HomePageProps) {
   const { pageBuilder = [] } = data ?? {}
 
   return (
-    <div>
-      {/* Page Builder */}
       <PageBuilder data={pageBuilder} variation="home" />
-    </div>
   )
 }
 
