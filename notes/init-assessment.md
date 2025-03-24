@@ -155,11 +155,15 @@ This assessment provides an overview of the current state of the Stuart Dickson 
      - Implemented consistent email wrapping across all content sections
      - Added proper styling for wrapped email addresses
 
-3. ☐ Optimize hero images on mobile to improve user experience
+3. ✅ Optimize hero images on mobile to improve user experience
 
+   - Previous issue: Images were too tall, making it unclear that there's more content below
+   - Resolution: Updated to use `h-svh` for consistent viewport height handling on mobile
    - Effort: Low
+   - Status: Completed
 
-4. ☐ Fix image scaling problems on large screens (portrait cutoff issues)
+4. ☐ Fix image scaling problems on large screens
+
    - Effort: Low
 
 ### Medium Priority (Modernization & Improvements)

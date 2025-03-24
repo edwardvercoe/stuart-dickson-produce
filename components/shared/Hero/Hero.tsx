@@ -27,8 +27,11 @@ const Hero = ({ data, variation }: HeroProps) => {
 
   return (
     <>
-      <section className="full-bleed">
-        <figure className="absolute top-0 left-0 w-full h-full  gradient-left overflow-hidden">
+      <section className={cn(
+        "full-bleed h-svh relative overflow-hidden",
+        !variation && 'min-h-[600px]'
+      )}>
+        <div className="absolute inset-0 gradient-left">
           <SanityImg
             loading="eager"
             src={backgroundImage}
@@ -43,21 +46,18 @@ const Hero = ({ data, variation }: HeroProps) => {
               className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-scrollDown"
             />
           )}
-        </figure>
+        </div>
         {foregroundImage && (
-          <figure className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] h-[20vw] shadow-2xl">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20vw] h-[20vw] shadow-2xl">
             <SanityImg
               loading="eager"
               src={foregroundImage}
               className="w-full h-full object-cover object-center"
             />
-          </figure>
+          </div>
         )}
         <div
-          className={cn(
-            'flex flex-col pb-4 md:p-6 justify-center items-center min-h-[600px] relative bleed-padding-x',
-            variation === 'home' && 'min-h-[800px] h-[100vh]',
-          )}
+          className="flex flex-col pb-4 md:p-6 justify-center items-center relative bleed-padding-x h-full pt-14 md:pt-0"
         >
           <div className="flex-1 w-full relative flex flex-col justify-center">
             <div>
@@ -114,7 +114,7 @@ const Hero = ({ data, variation }: HeroProps) => {
             )}
           </div>
           {caption && (
-            <div className="flex flex-row gap-4 w-full">
+            <div className="flex flex-row gap-4 w-full pb-12 md:pb-0">
               <MapPin stroke="white" strokeWidth={1} />
               <p className="text-white">{caption}</p>
             </div>
