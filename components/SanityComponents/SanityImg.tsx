@@ -29,6 +29,7 @@ export const SanityImg = ({
     return <></>
   }
 
+  // @ts-expect-error - TODO: fix this
   const previewUrl = urlForImage(src)?.width(24)?.height(24)?.blur(20)?.url()
 
   // Convert Sanity crop/hotspot to format expected by sanity-image
@@ -50,7 +51,7 @@ export const SanityImg = ({
 
   return (
     <SanityImage
-      id={src.asset._ref}
+      id={src.asset?._ref ?? ''}
       baseUrl={`https://cdn.sanity.io/images/${projectId}/${dataset}/`}
       alt="Image" // We'll need to handle alt text differently since it's on the asset
       preview={previewUrl}

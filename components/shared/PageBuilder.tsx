@@ -12,7 +12,7 @@ import TwoImages from './TwoImages/TwoImages'
 
 type PageBuilderProps = {
   data: NonNullable<Page['pageBuilder'] | Home['pageBuilder']>
-  variation?: string
+  variation?: 'home'
 }
 
 export const PageBuilder = ({ data, variation }: PageBuilderProps) => {

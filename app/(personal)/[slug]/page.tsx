@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { Page } from '@/components/pages/page/Page'
@@ -11,7 +12,7 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata(props: Props) {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
   const [{ data: settings }, { data: page }] = await Promise.all([
     sanityFetchWithDefaults<SettingsPayload>({
