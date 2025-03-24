@@ -77,7 +77,7 @@ const Hero = ({ data, variation }: HeroProps) => {
               {subtitle && (
                 <PortableTextBlock
                   className={cn(
-                    'text-white pb-8  sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
+                    'text-white pb-8 text-2xl sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
                     variation === 'home' &&
                       'text-2xl sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
                   )}
