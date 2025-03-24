@@ -99,7 +99,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 - ✅ Hero images on mobile:
   - Images are too tall, making it unclear that there's more content below
   - Recommendation: Reduce the height of hero images on mobile screens
-- ☐ Fix image scaling problems on large screens
+- ✅ Fix image scaling problems on large screens
   - Portraits not displaying properly (people's heads are getting cut off)
   - Effort: Low
 - ✅ Image slider visibility and interaction:
@@ -162,7 +162,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
    - Effort: Low
    - Status: Completed
 
-4. ☐ Fix image scaling problems on large screens
+4. ✅ Fix image scaling problems on large screens
 
    - Effort: Low
 
@@ -213,8 +213,14 @@ This assessment provides an overview of the current state of the Stuart Dickson 
     - Status: Completed
     - Action: Removed netlify.toml configuration file
 
-11. ☐ Improve type safety by implementing auto-generated types from Sanity schemas
+11. ✅ Improve type safety by implementing auto-generated types from Sanity schemas
 
+    - Status: Completed
+    - Actions taken:
+      - Set up Sanity TypeGen with configuration
+      - Generated types for 27 schema types
+      - Added automatic type inference for Sanity client
+      - Configured with enforced required fields for better type safety
     - Effort: Medium
 
 12. ✅ Enhance the image slider with clear visual indicators
