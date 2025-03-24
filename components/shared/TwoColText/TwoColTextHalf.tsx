@@ -28,7 +28,7 @@ const TwoColTextHalf = ({ data }: TwoColTextProps) => {
                 }
               >
                 {index === 0 && (
-                  <span className="hidden sm:block text-orange-500 mr-2 lg:mr-4 mt-1">
+                  <span className="hidden sm:block text-orange-500 mr-2 lg:mr-4 mt-6">
                     ||
                   </span>
                 )}

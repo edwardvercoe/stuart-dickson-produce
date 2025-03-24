@@ -16,7 +16,7 @@ export const buttonStyles = ({
   className,
 }: Partial<ButtonProps>) =>
   cn(
-    'py-4 px-6 bg-accent text-brand-black rounded-full',
+    'py-4 px-6 bg-accent text-brand-black rounded-full text-center',
     iconRight && 'flex justify-center items-center pr-2 py-2',
     variant === 'secondary' && 'bg-white text-black border-transparent',
     className,
