@@ -224,6 +224,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
    - Status: Completed
 
 9. ✅ Fix accessibility issues:
+
    - ✅ Refactored button/link implementations
    - ✅ Ensured proper HTML semantics
    - ✅ Improved screen reader compatibility
@@ -235,15 +236,32 @@ This assessment provides an overview of the current state of the Stuart Dickson 
      - Removed invalid button nesting
      - Maintained consistent visual appearance
 
+10. ☐ Create consistent content wrapper component:
+    - Current issues:
+      - Content alignment varies across different sections on larger screens
+      - Inconsistent margins and max-width settings
+      - No standardized padding across components
+    - Proposed solution:
+      - Create a reusable wrapper component
+      - Implement consistent max-width constraints
+      - Standardize horizontal padding
+      - Ensure proper content alignment across all screen sizes
+    - Benefits:
+      - Improved visual consistency
+      - Easier maintenance
+      - Better responsive behavior
+    - Effort: Low
+    - Status: Pending
+
 ### Lower Priority (Cleanup & Enhancements)
 
-10. ✅ Remove unnecessary Netlify configuration files
+11. ✅ Remove unnecessary Netlify configuration files
 
     - Effort: Low
     - Status: Completed
     - Action: Removed netlify.toml configuration file
 
-11. ✅ Improve type safety by implementing auto-generated types from Sanity schemas
+12. ✅ Improve type safety by implementing auto-generated types from Sanity schemas
 
     - Status: Completed
     - Actions taken:
@@ -253,7 +271,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
       - Configured with enforced required fields for better type safety
     - Effort: Medium
 
-12. ✅ Enhance the image slider with clear visual indicators
+13. ✅ Enhance the image slider with clear visual indicators
 
     - Status: Completed
     - Part of earlier slider improvements which included:
@@ -262,7 +280,7 @@ This assessment provides an overview of the current state of the Stuart Dickson 
       - Enhanced touch interaction handling
     - Effort: Low
 
-13. ✅ Remove Supabase integration if confirmed unnecessary
+14. ✅ Remove Supabase integration if confirmed unnecessary
     - Effort: Low
     - Status: Completed
     - Actions taken:
