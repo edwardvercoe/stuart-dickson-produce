@@ -30,8 +30,8 @@ const Hero = ({ data, variation }: HeroProps) => {
   return (
     <>
       <section className={cn(
-        "full-bleed relative h-svh overflow-hidden",
-        !variation && 'min-h-[600px]'
+        "relative overflow-hidden",
+        variation === 'home' ? 'h-svh' : 'h-[600px]'
       )}>
         <div className="absolute inset-0 gradient-left">
           {backgroundImage && (
@@ -125,7 +125,7 @@ const Hero = ({ data, variation }: HeroProps) => {
           </div>
         </Container>
       </section>
-      <section className="full-bleed h-4 flex flex-row relative">
+      <section className="full-bleed h-4 flex flex-row">
         <div className="bg-brand-mahogany flex-1" />
         <div className="bg-brand-orange flex-1" />
         <div className="bg-accent flex-1" />
