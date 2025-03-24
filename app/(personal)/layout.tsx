@@ -1,5 +1,3 @@
-import '@/app/globals.css'
-
 import type { Metadata, Viewport } from 'next'
 import { Suspense } from 'react'
 import { draftMode } from 'next/headers'
@@ -60,6 +58,11 @@ export default async function IndexRoute({
             <>
               <div data-sanity-live>{children}</div>
               <VisualEditing />
+              <div className="text-center fixed bottom-0 left-0 right-0 bg-black text-white z-[999] py-4">
+                <p>
+                  Draft MODE ON
+                </p>
+              </div>
             </>
           ) : (
             <Suspense>

@@ -2,7 +2,6 @@ import './globals.css'
 
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Rubik } from 'next/font/google'
-import { draftMode } from 'next/headers'
 
 
 const rubik = Rubik({
