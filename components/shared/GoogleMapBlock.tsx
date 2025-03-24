@@ -1,6 +1,7 @@
 'use client'
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api'
 import React, { useMemo } from 'react'
+
 import type { GoogleMaps } from '@/types/sanity.types'
 
 import SanityLink from '../SanityComponents/SanityLink'
@@ -51,7 +52,7 @@ export const GoogleMapBlock = ({ data }: MapProps) => {
                 data={button}
                 className={buttonStyles({
                   variant: index === 0 ? 'primary' : 'secondary',
-                  className: 'w-full sm:w-auto'
+                  className: 'w-full sm:w-auto',
                 })}
               >
                 <span className="font-medium">{button.linkText}</span>

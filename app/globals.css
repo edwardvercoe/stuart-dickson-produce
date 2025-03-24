@@ -1,19 +1,19 @@
 /* Import Tailwind */
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 @theme {
   --radius: 0.5rem;
   --font-sans: var(--font-rubik);
-  
+
   /* Colors in OKLCH format - refined to match original hex values more precisely */
-  --color-accent: oklch(76.12% 0.169 71.6);      /* rgb(242 167 27) - #F2A71B */
-  --color-secondary: oklch(98.37% 0.015 83.72);   /* #fefbf5 */
+  --color-accent: oklch(76.12% 0.169 71.6); /* rgb(242 167 27) - #F2A71B */
+  --color-secondary: oklch(98.37% 0.015 83.72); /* #fefbf5 */
   --color-brand-black: oklch(8.47% 0.018 167.39); /* #0D1615 */
   --color-brand-darker-green: oklch(19.53% 0.089 115.76); /* #263000 */
-  --color-brand-mahogany: oklch(42.95% 0.156 27.84);  /* #8C2C08 */
-  --color-brand-gray: oklch(52.94% 0.015 251.23);     /* #667085 */
-  --color-brand-orange: oklch(67.18% 0.143 45.11);    /* #F27D16 */
+  --color-brand-mahogany: oklch(42.95% 0.156 27.84); /* #8C2C08 */
+  --color-brand-gray: oklch(52.94% 0.015 251.23); /* #667085 */
+  --color-brand-orange: oklch(67.18% 0.143 45.11); /* #F27D16 */
 }
 
 @layer base {
@@ -40,11 +40,17 @@
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 500;
   }
 
-  ol, ul {
+  ol,
+  ul {
     margin-left: 1rem;
   }
 
@@ -117,7 +123,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 80%);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0) 80%
+    );
   }
 
   .gradient-full::after {
@@ -213,7 +223,7 @@
     height: 100%;
     padding: 0;
     overflow: visible;
-    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   .carousel__freeform .swiper-wrapper {
@@ -241,7 +251,7 @@
   }
 
   .carousel__freeform .swiper-pagination-bullet-active {
-    background: #F2A71B !important;
+    background: #f2a71b !important;
     transform: scale(1.2) !important;
   }
 
@@ -251,7 +261,7 @@
     }
   }
 
-  @media (min-width: 1024px) {    
+  @media (min-width: 1024px) {
     .carousel__freeform .swiper-slide figure {
       height: 600px;
     }
@@ -270,7 +280,7 @@
   }
 
   /* Email handling - for both mailto links and class */
-  a[href^="mailto:"],
+  a[href^='mailto:'],
   .mailto {
     word-break: break-all;
     overflow-wrap: break-word;
@@ -279,7 +289,7 @@
   }
 
   /* Color only for actual links */
-  a[href^="mailto:"] {
+  a[href^='mailto:'] {
     color: var(--color-brand-orange);
   }
 
@@ -289,8 +299,7 @@
   }
 }
 
-
 /* Contact details */
 .contact-details a {
   color: var(--color-brand-orange);
-} 
+}

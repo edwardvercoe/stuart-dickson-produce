@@ -1,24 +1,29 @@
 import type { Metadata, ResolvingMetadata } from 'next'
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { toPlainText } from 'next-sanity'
 
 import { ProjectPage } from '@/components/pages/project/ProjectPage'
+import { sanityFetchWithDefaults } from '@/sanity/lib/live'
+import { projectBySlugQuery } from '@/sanity/lib/queries'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
-import { loadProject } from '@/sanity/loader/loadQuery'
-const ProjectPreview = dynamic(
-  () => import('@/components/pages/project/ProjectPreview'),
-)
+import type { ProjectPayload } from '@/types'
 
 type Props = {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const params = await props.params;
-  const { data: project } = await loadProject(params.slug)
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { data: project } = await sanityFetchWithDefaults<ProjectPayload>({
+    query: projectBySlugQuery,
+    params: { slug: params.slug },
+    // Metadata should never contain stega
+    stega: false,
+  })
+
   const ogImage = urlForOpenGraphImage(project?.coverImage)
 
   return {
@@ -38,17 +43,15 @@ export function generateStaticParams() {
   return generateStaticSlugs('project')
 }
 
-export default async function ProjectSlugRoute(props: Props) {
-  const params = await props.params;
-  const initial = await loadProject(params.slug)
+export default async function ProjectSlugRoute({ params }: Props) {
+  const { data } = await sanityFetchWithDefaults<ProjectPayload>({
+    query: projectBySlugQuery,
+    params: { slug: params.slug },
+  })
 
-  if ((await draftMode()).isEnabled) {
-    return <ProjectPreview params={params} initial={initial} />
-  }
-
-  if (!initial.data) {
+  if (!data) {
     notFound()
   }
 
-  return <ProjectPage data={initial.data} />
+  return <ProjectPage data={data} />
 }

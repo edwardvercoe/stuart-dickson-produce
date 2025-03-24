@@ -17,18 +17,28 @@ interface NavbarProps {
 
 export function Navbar({ settings }: NavbarProps) {
   const menuItems = settings?.menuItems || []
-  
+
   // Function to insert empty objects between menu items
-  const insertEmptyObjects = (items: NonNullable<SettingsPayload['menuItems']>): Array<NonNullable<SettingsPayload['menuItems']>[number] | { isSpacerItem: true }> => {
-    return items.reduce((acc, item, index) => {
-      acc.push(item)
-      if (index < items.length - 1) {
-        acc.push({ isSpacerItem: true })
-      }
-      return acc
-    }, [] as Array<NonNullable<SettingsPayload['menuItems']>[number] | { isSpacerItem: true }>)
+  const insertEmptyObjects = (
+    items: NonNullable<SettingsPayload['menuItems']>,
+  ): Array<
+    NonNullable<SettingsPayload['menuItems']>[number] | { isSpacerItem: true }
+  > => {
+    return items.reduce(
+      (acc, item, index) => {
+        acc.push(item)
+        if (index < items.length - 1) {
+          acc.push({ isSpacerItem: true })
+        }
+        return acc
+      },
+      [] as Array<
+        | NonNullable<SettingsPayload['menuItems']>[number]
+        | { isSpacerItem: true }
+      >,
+    )
   }
-  
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const newMenuItems = insertEmptyObjects(menuItems)
@@ -49,14 +59,17 @@ export function Navbar({ settings }: NavbarProps) {
               <SpinningLogo />
             </Link>
           </div>
-          
+
           {menuItems && menuItems.length > 0 && (
             <div className="w-4/6 hidden md:block">
               <div className="flex gap-4 items-center justify-center w-auto rounded-full bg-brand-black/60 text-white backdrop-blur-sm p-4 shadow">
                 {newMenuItems.map((item, index) => {
                   if ('isSpacerItem' in item) {
                     return (
-                      <div key={`spacer-${index}`} className="bg-white h-[1px] w-24"></div>
+                      <div
+                        key={`spacer-${index}`}
+                        className="bg-white h-[1px] w-24"
+                      ></div>
                     )
                   }
                   return (
@@ -70,7 +83,7 @@ export function Navbar({ settings }: NavbarProps) {
               </div>
             </div>
           )}
-          
+
           <div className="w-1/6 flex justify-end">
             <div className="block md:hidden">
               <NavMenu

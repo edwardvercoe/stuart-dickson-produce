@@ -4,8 +4,8 @@ import Link from 'next/link'
 import EVLogo from '@/assets/svg/edward-vercoe-logo-right-align.svg'
 import LogoWhite from '@/assets/svg/logoWhite.svg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
-import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import Container from '@/components/shared/Container'
+import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import type { MenuItem, SettingsPayload } from '@/types'
 
 interface FooterProps {

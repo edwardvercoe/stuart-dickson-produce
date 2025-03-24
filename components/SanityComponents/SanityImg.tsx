@@ -2,10 +2,14 @@
 'use client'
 import { ReactElement } from 'react'
 import { SanityImage } from 'sanity-image'
-import type { ImageCrop, ImageHotspot, SanityImageObject } from '@/types/component.types'
 
 import { dataset, projectId } from '@/sanity/lib/api'
 import { urlForImage } from '@/sanity/lib/utils'
+import type {
+  ImageCrop,
+  ImageHotspot,
+  SanityImageObject,
+} from '@/types/component.types'
 
 type SanityImgProps = {
   src: SanityImageObject
@@ -28,17 +32,21 @@ export const SanityImg = ({
   const previewUrl = urlForImage(src)?.width(24)?.height(24)?.blur(20)?.url()
 
   // Convert Sanity crop/hotspot to format expected by sanity-image
-  const crop: ImageCrop | undefined = src.crop ? {
-    left: src.crop.left ?? 0,
-    right: src.crop.right ?? 0,
-    top: src.crop.top ?? 0,
-    bottom: src.crop.bottom ?? 0
-  } : undefined
+  const crop: ImageCrop | undefined = src.crop
+    ? {
+        left: src.crop.left ?? 0,
+        right: src.crop.right ?? 0,
+        top: src.crop.top ?? 0,
+        bottom: src.crop.bottom ?? 0,
+      }
+    : undefined
 
-  const hotspot: ImageHotspot | undefined = src.hotspot ? {
-    x: src.hotspot.x ?? 0.5,
-    y: src.hotspot.y ?? 0.5
-  } : undefined
+  const hotspot: ImageHotspot | undefined = src.hotspot
+    ? {
+        x: src.hotspot.x ?? 0.5,
+        y: src.hotspot.y ?? 0.5,
+      }
+    : undefined
 
   return (
     <SanityImage

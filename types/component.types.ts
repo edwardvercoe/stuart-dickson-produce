@@ -1,4 +1,7 @@
-import type { SanityImageCrop as SanityCrop, SanityImageHotspot as SanityHotspot } from './sanity.types'
+import type {
+  SanityImageCrop as SanityCrop,
+  SanityImageHotspot as SanityHotspot,
+} from './sanity.types'
 
 // Types expected by the sanity-image package
 export type ImageCrop = {
@@ -28,4 +31,4 @@ export type SanityImageObject = {
 }
 
 // Declare the symbol used in Sanity types
-declare const internalGroqTypeReferenceTo: unique symbol 
+declare const internalGroqTypeReferenceTo: unique symbol

@@ -6,7 +6,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
 
 import React from 'react'
-import { Autoplay, Pagination, A11y } from 'swiper/modules'
+import { A11y,Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import SanityImg from '../SanityComponents/SanityImg'
@@ -45,7 +45,7 @@ const ImageCarousel = ({ data }: any) => {
             },
             1024: {
               slidesPerView: 1.8,
-            }
+            },
           }}
         >
           {data?.images.map((slide: any, index: number) => (
@@ -60,7 +60,7 @@ const ImageCarousel = ({ data }: any) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        
+
         {/* Pagination */}
         <div className="swiper-pagination relative mt-8"></div>
       </div>

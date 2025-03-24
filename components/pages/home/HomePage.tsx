@@ -12,9 +12,7 @@ export function HomePage({ data }: HomePageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { pageBuilder = [] } = data ?? {}
 
-  return (
-      <PageBuilder data={pageBuilder} variation="home" />
-  )
+  return <PageBuilder data={pageBuilder} variation="home" />
 }
 
 export default HomePage

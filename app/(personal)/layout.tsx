@@ -1,23 +1,20 @@
 import type { Metadata, Viewport } from 'next'
-import { Suspense } from 'react'
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 import { VisualEditing } from 'next-sanity'
+import { Suspense } from 'react'
 
+import { DisableDraftMode } from '@/components/DisableDraftMode'
 import { Footer } from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
 import { SanityLive } from '@/sanity/lib/live'
-import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { sanityFetchWithDefaults } from '@/sanity/lib/live'
-import { settingsQuery, homePageQuery } from '@/sanity/lib/queries'
-import type { SettingsPayload, HomePagePayload } from '@/types'
-import { DisableDraftMode } from '@/components/DisableDraftMode'
+import { homePageQuery,settingsQuery } from '@/sanity/lib/queries'
+import { urlForOpenGraphImage } from '@/sanity/lib/utils'
+import type { HomePagePayload,SettingsPayload } from '@/types'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [
-    { data: settings },
-    { data: homePage }
-  ] = await Promise.all([
+  const [{ data: settings }, { data: homePage }] = await Promise.all([
     sanityFetchWithDefaults<SettingsPayload>({
       query: settingsQuery,
       stega: false,
@@ -25,11 +22,11 @@ export async function generateMetadata(): Promise<Metadata> {
     sanityFetchWithDefaults<HomePagePayload>({
       query: homePageQuery,
       stega: false,
-    })
+    }),
   ])
 
   const ogImage = urlForOpenGraphImage(settings?.ogImage)
-  
+
   return {
     title: homePage?.title
       ? {
@@ -56,7 +53,7 @@ export default async function IndexRoute({
   children: React.ReactNode
 }) {
   const isDraftMode = (await draftMode()).isEnabled
-  
+
   const { data: settings } = await sanityFetchWithDefaults<SettingsPayload>({
     query: settingsQuery,
   })
@@ -76,9 +73,7 @@ export default async function IndexRoute({
               <DisableDraftMode />
             </>
           ) : (
-            <Suspense>
-              {children}
-            </Suspense>
+            <Suspense>{children}</Suspense>
           )}
         </div>
 

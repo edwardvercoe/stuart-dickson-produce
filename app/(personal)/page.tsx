@@ -1,12 +1,12 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
 import { HomePage } from '@/components/pages/home/HomePage'
 import { defineSanityMetadata } from '@/lib/utils'
 import { studioUrl } from '@/sanity/lib/api'
-import { homePageQuery } from '@/sanity/lib/queries'
 import { sanityFetchWithDefaults } from '@/sanity/lib/live'
+import { homePageQuery } from '@/sanity/lib/queries'
 import type { HomePagePayload } from '@/types'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
   const { data: homePage } = await sanityFetchWithDefaults<HomePagePayload>({

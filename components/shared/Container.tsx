@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils'
 import { ElementType, ReactNode } from 'react'
+
+import { cn } from '@/lib/utils'
 
 type ContainerProps<T extends ElementType = 'div'> = {
   children: ReactNode
@@ -26,7 +27,7 @@ export const Container = <T extends ElementType = 'div'>({
   fullBleed = false,
 }: ContainerProps<T>) => {
   const Component = as || 'div'
-  
+
   return (
     <Component
       className={cn(
@@ -37,7 +38,7 @@ export const Container = <T extends ElementType = 'div'>({
         size === 'default' && 'max-w-[1560px]',
         size === 'narrow' && 'max-w-[800px]',
         size === 'wide' && 'max-w-[1920px]',
-        className
+        className,
       )}
     >
       {children}
@@ -45,4 +46,4 @@ export const Container = <T extends ElementType = 'div'>({
   )
 }
 
-export default Container 
+export default Container

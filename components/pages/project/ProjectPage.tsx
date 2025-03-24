@@ -1,7 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
 
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import CustomPortableText from '@/components/shared/CustomPortableText'
 import { Header } from '@/components/shared/Header'
 import ImageBox from '@/components/shared/ImageBox'
 import type { ProjectPayload } from '@/types'
@@ -101,8 +101,8 @@ export function ProjectPage({ data, encodeDataAttribute }: ProjectPageProps) {
         {/* Description */}
         {description && (
           <CustomPortableText
-            paragraphClasses="font-serif max-w-3xl text-xl text-gray-600"
             value={description}
+            className="font-serif max-w-3xl text-xl text-gray-600"
           />
         )}
       </div>

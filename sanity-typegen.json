@@ -3,4 +3,4 @@
   "schema": "./sanity/extract.json",
   "generates": "./types/sanity.types.ts",
   "overloadClientMethods": true
-} 
+}

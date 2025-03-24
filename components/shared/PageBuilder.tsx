@@ -1,9 +1,9 @@
 import React from 'react'
-import type { Page, Home } from '@/types/sanity.types'
 
 import CarouselCTA from '@/components/shared/CarouselCTA'
 import FeaturedCTA from '@/components/shared/FeaturedCTA'
 import Hero from '@/components/shared/Hero/Hero'
+import type { Home,Page } from '@/types/sanity.types'
 
 import GoogleMapBlock from './GoogleMapBlock'
 import ImageCarousel from './ImageCarousel'

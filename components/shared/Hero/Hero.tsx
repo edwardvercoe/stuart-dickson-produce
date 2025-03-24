@@ -1,7 +1,6 @@
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
-import type { Hero as HeroType } from '@/types/sanity.types'
 
 import BrandArrowAccent from '@/assets/svg/brand-arrow-accent.svg'
 import MouseSVG from '@/assets/svg/mouse.svg'
@@ -11,6 +10,7 @@ import { buttonStyles } from '@/components/shared/Button'
 import Container from '@/components/shared/Container'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import { cn } from '@/lib/utils'
+import type { Hero as HeroType } from '@/types/sanity.types'
 
 type HeroProps = {
   data: HeroType
@@ -29,10 +29,12 @@ const Hero = ({ data, variation }: HeroProps) => {
 
   return (
     <>
-      <section className={cn(
-        "relative overflow-hidden",
-        variation === 'home' ? 'h-svh' : 'h-[600px]'
-      )}>
+      <section
+        className={cn(
+          'relative overflow-hidden',
+          variation === 'home' ? 'h-svh' : 'h-[600px]',
+        )}
+      >
         <div className="absolute inset-0 gradient-left">
           {backgroundImage && (
             <SanityImg
@@ -96,7 +98,7 @@ const Hero = ({ data, variation }: HeroProps) => {
                         className={buttonStyles({
                           variant: index === 0 ? 'primary' : 'secondary',
                           iconRight: hasIcon,
-                          className: 'w-full sm:w-auto'
+                          className: 'w-full sm:w-auto',
                         })}
                       >
                         <span className="font-medium">{button.linkText}</span>

@@ -1,10 +1,11 @@
+import { PortableText } from '@portabletext/react'
 import React from 'react'
-import { PortableText } from "@portabletext/react"
+
+import { cn } from '@/lib/utils'
 import type { TwoColText as TwoColTextType } from '@/types/sanity.types'
 
-import Components from '../PortableText/PortableTextComponents'
 import Container from '../Container'
-import { cn } from '@/lib/utils'
+import Components from '../PortableText/PortableTextComponents'
 
 type TwoColTextProps = {
   data: TwoColTextType

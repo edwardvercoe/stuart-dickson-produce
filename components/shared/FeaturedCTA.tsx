@@ -1,6 +1,5 @@
 import { MapPin } from 'lucide-react'
 import React from 'react'
-import type { FeaturedCTA as FeaturedCTAType } from '@/types/sanity.types'
 
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
@@ -8,6 +7,7 @@ import { buttonStyles } from '@/components/shared/Button'
 import Container from '@/components/shared/Container'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import { cn } from '@/lib/utils'
+import type { FeaturedCTA as FeaturedCTAType } from '@/types/sanity.types'
 
 type FeaturedCTAProps = {
   data: FeaturedCTAType
@@ -57,7 +57,7 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
         <div
           className={cn(
             'relative w-full flex',
-            variation === 'centered' && 'justify-center'
+            variation === 'centered' && 'justify-center',
           )}
         >
           <div
@@ -91,7 +91,7 @@ const FeaturedCTA = ({ data }: FeaturedCTAProps) => {
                       data={button}
                       className={buttonStyles({
                         variant: index === 0 ? 'primary' : 'secondary',
-                        className: 'w-full sm:w-auto'
+                        className: 'w-full sm:w-auto',
                       })}
                     >
                       <span className="font-medium">{button.linkText}</span>

@@ -1,14 +1,18 @@
 'use client'
 
-import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
+
 import { disableDraftMode } from '@/app/actions'
 
 export function DisableDraftMode() {
   const router = useRouter()
   const [pending, startTransition] = useTransition()
-  
-  if (typeof window !== 'undefined' && (window !== window.parent || !!window.opener)) {
+
+  if (
+    typeof window !== 'undefined' &&
+    (window !== window.parent || !!window.opener)
+  ) {
     return null
   }
 
@@ -29,4 +33,4 @@ export function DisableDraftMode() {
       )}
     </div>
   )
-} 
+}

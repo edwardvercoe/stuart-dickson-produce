@@ -25,7 +25,7 @@ export const buttonStyles = ({
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', children, iconRight, className, asChild }, ref) => {
     const Comp = asChild ? 'span' : 'button'
-    
+
     return (
       <Comp
         ref={ref}
@@ -40,7 +40,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </Comp>
     )
-  }
+  },
 )
 
 Button.displayName = 'Button'

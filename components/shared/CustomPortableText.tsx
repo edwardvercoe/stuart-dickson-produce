@@ -1,20 +1,24 @@
-import { PortableText } from "@portabletext/react";
-import { TypedObject } from "sanity";
-import Components from "./PortableText/PortableTextComponents";
+import { PortableText } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
+
+import Components from './PortableText/PortableTextComponents'
 
 interface CustomPortableTextProps {
-  value: TypedObject | TypedObject[];
-  className?: string;
+  value: PortableTextBlock | PortableTextBlock[]
+  className?: string
 }
 
-export default function CustomPortableText({ value, className }: CustomPortableTextProps) {
+export default function CustomPortableText({
+  value,
+  className,
+}: CustomPortableTextProps) {
   if (!value) {
-    return null;
+    return null
   }
 
   return (
     <div className={className}>
       <PortableText value={value} components={Components} />
     </div>
-  );
+  )
 }

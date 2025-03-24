@@ -1,4 +1,5 @@
 import React from 'react'
+
 import type { TwoColText as TwoColTextType } from '@/types/sanity.types'
 
 import TwoColTextHalf from './TwoColTextHalf'

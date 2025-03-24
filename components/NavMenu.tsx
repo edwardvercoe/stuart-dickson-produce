@@ -39,18 +39,18 @@ const MenuToggle = ({ isOpen }: { isOpen: boolean }) => (
   <svg width="24" height="24" viewBox="0 0 24 24">
     <Path
       variants={{
-        closed: { d: "M 4 7 L 20 7" },
-        open: { d: "M 5 5 L 19 19" }
+        closed: { d: 'M 4 7 L 20 7' },
+        open: { d: 'M 5 5 L 19 19' },
       }}
-      animate={isOpen ? "open" : "closed"}
+      animate={isOpen ? 'open' : 'closed'}
       transition={{ duration: 0.3 }}
     />
     <Path
       variants={{
-        closed: { d: "M 4 17 L 20 17", opacity: 1 },
-        open: { d: "M 19 5 L 5 19", opacity: 1 }
+        closed: { d: 'M 4 17 L 20 17', opacity: 1 },
+        open: { d: 'M 19 5 L 5 19', opacity: 1 },
       }}
-      animate={isOpen ? "open" : "closed"}
+      animate={isOpen ? 'open' : 'closed'}
       transition={{ duration: 0.3 }}
     />
   </svg>
@@ -68,7 +68,7 @@ export const NavMenu = ({
           onClick={() => setIsMenuOpen((prevState) => !prevState)}
           className={cn(
             'flex items-center justify-center w-12 h-12 rounded-full bg-brand-black/60 backdrop-blur-sm transition-all hover:bg-brand-black',
-            isMenuOpen ? 'bg-brand-black' : ''
+            isMenuOpen ? 'bg-brand-black' : '',
           )}
           aria-label="Toggle menu"
         >
@@ -104,7 +104,7 @@ export const NavMenu = ({
                   whileInView="animate"
                 >
                   <li onClick={() => setIsMenuOpen(false)}>
-                    <SanityLink 
+                    <SanityLink
                       data={link}
                       className="hover:text-brand-orange transition-colors"
                     >
