@@ -120,6 +120,10 @@ This assessment provides an overview of the current state of the Stuart Dickson 
 - ✅ Hero images on mobile:
   - Images are too tall, making it unclear that there's more content below
   - Recommendation: Reduce the height of hero images on mobile screens
+- ✅ Hero text sizing on mobile:
+  - Previous issue: Text size inconsistency between homepage and other pages on mobile
+  - Resolution: Added explicit text-2xl class to ensure consistent mobile text sizing
+  - Status: Completed
 - ✅ Fix image scaling problems on large screens
   - Portraits not displaying properly (people's heads are getting cut off)
   - Effort: Low
@@ -236,22 +240,22 @@ This assessment provides an overview of the current state of the Stuart Dickson 
      - Removed invalid button nesting
      - Maintained consistent visual appearance
 
-10. ☐ Create consistent content wrapper component:
-    - Current issues:
-      - Content alignment varies across different sections on larger screens
+10. ✅ Create consistent content wrapper component:
+    - Previous issues:
+      - Content alignment varied across different sections on larger screens
       - Inconsistent margins and max-width settings
       - No standardized padding across components
-    - Proposed solution:
-      - Create a reusable wrapper component
-      - Implement consistent max-width constraints
-      - Standardize horizontal padding
-      - Ensure proper content alignment across all screen sizes
-    - Benefits:
+    - Resolution:
+      - Created reusable Container component
+      - Implemented consistent max-width constraints
+      - Standardized horizontal padding
+      - Ensured proper content alignment across all screen sizes
+    - Benefits achieved:
       - Improved visual consistency
       - Easier maintenance
       - Better responsive behavior
     - Effort: Low
-    - Status: Pending
+    - Status: Completed
 
 ### Lower Priority (Cleanup & Enhancements)
 
