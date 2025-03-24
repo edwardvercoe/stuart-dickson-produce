@@ -4,17 +4,27 @@ import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 import { VisualEditing } from 'next-sanity'
 
-import { Footer } from '@/components/global/Footer'
-import { Navbar } from '@/components/global/Navbar'
+import { Footer } from '@/components/Footer'
+import { Navbar } from '@/components/Navbar'
 import { SanityLive } from '@/sanity/lib/live'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
-import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
-
+import { sanityFetchWithDefaults } from '@/sanity/lib/live'
+import { settingsQuery, homePageQuery } from '@/sanity/lib/queries'
+import type { SettingsPayload, HomePagePayload } from '@/types'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ data: settings }, { data: homePage }] = await Promise.all([
-    loadSettings(),
-    loadHomePage(),
+  const [
+    { data: settings },
+    { data: homePage }
+  ] = await Promise.all([
+    sanityFetchWithDefaults<SettingsPayload>({
+      query: settingsQuery,
+      stega: false,
+    }),
+    sanityFetchWithDefaults<HomePagePayload>({
+      query: homePageQuery,
+      stega: false,
+    })
   ])
 
   const ogImage = urlForOpenGraphImage(settings?.ogImage)
@@ -45,12 +55,16 @@ export default async function IndexRoute({
   children: React.ReactNode
 }) {
   const isDraftMode = (await draftMode()).isEnabled
+  
+  const { data: settings } = await sanityFetchWithDefaults<SettingsPayload>({
+    query: settingsQuery,
+  })
 
   return (
     <>
       <div className="flex min-h-screen flex-col bg-secondary text-black">
         <Suspense>
-          <Navbar />
+          <Navbar settings={settings} />
         </Suspense>
 
         <div className="flex-grow">
@@ -72,7 +86,7 @@ export default async function IndexRoute({
         </div>
 
         <Suspense>
-          <Footer />
+          <Footer settings={settings} />
         </Suspense>
       </div>
 
