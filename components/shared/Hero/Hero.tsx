@@ -8,6 +8,7 @@ import MouseSVG from '@/assets/svg/mouse.svg'
 import SanityImg from '@/components/SanityComponents/SanityImg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
 import { buttonStyles } from '@/components/shared/Button'
+import Container from '@/components/shared/Container'
 import PortableTextBlock from '@/components/shared/PortableText/PortableTextBlock'
 import { cn } from '@/lib/utils'
 
@@ -29,7 +30,7 @@ const Hero = ({ data, variation }: HeroProps) => {
   return (
     <>
       <section className={cn(
-        "full-bleed h-svh relative overflow-hidden",
+        "full-bleed relative h-svh overflow-hidden",
         !variation && 'min-h-[600px]'
       )}>
         <div className="absolute inset-0 gradient-left">
@@ -59,72 +60,72 @@ const Hero = ({ data, variation }: HeroProps) => {
             />
           </div>
         )}
-        <div
-          className="flex flex-col pb-4 md:p-6 justify-center items-center relative bleed-padding-x h-full pt-14 md:pt-0"
-        >
-          <div className="flex-1 w-full relative flex flex-col justify-center">
-            <div>
-              <h1
-                className={cn(
-                  'h1 text-2xl font-normal leading-6xl text-left text-gray-300 pb-4 lg:pb-8',
-                  variation === 'home' &&
-                    ' text-2xl font-normal text-gray-300 pb-4',
-                )}
-              >
-                {title}
-              </h1>
-            </div>
-            {subtitle && (
-              <PortableTextBlock
-                className={cn(
-                  'text-white pb-8  sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
-                  variation === 'home' &&
-                    'text-2xl sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
-                )}
-                data={subtitle}
-              />
-            )}
+        <Container className="h-full">
+          <div className="flex flex-col pb-4 md:p-0 justify-center items-start relative h-full pt-14 md:pt-0">
+            <div className="flex-1 w-full relative flex flex-col justify-center">
+              <div>
+                <h1
+                  className={cn(
+                    'h1 text-2xl font-normal leading-6xl text-left text-gray-300 pb-4 lg:pb-8',
+                    variation === 'home' &&
+                      ' text-2xl font-normal text-gray-300 pb-4',
+                  )}
+                >
+                  {title}
+                </h1>
+              </div>
+              {subtitle && (
+                <PortableTextBlock
+                  className={cn(
+                    'text-white pb-8  sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
+                    variation === 'home' &&
+                      'text-2xl sm:text-3xl lg:text-5xl max-w-[800px] leading-[1.15]',
+                  )}
+                  data={subtitle}
+                />
+              )}
 
-            {buttons && (
-              <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
-                {buttons.map((button, index) => {
-                  const hasIcon = index === 0
-                  return (
-                    <SanityLink
-                      key={button._key}
-                      data={button}
-                      className={buttonStyles({
-                        variant: index === 0 ? 'primary' : 'secondary',
-                        iconRight: hasIcon,
-                        className: 'w-full sm:w-auto'
-                      })}
-                    >
-                      <span className="font-medium">{button.linkText}</span>
-                      {hasIcon && (
-                        <span className="ml-4 flex items-center justify-center bg-brand-black rounded-full size-10">
-                          <Image
-                            src={BrandArrowAccent}
-                            alt="brand arrow icon"
-                            height={16}
-                            width={16}
-                          />
-                        </span>
-                      )}
-                    </SanityLink>
-                  )
-                })}
+              {buttons && (
+                <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
+                  {buttons.map((button, index) => {
+                    const hasIcon = index === 0
+                    return (
+                      <SanityLink
+                        key={button._key}
+                        data={button}
+                        className={buttonStyles({
+                          variant: index === 0 ? 'primary' : 'secondary',
+                          iconRight: hasIcon,
+                          className: 'w-full sm:w-auto'
+                        })}
+                      >
+                        <span className="font-medium">{button.linkText}</span>
+                        {hasIcon && (
+                          <span className="ml-4 flex items-center justify-center bg-brand-black rounded-full size-10">
+                            <Image
+                              src={BrandArrowAccent}
+                              alt="brand arrow icon"
+                              height={16}
+                              width={16}
+                            />
+                          </span>
+                        )}
+                      </SanityLink>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+            {caption && (
+              <div className="flex flex-row gap-4 w-full pb-12 md:pb-6">
+                <MapPin stroke="white" strokeWidth={1} />
+                <p className="text-white">{caption}</p>
               </div>
             )}
           </div>
-          {caption && (
-            <div className="flex flex-row gap-4 w-full pb-12 md:pb-0">
-              <MapPin stroke="white" strokeWidth={1} />
-              <p className="text-white">{caption}</p>
-            </div>
-          )}
-        </div>
+        </Container>
       </section>
-      <section className="full-bleed h-4 flex flex-row relative w-full">
+      <section className="full-bleed h-4 flex flex-row relative">
         <div className="bg-brand-mahogany flex-1" />
         <div className="bg-brand-orange flex-1" />
         <div className="bg-accent flex-1" />

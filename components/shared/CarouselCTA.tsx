@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils'
 import SanityImg from '../SanityComponents/SanityImg'
 import SanityLink from '../SanityComponents/SanityLink'
 import { buttonStyles } from './Button'
+import Container from './Container'
 import PortableTextBlock from './PortableText/PortableTextBlock'
 
 type CarouselCTAProps = {
@@ -27,7 +28,7 @@ const SlideWrapper = ({
   item: CarouselItem
   children: React.ReactNode
 }) => {
-  return <div className="relative">{children}</div>
+  return <div className="relative w-full">{children}</div>
 }
 
 const CarouselCTA = ({ data }: CarouselCTAProps) => {
@@ -37,7 +38,7 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
 
   return (
     <section className="full-bleed">
-      <div className="relative">
+      <div className="w-full">
         <Swiper
           autoplay={{
             delay: 6000,
@@ -51,16 +52,13 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
           onSlideChange={(swiper: SwiperType) => {
             setCurrentSlide(swiper.activeIndex)
           }}
+          className="w-full"
         >
           {carouselItems?.map((item, index) => (
-            <SwiperSlide key={item._key}>
+            <SwiperSlide key={item._key} className="w-full">
               <SlideWrapper item={item}>
-                <div className="bg-[#D8EDD9] min-h-[600px] relative flex flex-col ">
-                  <figure
-                    className={cn(
-                      'absolute top-0 left-0 w-full h-full gradient-full',
-                    )}
-                  >
+                <div className="bg-[#D8EDD9] min-h-[600px] relative w-full">
+                  <figure className="absolute inset-0 w-full h-full gradient-full">
                     {item.backgroundImage && (
                       <SanityImg
                         src={item.backgroundImage}
@@ -68,48 +66,50 @@ const CarouselCTA = ({ data }: CarouselCTAProps) => {
                       />
                     )}
                   </figure>
-                  <div className=" flex-grow relative max-w-[600px] bleed-padding-x py-20 text-white flex flex-col justify-between h-full gap-8">
-                    <div>
-                      <div>
-                        {item.subtitle && (
-                          <div className="pb-3">
-                            <h4 className="text-gray-200">{item.subtitle}</h4>
-                          </div>
-                        )}
+                  <Container className="relative h-full">
+                    <div className="flex flex-col justify-between h-full py-20 gap-8">
+                      <div className="max-w-[600px] text-white">
                         <div>
-                          <h2 className="h2 ">{item.title}</h2>
+                          {item.subtitle && (
+                            <div className="pb-3">
+                              <h4 className="text-gray-200">{item.subtitle}</h4>
+                            </div>
+                          )}
+                          <div>
+                            <h2 className="h2">{item.title}</h2>
+                          </div>
+                          {item.description && (
+                            <div className="max-w-[520px] pt-8">
+                              <PortableTextBlock data={item.description} />
+                            </div>
+                          )}
+                          {item.buttons && (
+                            <div className="flex gap-4 mt-4">
+                              {item.buttons.map((button, index) => (
+                                <SanityLink
+                                  key={button._key}
+                                  data={button}
+                                  className={buttonStyles({
+                                    variant: index === 0 ? 'primary' : 'secondary',
+                                    className: 'w-full sm:w-auto'
+                                  })}
+                                >
+                                  <span className="font-medium">{button.linkText}</span>
+                                </SanityLink>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                        {item.description && (
-                          <div className="max-w-[520px] pt-8">
-                            <PortableTextBlock data={item.description} />
-                          </div>
-                        )}
-                        {item.buttons && (
-                          <div className="flex gap-4 mt-4">
-                            {item.buttons.map((button, index) => (
-                              <SanityLink
-                                key={button._key}
-                                data={button}
-                                className={buttonStyles({
-                                  variant: index === 0 ? 'primary' : 'secondary',
-                                  className: 'w-full sm:w-auto'
-                                })}
-                              >
-                                <span className="font-medium">{button.linkText}</span>
-                              </SanityLink>
-                            ))}
-                          </div>
-                        )}
                       </div>
-                    </div>
 
-                    {item.caption && (
-                      <div className="flex flex-row gap-4">
-                        <MapPin stroke="white" strokeWidth={1} />
-                        <p>{item.caption}</p>
-                      </div>
-                    )}
-                  </div>
+                      {item.caption && (
+                        <div className="flex flex-row gap-4 text-white">
+                          <MapPin stroke="white" strokeWidth={1} />
+                          <p>{item.caption}</p>
+                        </div>
+                      )}
+                    </div>
+                  </Container>
                 </div>
               </SlideWrapper>
             </SwiperSlide>
