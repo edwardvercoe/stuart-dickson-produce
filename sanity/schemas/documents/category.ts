@@ -54,12 +54,13 @@ export default {
   preview: {
     select: {
       title: 'title',
+      products: 'products',
       order: 'order'
     },
-    prepare({ title, order }) {
+    prepare({ title, products = [], order }) {
       return {
         title,
-        subtitle: `Order: ${order || 'Not set'}`
+        subtitle: `Products: ${products.length} | Order: ${order || 'Not set'}`
       }
     }
   },
