@@ -394,6 +394,36 @@ export type RichText = Array<{
   _key: string
 }>
 
+export type Product = {
+  _id: string
+  _type: 'product'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  category?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'category'
+  }
+  available?: boolean
+  order?: number
+  notes?: string
+  slug?: Slug
+}
+
+export type Category = {
+  _id: string
+  _type: 'category'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  order?: number
+  slug?: Slug
+}
+
 export type Farm = {
   _id: string
   _type: 'farm'
@@ -614,6 +644,8 @@ export type AllSanitySchemaTypes =
   | Link
   | RestrictedRichText
   | RichText
+  | Product
+  | Category
   | Farm
   | Page
   | Slug

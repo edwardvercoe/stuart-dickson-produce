@@ -1,0 +1,751 @@
+{
+  "categories": [
+    {
+      "_type": "category",
+      "_id": "category-beans",
+      "title": "Beans",
+      "order": 10,
+      "slug": {
+        "_type": "slug",
+        "current": "beans"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-berries",
+      "title": "Berries",
+      "order": 20,
+      "slug": {
+        "_type": "slug",
+        "current": "berries"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-capsicum",
+      "title": "Capsicum",
+      "order": 30,
+      "slug": {
+        "_type": "slug",
+        "current": "capsicum"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-carrots",
+      "title": "Carrots",
+      "order": 40,
+      "slug": {
+        "_type": "slug",
+        "current": "carrots"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-cabbage",
+      "title": "Cabbage",
+      "order": 50,
+      "slug": {
+        "_type": "slug",
+        "current": "cabbage"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-cucumbers",
+      "title": "Cucumbers",
+      "order": 60,
+      "slug": {
+        "_type": "slug",
+        "current": "cucumbers"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-zucchini",
+      "title": "Zucchini",
+      "order": 70,
+      "slug": {
+        "_type": "slug",
+        "current": "zucchini"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-garlic",
+      "title": "Garlic",
+      "order": 80,
+      "slug": {
+        "_type": "slug",
+        "current": "garlic"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-tomatoes",
+      "title": "Tomatoes",
+      "order": 90,
+      "slug": {
+        "_type": "slug",
+        "current": "tomatoes"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-ginger",
+      "title": "Ginger",
+      "order": 100,
+      "slug": {
+        "_type": "slug",
+        "current": "ginger"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-kumera",
+      "title": "Kumera",
+      "order": 110,
+      "slug": {
+        "_type": "slug",
+        "current": "kumera"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-onions",
+      "title": "Onions",
+      "order": 120,
+      "slug": {
+        "_type": "slug",
+        "current": "onions"
+      }
+    },
+    {
+      "_type": "category",
+      "_id": "category-other",
+      "title": "Other",
+      "order": 130,
+      "slug": {
+        "_type": "slug",
+        "current": "other"
+      }
+    }
+  ],
+  "products": [
+    {
+      "_type": "product",
+      "_id": "product-hand-picked-green",
+      "title": "Hand Picked (Green)",
+      "available": true,
+      "order": 10,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-beans"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "hand-picked-green"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-machine-picked-green",
+      "title": "Machine Picked (Green)",
+      "available": true,
+      "order": 20,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-beans"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "machine-picked-green"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-butter-beans",
+      "title": "Butter Beans",
+      "available": true,
+      "order": 30,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-beans"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "butter-beans"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-flat-beans",
+      "title": "Flat Beans",
+      "available": true,
+      "order": 40,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-beans"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "flat-beans"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-blueberry-punnets",
+      "title": "Blueberry Punnets",
+      "available": true,
+      "order": 10,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "blueberry-punnets"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-blueberry-trays",
+      "title": "Blueberry Trays",
+      "available": true,
+      "order": 20,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "blueberry-trays"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-strawberry-med-punnets",
+      "title": "Strawberry Med Punnets",
+      "available": true,
+      "order": 30,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "strawberry-med-punnets"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-strawberry-med-trays",
+      "title": "Strawberry Med Trays",
+      "available": true,
+      "order": 40,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "strawberry-med-trays"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-strawberry-large-punnets",
+      "title": "Strawberry Large Punnets",
+      "available": true,
+      "order": 50,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "strawberry-large-punnets"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-strawberry-large",
+      "title": "Strawberry Large",
+      "available": true,
+      "order": 60,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "strawberry-large"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-strawberry-xl-punnets",
+      "title": "Strawberry XL Punnets",
+      "available": true,
+      "order": 70,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "strawberry-xl-punnets"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-strawberry-xl-trays",
+      "title": "Strawberry XL Trays",
+      "available": true,
+      "order": 80,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "strawberry-xl-trays"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-raspberry-punnet",
+      "title": "Raspberry Punnet",
+      "available": true,
+      "order": 90,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "raspberry-punnet"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-raspberry-trays",
+      "title": "Raspberry Trays",
+      "available": true,
+      "order": 100,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "raspberry-trays"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-blackberry-punnets",
+      "title": "Blackberry Punnets",
+      "available": true,
+      "order": 110,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-berries"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "blackberry-punnets"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-baby-capsicum",
+      "title": "Baby Capsicum",
+      "available": true,
+      "order": 10,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "baby-capsicum"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-green-capsicum",
+      "title": "Green Capsicum",
+      "available": true,
+      "order": 20,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "green-capsicum"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-red-capsicum",
+      "title": "Red Capsicum",
+      "available": true,
+      "order": 30,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "red-capsicum"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-yellow-capsicum",
+      "title": "Yellow Capsicum",
+      "available": true,
+      "order": 40,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "yellow-capsicum"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-red-large",
+      "title": "Red Large",
+      "available": true,
+      "order": 50,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "red-large"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-red-medium",
+      "title": "Red Medium",
+      "available": true,
+      "order": 60,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "red-medium"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-red-small",
+      "title": "Red Small",
+      "available": true,
+      "order": 70,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "red-small"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-green-large",
+      "title": "Green Large",
+      "available": true,
+      "order": 80,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "green-large"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-green-medium",
+      "title": "Green Medium",
+      "available": true,
+      "order": 90,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "green-medium"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-green-small",
+      "title": "Green Small",
+      "available": true,
+      "order": 100,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "green-small"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-yellow-large",
+      "title": "Yellow Large",
+      "available": true,
+      "order": 110,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "yellow-large"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-yellow-medium",
+      "title": "Yellow Medium",
+      "available": true,
+      "order": 120,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "yellow-medium"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-yellow-small",
+      "title": "Yellow Small",
+      "available": true,
+      "order": 130,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "yellow-small"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-sweet-baby-capsicum-loose",
+      "title": "Sweet Baby Capsicum Loose",
+      "available": true,
+      "order": 140,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "sweet-baby-capsicum-loose"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-sweet-baby-capsicum-prepack",
+      "title": "Sweet Baby Capsicum Prepack",
+      "available": true,
+      "order": 150,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "sweet-baby-capsicum-prepack"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-red-chillies",
+      "title": "Red Chillies",
+      "available": true,
+      "order": 160,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "red-chillies"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-green-chillies",
+      "title": "Green Chillies",
+      "available": true,
+      "order": 170,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-capsicum"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "green-chillies"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-15kg-carton",
+      "title": "Carrot 15kg Carton",
+      "available": true,
+      "order": 10,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-15kg-carton"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-large-bag",
+      "title": "Carrot Large Bag",
+      "available": true,
+      "order": 20,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-large-bag"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-large-carton",
+      "title": "Carrot Large Carton",
+      "available": true,
+      "order": 30,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-large-carton"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-med-20kg-carton",
+      "title": "Carrot Med 20kg Carton",
+      "available": true,
+      "order": 40,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-med-20kg-carton"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-prepack-20x1kg-bags",
+      "title": "Carrot Prepack 20x1kg Bags",
+      "available": true,
+      "order": 50,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-prepack-20x1kg-bags"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-prepack-10x2kg-bags",
+      "title": "Carrot Prepack 10x2kg Bags",
+      "available": true,
+      "order": 60,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-prepack-10x2kg-bags"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-carrot-15kg-catering-bags",
+      "title": "Carrot 15kg Catering Bags",
+      "available": true,
+      "order": 70,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "carrot-15kg-catering-bags"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-purple-carrot-loose",
+      "title": "Purple Carrot Loose",
+      "available": true,
+      "order": 80,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "purple-carrot-loose"
+      }
+    },
+    {
+      "_type": "product",
+      "_id": "product-purple-carrot-prepack",
+      "title": "Purple Carrot Prepack",
+      "available": true,
+      "order": 90,
+      "category": {
+        "_type": "reference",
+        "_ref": "category-carrots"
+      },
+      "slug": {
+        "_type": "slug",
+        "current": "purple-carrot-prepack"
+      }
+    }
+  ]
+}

@@ -17,6 +17,8 @@ import farm from '@/sanity/schemas/documents/farm'
 import page from '@/sanity/schemas/documents/page'
 import home from '@/sanity/schemas/singletons/home'
 import settings from '@/sanity/schemas/singletons/settings'
+import category from '@/sanity/schemas/documents/category'
+import product from '@/sanity/schemas/documents/product'
 
 import carouselCTA from './sanity/schemas/objects/blocks/carouselCTA'
 import carouselItem from './sanity/schemas/objects/blocks/carouselItem'
@@ -48,6 +50,8 @@ export default defineConfig({
       // Documents
       page,
       farm,
+      category,
+      product,
       // Objects
       richText,
       restrictedRichText,
