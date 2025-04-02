@@ -422,6 +422,13 @@ export type Category = {
   title?: string
   order?: number
   slug?: Slug
+  products?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'product'
+  }>
 }
 
 export type Farm = {
