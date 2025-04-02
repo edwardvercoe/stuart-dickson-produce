@@ -47,7 +47,7 @@ export default {
         }
       ],
       options: {
-        layout: 'grid'
+        layout: 'list'
       }
     })
   ],
