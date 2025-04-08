@@ -70,7 +70,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, orderDetails, han
                                     placeholder={!product.available ? "N/A" : ""}
                                 />
                             </td>
-                            <td className="border p-1 w-32">
+                            <td className="border p-1 w-32 md:w-48">
                                 <Input
                                     value={orderDetails[product._id]?.note || ""}
                                     onChange={(e) => handleInputChange(product._id, "note", e.target.value)}
@@ -260,15 +260,15 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 border-b">
               {/* Table Header Row - Spans across both columns */}
-              <div className="col-span-1 md:col-span-2 border-b bg-gray-100 font-semibold grid grid-cols-[1fr_auto_auto] md:grid-cols-[1fr_80px_128px_1fr_80px_128px]">
+              <div className="col-span-1 md:col-span-2 border-b bg-gray-100 font-semibold grid grid-cols-[1fr_80px_128px] md:grid-cols-[1fr_80px_192px_1fr_80px_192px]">
                 {/* Left Column Headers */}
                 <div className="p-2 border-r">Stock</div>
                 <div className="p-2 border-r text-center w-[80px]">Qty</div>
-                <div className="p-2 border-r w-[128px]">Note</div>
+                <div className="p-2 border-r w-[128px] md:w-[192px]">Note</div>
                 {/* Right Column Headers - Repeat for md screens */}
                 <div className="p-2 border-r hidden md:block">Stock</div>
                 <div className="p-2 border-r text-center w-[80px] hidden md:block">Qty</div>
-                <div className="p-2 w-[128px] hidden md:block">Note</div>
+                <div className="p-2 w-[128px] md:w-[192px] hidden md:block">Note</div>
               </div>
 
             {/* Left Column Categories */}
@@ -304,7 +304,7 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
                     onChange={(e) => setGeneralNote(e.target.value)}
                     placeholder="Add any general notes for your order here..."
                     rows={3}
-                    className="rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm md:rows-5"
+                    className="rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm md:h-32"
                 />
             </div>
           </div>
