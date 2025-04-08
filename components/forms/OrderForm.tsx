@@ -48,7 +48,7 @@ interface CategoryCardProps {
 const CategoryCard: React.FC<CategoryCardProps> = ({ category, orderDetails, handleInputChange }) => (
     // Remove the outer Card wrapper, use borders for separation
     <div key={category._id} className="border-t">
-        <div className="p-2 font-semibold bg-gray-50">
+        <div className="p-2 px-3 font-semibold bg-gray-50">
             <h3>{category.title}</h3>
         </div>
         <div className="p-0">
@@ -59,7 +59,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, orderDetails, han
                     {category.products.map((product) => (
                         <tr key={product._id}>
                             {/* Add borders to cells */}
-                            <td className="border p-1">{product.title}</td>
+                            <td className="border p-1 px-3">{product.title}</td>
                             <td className="border p-1 w-20">
                                 <Input
                                     type="number"
@@ -71,7 +71,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, orderDetails, han
                                     placeholder={!product.available ? "N/A" : ""}
                                 />
                             </td>
-                            <td className="border p-1 w-32 md:w-48">
+                            <td className="border border-r-0 p-1 w-32 md:w-48">
                                 <Input
                                     value={orderDetails[product._id]?.note || ""}
                                     onChange={(e) => handleInputChange(product._id, "note", e.target.value)}
@@ -91,6 +91,8 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
   const [customerName, setCustomerName] = useState("")
   const [orderDate, setOrderDate] = useState(new Date().toISOString().split("T")[0])
   const [generalNote, setGeneralNote] = useState("")
+  const [customerEmail, setCustomerEmail] = useState("")
+  const [customerPhone, setCustomerPhone] = useState("")
   const [categories, setCategories] = useState<Category[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [orderDetails, setOrderDetails] = useState<Record<string, OrderItem>>({})
@@ -145,6 +147,8 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
       customerName,
       orderDate,
       generalNote,
+      customerEmail,
+      customerPhone,
       // Include form source details from props if needed for Typeform
       formDetails: {
         title,
@@ -212,8 +216,8 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
     <Container>
     <Card className=" mx-auto p-0  border shadow-md bg-white my-8">
       {/* Header Section - Mimicking the top part of the form */}
-      <div className="text-center border-b p-4">
-        <h1 className="text-xl font-bold mb-3">
+      <div className="text-center border-b p-4 pt-8">
+        <h1 className="text-xl font-bold mb-1">
             Stuart Dickson Produce Order Sheet
         </h1>
         <div className="flex flex-col md:flex-row justify-center items-center gap-x-6 gap-y-1 text-sm mb-3">
@@ -241,7 +245,7 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
       </div>
 
        {/* Customer Info Section - Integrated into the main card */}
-       <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
+       <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-4 border-b">
         <div>
           <Label htmlFor="customerName" className="font-semibold mb-1 block text-sm">
             Customer Name:
@@ -268,6 +272,32 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
           />
         </div>
+        <div>
+            <Label htmlFor="customerEmail" className="font-semibold mb-1 block text-sm">
+                Customer Email:
+            </Label>
+            <Input
+                id="customerEmail"
+                type="email"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+                placeholder="your.email@example.com"
+                className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
+            />
+        </div>
+        <div>
+            <Label htmlFor="customerPhone" className="font-semibold mb-1 block text-sm">
+                Customer Phone:
+            </Label>
+            <Input
+                id="customerPhone"
+                type="tel"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+                placeholder="e.g., 555-123-4567"
+                className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
+            />
+        </div>
       </div>
 
       {/* Form Body starts here */}
@@ -284,11 +314,11 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
               {/* Table Header Row - Spans across both columns */}
               <div className="col-span-1 md:col-span-2 border-b bg-gray-100 font-semibold grid grid-cols-[1fr_80px_128px] md:grid-cols-[1fr_80px_192px_1fr_80px_192px]">
                 {/* Left Column Headers */}
-                <div className="p-2 border-r">Stock</div>
+                <div className="p-2 px-3 border-r">Stock</div>
                 <div className="p-2 border-r text-center w-[80px]">Qty</div>
                 <div className="p-2 border-r w-[128px] md:w-[192px]">Note</div>
                 {/* Right Column Headers - Repeat for md screens */}
-                <div className="p-2 border-r hidden md:block">Stock</div>
+                <div className="p-2 px-3 border-r hidden md:block">Stock</div>
                 <div className="p-2 border-r text-center w-[80px] hidden md:block">Qty</div>
                 <div className="p-2 w-[128px] md:w-[192px] hidden md:block">Note</div>
               </div>
