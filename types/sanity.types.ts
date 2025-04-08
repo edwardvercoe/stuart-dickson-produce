@@ -334,6 +334,14 @@ export type Hero = {
   caption?: string
 }
 
+export type OrderForm = {
+  _type: 'orderForm'
+  title?: string
+  email?: string
+  phone?: string
+  fax?: string
+}
+
 export type Link = {
   _type: 'link'
   linkText?: string
@@ -484,6 +492,9 @@ export type Page = {
     | ({
         _key: string
       } & GoogleMaps)
+    | ({
+        _key: string
+      } & OrderForm)
   >
   seo?: Seo
 }
@@ -556,6 +567,9 @@ export type Home = {
     | ({
         _key: string
       } & GoogleMaps)
+    | ({
+        _key: string
+      } & OrderForm)
   >
   seo?: Seo
 }
@@ -648,6 +662,7 @@ export type AllSanitySchemaTypes =
   | CarouselCTA
   | FeaturedCTA
   | Hero
+  | OrderForm
   | Link
   | RestrictedRichText
   | RichText

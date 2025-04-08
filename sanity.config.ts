@@ -32,6 +32,7 @@ import link from './sanity/schemas/objects/link'
 import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
 import richText from './sanity/schemas/objects/richText'
 import seo from './sanity/schemas/objects/seo'
+import { orderForm } from './sanity/schemas/objects/orderForm'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'SDP'
 const mapsAPI = process.env.NEXT_PUBLIC_SANITY_GOOGLE_MAPS_API || ''
@@ -57,6 +58,7 @@ export default defineConfig({
       restrictedRichText,
       link,
       seo,
+      orderForm,
       // block objects
       hero,
       featuredCTA,

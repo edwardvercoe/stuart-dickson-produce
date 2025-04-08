@@ -3,12 +3,13 @@ import React from 'react'
 import CarouselCTA from '@/components/shared/CarouselCTA'
 import FeaturedCTA from '@/components/shared/FeaturedCTA'
 import Hero from '@/components/shared/Hero/Hero'
-import type { Home,Page } from '@/types/sanity.types'
+import type { Home, Page } from '@/types/sanity.types'
 
 import GoogleMapBlock from './GoogleMapBlock'
 import ImageCarousel from './ImageCarousel'
 import TwoColText from './TwoColText/TwoColText'
 import TwoImages from './TwoImages/TwoImages'
+import { OrderForm } from '@/components/forms/OrderForm'
 
 type PageBuilderProps = {
   data: NonNullable<Page['pageBuilder'] | Home['pageBuilder']>
@@ -19,6 +20,11 @@ export const PageBuilder = ({ data, variation }: PageBuilderProps) => {
   return (
     <>
       {data?.map((block) => {
+        if (!block?._type) {
+          console.warn('PageBuilder received a block without a _type:', block)
+          return null
+        }
+
         switch (block._type) {
           case 'hero':
             return <Hero data={block} key={block._key} variation={variation} />
@@ -34,7 +40,10 @@ export const PageBuilder = ({ data, variation }: PageBuilderProps) => {
             return <ImageCarousel data={block} key={block._key} />
           case 'googleMaps':
             return <GoogleMapBlock data={block} key={block._key} />
+          case 'orderForm':
+            return <OrderForm key={block._key} />
           default:
+            console.warn('PageBuilder encountered an unhandled block type:', block._type)
             return null
         }
       })}
