@@ -26,6 +26,7 @@ interface Category {
   _id: string
   title: string
   slug: string
+  columnPlacement?: string | null
   products: Product[]
 }
 
@@ -170,10 +171,31 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
     alert("Order Submitted (See console for data)") // Placeholder
   }
 
-  // Split categories for two-column layout
-  const middleIndex = Math.ceil(categories.length / 2);
-  const leftColumnCategories = categories.slice(0, middleIndex);
-  const rightColumnCategories = categories.slice(middleIndex);
+  // --- Column Splitting Logic ---
+  let leftColumnCategories: Category[] = [];
+  let rightColumnCategories: Category[] = [];
+  const unassignedCategories: Category[] = [];
+
+  categories.forEach(category => {
+    if (category.columnPlacement === 'left') {
+      leftColumnCategories.push(category);
+    } else if (category.columnPlacement === 'right') {
+      rightColumnCategories.push(category);
+    } else {
+      unassignedCategories.push(category);
+    }
+  });
+
+  // Distribute unassigned categories somewhat evenly
+  unassignedCategories.forEach((category, index) => {
+    // Prioritize filling the shorter column or default to left
+    if (leftColumnCategories.length <= rightColumnCategories.length) {
+      leftColumnCategories.push(category);
+    } else {
+      rightColumnCategories.push(category);
+    }
+  });
+
 
   // --- Render Logic (remains largely the same as the page version) ---
 
@@ -198,7 +220,7 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
           {email && (
             <div className="flex items-center gap-1">
               <span className="font-semibold">Email:</span>
-              <a href={`mailto:${email}`} className="text-blue-600 hover:underline">
+              <a href={`mailto:${email}`} className="text-brand hover:underline">
                 {email}
               </a>
             </div>

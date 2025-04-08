@@ -68,6 +68,7 @@ export const categoriesWithProductsQuery = groq`
     _id,
     title,
     "slug": slug.current,
+    columnPlacement,
     "products": *[_type == "product" && references(^._id)] | order(order asc) {
       _id,
       title,

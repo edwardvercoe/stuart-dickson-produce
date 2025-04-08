@@ -27,6 +27,20 @@ export default {
       }
     }),
     defineField({
+      name: 'columnPlacement',
+      title: 'Column Placement on Order Form',
+      description: 'Assign this category to a specific column (Left/Right) on the printable order form. Leave blank to distribute automatically.',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Left', value: 'left'},
+          {title: 'Right', value: 'right'}
+        ],
+        layout: 'radio', // Or 'dropdown'
+        direction: 'horizontal' // Optional: for radio layout
+      }
+    }),
+    defineField({
       name: 'products',
       title: 'Products in this Category',
       description: 'Select or create products that belong to this category',

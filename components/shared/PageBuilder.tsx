@@ -41,7 +41,7 @@ export const PageBuilder = ({ data, variation }: PageBuilderProps) => {
           case 'googleMaps':
             return <GoogleMapBlock data={block} key={block._key} />
           case 'orderForm':
-            return <OrderForm key={block._key} />
+            return <OrderForm {...block} key={block._key} />
           default:
             console.warn('PageBuilder encountered an unhandled block type:', block._type)
             return null

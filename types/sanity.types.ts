@@ -430,6 +430,7 @@ export type Category = {
   title?: string
   order?: number
   slug?: Slug
+  columnPlacement?: 'left' | 'right'
   products?: Array<{
     _ref: string
     _type: 'reference'
