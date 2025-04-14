@@ -1,21 +1,21 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
-import { useForm as useRHFForm } from "react-hook-form" // Alias react-hook-form's hook
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
 import { useForm as useFormspree, ValidationError } from "@formspree/react" // Import Formspree hook and ValidationError
-
-import { client } from "@/sanity/lib/client" // Import the Sanity client
-import { categoriesWithProductsQuery } from "@/sanity/lib/queries" // Import the GROQ query
+import { zodResolver } from "@hookform/resolvers/zod"
+import React, { useEffect,useState } from "react"
+import { useForm as useRHFForm } from "react-hook-form" // Alias react-hook-form's hook
+import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { Textarea } from "@/components/ui/textarea"
+import { client } from "@/sanity/lib/client" // Import the Sanity client
+import { categoriesWithProductsQuery } from "@/sanity/lib/queries" // Import the GROQ query
 import type { OrderForm as OrderFormType } from "@/types/sanity.types" // Import the generated type
+
 import Container from "../shared/Container"
 
 // Interfaces for data structure
@@ -177,15 +177,17 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
 
   // --- Submit Handler ---
   const onValidSubmit = async (validatedData: OrderFormData) => {
-    // Prepare final data including items and form source
+    // Prepare final data including items and form source (original nested structure)
     const orderData = {
-      ...validatedData, // Data validated by Zod/RHF
+      ...validatedData, // Validated data from react-hook-form
+      // Add form source details as a nested object
       formSourceDetails: {
         title,
         email,
         phone,
         fax
       },
+      // Transform and add items as an array of objects
       items: Object.entries(orderDetails)
         .filter(([_, item]) => item.quantity || item.note) // Keep only items with quantity or note
         .map(([productId, item]) => {
@@ -199,21 +201,24 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             note: item.note,
           }
         }),
-        // Add a simple subject line for the email notification
-        _subject: `New Order From: ${validatedData.customerName}`,
-        // Optional: You can customize the reply-to address
-        _replyto: validatedData.customerEmail,
+      // Add a simple subject line for the email notification
+      _subject: `New Order From: ${validatedData.customerName}`,
+      // Optional: You can customize the reply-to address
+      _replyto: validatedData.customerEmail,
     }
 
-    console.log("Form Data to Submit:", JSON.stringify(orderData, null, 2))
+    console.log("Form Data to Submit (Original Nested):", JSON.stringify(orderData, null, 2))
 
     // Submit the combined data using Formspree's submit handler
+    // @ts-ignore - Suppress TS error for sending nested data structure to Formspree
     await handleFormspreeSubmit(orderData);
 
     // Optionally reset the RHF form fields after successful submission
-    // resetRHFForm(); // Uncomment if you want to clear fields after success
-    // You might also want to clear the orderDetails state if resetting
-    // setOrderDetails(initialDetails); // Define initialDetails appropriately if needed here
+    // if (formspreeState.succeeded) {
+    //    resetRHFForm();
+    //    // Reset order items state if needed
+    //    // const initialDetails... setOrderDetails(initialDetails)
+    // }
   }
 
   // --- Column Splitting Logic ---
