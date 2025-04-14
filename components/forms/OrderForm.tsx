@@ -89,10 +89,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, orderDetails, han
 
 export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
   const [customerName, setCustomerName] = useState("")
-  const [orderDate, setOrderDate] = useState(new Date().toISOString().split("T")[0])
+  const [pickupDate, setPickupDate] = useState(new Date().toISOString().split("T")[0])
   const [generalNote, setGeneralNote] = useState("")
   const [customerEmail, setCustomerEmail] = useState("")
   const [customerPhone, setCustomerPhone] = useState("")
+  const [deliveryLocation, setDeliveryLocation] = useState("")
   const [categories, setCategories] = useState<Category[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [orderDetails, setOrderDetails] = useState<Record<string, OrderItem>>({})
@@ -142,13 +143,14 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Prepare data for submission (remains the same)
+    // Prepare data for submission
     const orderData = {
       customerName,
-      orderDate,
+      pickupDate,
       generalNote,
       customerEmail,
       customerPhone,
+      deliveryLocation,
       // Include form source details from props if needed for Typeform
       formDetails: {
         title,
@@ -260,14 +262,14 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
           />
         </div>
         <div>
-          <Label htmlFor="date" className="font-semibold mb-1 block text-sm">
-            Order Date:
+          <Label htmlFor="pickupDate" className="font-semibold mb-1 block text-sm">
+            Pick Up Date:
           </Label>
           <Input
-            id="date"
+            id="pickupDate"
             type="date"
-            value={orderDate}
-            onChange={(e) => setOrderDate(e.target.value)}
+            value={pickupDate}
+            onChange={(e) => setPickupDate(e.target.value)}
             required
             className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
           />
@@ -283,6 +285,7 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
                 onChange={(e) => setCustomerEmail(e.target.value)}
                 placeholder="your.email@example.com"
                 className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
+                required
             />
         </div>
         <div>
@@ -295,6 +298,19 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
                 value={customerPhone}
                 onChange={(e) => setCustomerPhone(e.target.value)}
                 placeholder="e.g., 555-123-4567"
+                className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
+                required
+            />
+        </div>
+        <div className="md:col-span-2">
+            <Label htmlFor="deliveryLocation" className="font-semibold mb-1 block text-sm">
+                Delivery Location (Optional):
+            </Label>
+            <Input
+                id="deliveryLocation"
+                value={deliveryLocation}
+                onChange={(e) => setDeliveryLocation(e.target.value)}
+                placeholder="Carpark (X or Y) and Car Rego Number"
                 className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
             />
         </div>
