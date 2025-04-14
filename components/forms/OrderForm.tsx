@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { useForm } from "react-hook-form"
+import { useForm as useRHFForm } from "react-hook-form" // Alias react-hook-form's hook
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { useSubmit } from "@formspree/react" // Import Formspree hook
+import { useForm as useFormspree, ValidationError } from "@formspree/react" // Import Formspree hook and ValidationError
 
 import { client } from "@/sanity/lib/client" // Import the Sanity client
 import { categoriesWithProductsQuery } from "@/sanity/lib/queries" // Import the GROQ query
@@ -116,9 +116,9 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
   const {
     register,
     handleSubmit: handleRHFSubmit, // Rename to avoid conflict
-    formState: { errors, isSubmitting: isRHFSubmitting }, // Get errors and submitting state
+    formState: { errors: rhfErrors, isSubmitting: isRHFSubmitting }, // Get errors and submitting state
     reset: resetRHFForm, // Function to reset RHF fields
-  } = useForm<OrderFormData>({
+  } = useRHFForm<OrderFormData>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
         customerName: "",
@@ -131,15 +131,9 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
   })
 
   // --- Formspree Setup ---
-  // !! Replace {your-form-id} with your actual Formspree Form ID !!
-  const formspreeSubmit = useSubmit<{ [key: string]: any }>(process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || '{your-form-id}', {
-    onError: (formspreeErrors) => {
-      // Optional: Handle Formspree specific errors, e.g., display a generic message
-      console.error("Formspree submission error:", formspreeErrors);
-      // You might want to set a state here to show a submission error message
-    },
-  });
-  const { submitting: isFormspreeSubmitting, succeeded: formspreeSucceeded } = formspreeSubmit; // Get Formspree state
+  const [formspreeState, handleFormspreeSubmit] = useFormspree(
+    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || '{your-form-id}' // Use your Form ID here
+  );
 
   // --- Fetch Data ---
   useEffect(() => {
@@ -182,18 +176,16 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
   }
 
   // --- Submit Handler ---
-  const onValidSubmit = async (data: OrderFormData) => {
+  const onValidSubmit = async (validatedData: OrderFormData) => {
     // Prepare final data including items and form source
     const orderData = {
-      ...data, // Validated data from react-hook-form
-      // Add form source details from props
+      ...validatedData, // Data validated by Zod/RHF
       formSourceDetails: {
         title,
         email,
         phone,
         fax
       },
-      // Transform and add items from the separate state
       items: Object.entries(orderDetails)
         .filter(([_, item]) => item.quantity || item.note) // Keep only items with quantity or note
         .map(([productId, item]) => {
@@ -207,12 +199,16 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             note: item.note,
           }
         }),
+        // Add a simple subject line for the email notification
+        _subject: `New Order From: ${validatedData.customerName}`,
+        // Optional: You can customize the reply-to address
+        _replyto: validatedData.customerEmail,
     }
 
     console.log("Form Data to Submit:", JSON.stringify(orderData, null, 2))
 
-    // Submit to Formspree using the useSubmit hook's function
-    await formspreeSubmit(orderData);
+    // Submit the combined data using Formspree's submit handler
+    await handleFormspreeSubmit(orderData);
 
     // Optionally reset the RHF form fields after successful submission
     // resetRHFForm(); // Uncomment if you want to clear fields after success
@@ -257,12 +253,12 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
     )
   }
 
-  // Display success message if Formspree submission succeeded
-  if (formspreeSucceeded) {
+  // Display success message using Formspree state
+  if (formspreeState.succeeded) {
     return (
         <Container>
             <Card className="mx-auto p-6 border shadow-md bg-white my-8 text-center">
-                <h2 className="text-xl font-semibold mb-4 text-green-600">Order Submitted Successfully!</h2>
+                <h2 className="text-xl font-semibold mb-0 text-green-600">Order Submitted Successfully!</h2>
                 <p>Thank you for your order. We will process it shortly.</p>
                 {/* Optional: Add a button to submit another order */}
                 {/* <Button onClick={() => window.location.reload()} className="mt-4">Submit Another Order</Button> */}
@@ -313,10 +309,10 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             id="customerName"
             {...register("customerName")}
             placeholder="Your Name or Business Name"
-            className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.customerName ? 'border-red-500' : ''}`}
-            aria-invalid={errors.customerName ? "true" : "false"}
+            className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${rhfErrors.customerName ? 'border-red-500' : ''}`}
+            aria-invalid={rhfErrors.customerName ? "true" : "false"}
           />
-          {errors.customerName && <p className="text-xs text-red-600 mt-1">{errors.customerName.message}</p>}
+          {rhfErrors.customerName && <p className="text-xs text-red-600 mt-1">{rhfErrors.customerName.message}</p>}
         </div>
         <div>
           <Label htmlFor="pickupDate" className="font-semibold mb-1 block text-sm">
@@ -326,10 +322,10 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             id="pickupDate"
             type="date"
             {...register("pickupDate")}
-            className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.pickupDate ? 'border-red-500' : ''}`}
-            aria-invalid={errors.pickupDate ? "true" : "false"}
+            className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${rhfErrors.pickupDate ? 'border-red-500' : ''}`}
+            aria-invalid={rhfErrors.pickupDate ? "true" : "false"}
           />
-          {errors.pickupDate && <p className="text-xs text-red-600 mt-1">{errors.pickupDate.message}</p>}
+          {rhfErrors.pickupDate && <p className="text-xs text-red-600 mt-1">{rhfErrors.pickupDate.message}</p>}
         </div>
         <div>
             <Label htmlFor="customerEmail" className="font-semibold mb-1 block text-sm">
@@ -340,10 +336,11 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
                 type="email"
                 {...register("customerEmail")}
                 placeholder="your.email@example.com"
-                className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.customerEmail ? 'border-red-500' : ''}`}
-                aria-invalid={errors.customerEmail ? "true" : "false"}
+                className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${rhfErrors.customerEmail ? 'border-red-500' : ''}`}
+                aria-invalid={rhfErrors.customerEmail ? "true" : "false"}
             />
-            {errors.customerEmail && <p className="text-xs text-red-600 mt-1">{errors.customerEmail.message}</p>}
+            {rhfErrors.customerEmail && <p className="text-xs text-red-600 mt-1">{rhfErrors.customerEmail.message}</p>}
+            <ValidationError prefix="Email" field="customerEmail" errors={formspreeState.errors} className="text-xs text-red-600 mt-1" />
         </div>
         <div>
             <Label htmlFor="customerPhone" className="font-semibold mb-1 block text-sm">
@@ -354,10 +351,11 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
                 type="tel"
                 {...register("customerPhone")}
                 placeholder="e.g., 555-123-4567"
-                className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.customerPhone ? 'border-red-500' : ''}`}
-                aria-invalid={errors.customerPhone ? "true" : "false"}
+                className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${rhfErrors.customerPhone ? 'border-red-500' : ''}`}
+                aria-invalid={rhfErrors.customerPhone ? "true" : "false"}
             />
-            {errors.customerPhone && <p className="text-xs text-red-600 mt-1">{errors.customerPhone.message}</p>}
+            {rhfErrors.customerPhone && <p className="text-xs text-red-600 mt-1">{rhfErrors.customerPhone.message}</p>}
+            <ValidationError prefix="Phone" field="customerPhone" errors={formspreeState.errors} className="text-xs text-red-600 mt-1" />
         </div>
         <div className="md:col-span-2">
             <Label htmlFor="deliveryLocation" className="font-semibold mb-1 block text-sm">
@@ -369,6 +367,7 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
                 placeholder="Carpark (X or Y) and Car Rego Number"
                 className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
             />
+            <ValidationError prefix="Delivery Location" field="deliveryLocation" errors={formspreeState.errors} className="text-xs text-red-600 mt-1" />
         </div>
       </div>
 
@@ -438,17 +437,13 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
           <Button
             type="submit"
             size="lg"
-            disabled={isLoading || !!fetchError || isRHFSubmitting || isFormspreeSubmitting}
+            disabled={isLoading || !!fetchError || isRHFSubmitting || formspreeState.submitting}
             className="rounded-sm"
           >
-            {isRHFSubmitting || isFormspreeSubmitting ? "Submitting..." : "Submit Order"}
+            {formspreeState.submitting ? "Submitting..." : "Submit Order"}
           </Button>
         </div>
-        {formspreeSubmit.errors && (
-          <div className="p-4 pt-0 text-center text-red-600 text-sm">
-            There was an error submitting your order. Please try again.
-          </div>
-        )}
+        <ValidationError errors={formspreeState.errors} className="p-4 pt-0 text-center text-red-600 text-sm" />
       </form>
     </Card>
     </Container>
