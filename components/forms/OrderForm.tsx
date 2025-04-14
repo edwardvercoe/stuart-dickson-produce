@@ -1,6 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { useSubmit } from "@formspree/react" // Import Formspree hook
+
 import { client } from "@/sanity/lib/client" // Import the Sanity client
 import { categoriesWithProductsQuery } from "@/sanity/lib/queries" // Import the GROQ query
 
@@ -37,6 +42,19 @@ interface OrderItem {
 
 // Define Props for the component, extending the Sanity type
 interface OrderFormProps extends Omit<OrderFormType, '_type'> { }
+
+// --- Zod Schema Definition ---
+const orderFormSchema = z.object({
+  customerName: z.string().min(1, "Customer name is required"),
+  pickupDate: z.string().min(1, "Pick up date is required"), // Basic check, HTML handles date format
+  customerEmail: z.string().email("Invalid email address").min(1, "Email is required"),
+  customerPhone: z.string().min(1, "Phone number is required"), // Basic check
+  deliveryLocation: z.string().optional(),
+  generalNote: z.string().optional(),
+})
+
+// --- Type inferred from Zod schema ---
+type OrderFormData = z.infer<typeof orderFormSchema>;
 
 // --- Reusable Category Card Component ---
 interface CategoryCardProps {
@@ -88,27 +106,49 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, orderDetails, han
 );
 
 export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
-  const [customerName, setCustomerName] = useState("")
-  const [pickupDate, setPickupDate] = useState(new Date().toISOString().split("T")[0])
-  const [generalNote, setGeneralNote] = useState("")
-  const [customerEmail, setCustomerEmail] = useState("")
-  const [customerPhone, setCustomerPhone] = useState("")
-  const [deliveryLocation, setDeliveryLocation] = useState("")
+  // --- State Variables ---
   const [categories, setCategories] = useState<Category[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [orderDetails, setOrderDetails] = useState<Record<string, OrderItem>>({})
-  const [error, setError] = useState<string | null>(null) // Added error state
+  const [orderDetails, setOrderDetails] = useState<Record<string, OrderItem>>({}) // Keep for item details
+  const [fetchError, setFetchError] = useState<string | null>(null)
 
+  // --- React Hook Form Setup ---
+  const {
+    register,
+    handleSubmit: handleRHFSubmit, // Rename to avoid conflict
+    formState: { errors, isSubmitting: isRHFSubmitting }, // Get errors and submitting state
+    reset: resetRHFForm, // Function to reset RHF fields
+  } = useForm<OrderFormData>({
+    resolver: zodResolver(orderFormSchema),
+    defaultValues: {
+        customerName: "",
+        pickupDate: new Date().toISOString().split("T")[0], // Set default date
+        customerEmail: "",
+        customerPhone: "",
+        deliveryLocation: "",
+        generalNote: ""
+    }
+  })
+
+  // --- Formspree Setup ---
+  // !! Replace {your-form-id} with your actual Formspree Form ID !!
+  const formspreeSubmit = useSubmit<{ [key: string]: any }>(process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || '{your-form-id}', {
+    onError: (formspreeErrors) => {
+      // Optional: Handle Formspree specific errors, e.g., display a generic message
+      console.error("Formspree submission error:", formspreeErrors);
+      // You might want to set a state here to show a submission error message
+    },
+  });
+  const { submitting: isFormspreeSubmitting, succeeded: formspreeSucceeded } = formspreeSubmit; // Get Formspree state
+
+  // --- Fetch Data ---
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true)
-        setError(null) // Reset error on new fetch
-        // Directly fetch data using the Sanity client
+        setFetchError(null)
         const data = await client.fetch<Category[]>(categoriesWithProductsQuery)
         setCategories(data)
-
-        // Initialize orderDetails state
         const initialDetails: Record<string, OrderItem> = {}
         data.forEach((category) => {
           category.products.forEach((product) => {
@@ -116,17 +156,17 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
           })
         })
         setOrderDetails(initialDetails)
-
       } catch (err) {
-        console.error("Error fetching categories directly from Sanity:", err)
-        setError("Failed to load product data. Please try refreshing the page.")
+        console.error("Error fetching categories:", err)
+        setFetchError("Failed to load product data. Please try refreshing.")
       } finally {
         setIsLoading(false)
       }
     }
     fetchData()
-  }, []) // Empty dependency array ensures this runs once on mount
+  }, [])
 
+  // --- Handle Item Input Changes (remains the same) ---
   const handleInputChange = (
     productId: string,
     field: keyof OrderItem,
@@ -141,40 +181,43 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Prepare data for submission
+  // --- Submit Handler ---
+  const onValidSubmit = async (data: OrderFormData) => {
+    // Prepare final data including items and form source
     const orderData = {
-      customerName,
-      pickupDate,
-      generalNote,
-      customerEmail,
-      customerPhone,
-      deliveryLocation,
-      // Include form source details from props if needed for Typeform
-      formDetails: {
+      ...data, // Validated data from react-hook-form
+      // Add form source details from props
+      formSourceDetails: {
         title,
         email,
         phone,
         fax
       },
+      // Transform and add items from the separate state
       items: Object.entries(orderDetails)
-        .filter(([_, item]) => item.quantity || item.note)
+        .filter(([_, item]) => item.quantity || item.note) // Keep only items with quantity or note
         .map(([productId, item]) => {
           const product = categories
             .flatMap(cat => cat.products)
             .find(p => p._id === productId);
           return {
             productId,
-            productName: product?.title || 'Unknown Product',
-            quantity: item.quantity,
+            productName: product?.title || 'Unknown Product', // Include product name
+            quantity: item.quantity || '0', // Default quantity if only note exists
             note: item.note,
           }
         }),
     }
+
     console.log("Form Data to Submit:", JSON.stringify(orderData, null, 2))
-    // --- TODO: Send orderData to Typeform API/Webhook ---
-    alert("Order Submitted (See console for data)") // Placeholder
+
+    // Submit to Formspree using the useSubmit hook's function
+    await formspreeSubmit(orderData);
+
+    // Optionally reset the RHF form fields after successful submission
+    // resetRHFForm(); // Uncomment if you want to clear fields after success
+    // You might also want to clear the orderDetails state if resetting
+    // setOrderDetails(initialDetails); // Define initialDetails appropriately if needed here
   }
 
   // --- Column Splitting Logic ---
@@ -202,19 +245,33 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
     }
   });
 
+  // --- Render Logic ---
 
-  // --- Render Logic (remains largely the same as the page version) ---
-
-  if (error) {
+  if (fetchError) {
     return (
-        <div className="container mx-auto p-4  text-center text-red-600">
-            <p>{error}</p>
-        </div>
+        <Container>
+            <div className="p-4 text-center text-red-600">
+                <p>{fetchError}</p>
+            </div>
+        </Container>
+    )
+  }
+
+  // Display success message if Formspree submission succeeded
+  if (formspreeSucceeded) {
+    return (
+        <Container>
+            <Card className="mx-auto p-6 border shadow-md bg-white my-8 text-center">
+                <h2 className="text-xl font-semibold mb-4 text-green-600">Order Submitted Successfully!</h2>
+                <p>Thank you for your order. We will process it shortly.</p>
+                {/* Optional: Add a button to submit another order */}
+                {/* <Button onClick={() => window.location.reload()} className="mt-4">Submit Another Order</Button> */}
+            </Card>
+        </Container>
     )
   }
 
   return (
-    // Wrap everything in a single Card acting as the "paper"
     <Container>
     <Card className=" mx-auto p-0  border shadow-md bg-white my-8">
       {/* Header Section - Mimicking the top part of the form */}
@@ -254,12 +311,12 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
           </Label>
           <Input
             id="customerName"
-            value={customerName}
-            onChange={(e) => setCustomerName(e.target.value)}
-            required
+            {...register("customerName")}
             placeholder="Your Name or Business Name"
-            className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
+            className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.customerName ? 'border-red-500' : ''}`}
+            aria-invalid={errors.customerName ? "true" : "false"}
           />
+          {errors.customerName && <p className="text-xs text-red-600 mt-1">{errors.customerName.message}</p>}
         </div>
         <div>
           <Label htmlFor="pickupDate" className="font-semibold mb-1 block text-sm">
@@ -268,11 +325,11 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
           <Input
             id="pickupDate"
             type="date"
-            value={pickupDate}
-            onChange={(e) => setPickupDate(e.target.value)}
-            required
-            className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
+            {...register("pickupDate")}
+            className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.pickupDate ? 'border-red-500' : ''}`}
+            aria-invalid={errors.pickupDate ? "true" : "false"}
           />
+          {errors.pickupDate && <p className="text-xs text-red-600 mt-1">{errors.pickupDate.message}</p>}
         </div>
         <div>
             <Label htmlFor="customerEmail" className="font-semibold mb-1 block text-sm">
@@ -281,12 +338,12 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             <Input
                 id="customerEmail"
                 type="email"
-                value={customerEmail}
-                onChange={(e) => setCustomerEmail(e.target.value)}
+                {...register("customerEmail")}
                 placeholder="your.email@example.com"
-                className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
-                required
+                className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.customerEmail ? 'border-red-500' : ''}`}
+                aria-invalid={errors.customerEmail ? "true" : "false"}
             />
+            {errors.customerEmail && <p className="text-xs text-red-600 mt-1">{errors.customerEmail.message}</p>}
         </div>
         <div>
             <Label htmlFor="customerPhone" className="font-semibold mb-1 block text-sm">
@@ -295,12 +352,12 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             <Input
                 id="customerPhone"
                 type="tel"
-                value={customerPhone}
-                onChange={(e) => setCustomerPhone(e.target.value)}
+                {...register("customerPhone")}
                 placeholder="e.g., 555-123-4567"
-                className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
-                required
+                className={`h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm ${errors.customerPhone ? 'border-red-500' : ''}`}
+                aria-invalid={errors.customerPhone ? "true" : "false"}
             />
+            {errors.customerPhone && <p className="text-xs text-red-600 mt-1">{errors.customerPhone.message}</p>}
         </div>
         <div className="md:col-span-2">
             <Label htmlFor="deliveryLocation" className="font-semibold mb-1 block text-sm">
@@ -308,8 +365,7 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
             </Label>
             <Input
                 id="deliveryLocation"
-                value={deliveryLocation}
-                onChange={(e) => setDeliveryLocation(e.target.value)}
+                {...register("deliveryLocation")}
                 placeholder="Carpark (X or Y) and Car Rego Number"
                 className="h-8 rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm"
             />
@@ -317,13 +373,13 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
       </div>
 
       {/* Form Body starts here */}
-      <form onSubmit={handleSubmit} className="p-0">
+      <form onSubmit={handleRHFSubmit(onValidSubmit)} className="p-0">
         {/* Categories Section - Use borders, no gaps */}
         {isLoading ? (
           <div className="p-4 text-center">Loading products...</div> // Simple loading indicator
-        ) : error ? (
+        ) : fetchError ? (
              <div className="p-4 text-center text-red-600">
-                <p>{error}</p>
+                <p>{fetchError}</p>
              </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 border-b">
@@ -365,11 +421,10 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
 
             {/* General Note Section - Spanning full width below columns */}
             <div className="md:col-span-2 border-t p-4">
-                <Label htmlFor="generalNote" className="font-semibold block mb-1 text-sm">General Order Note</Label>
+                <Label htmlFor="generalNote" className="font-semibold block mb-1 text-sm">General Order Note (Optional)</Label>
                 <Textarea
                     id="generalNote"
-                    value={generalNote}
-                    onChange={(e) => setGeneralNote(e.target.value)}
+                    {...register("generalNote")}
                     placeholder="Add any general notes for your order here..."
                     rows={3}
                     className="rounded-none border-gray-300 focus:ring-0 focus:border-gray-400 text-sm md:h-32"
@@ -380,13 +435,22 @@ export function OrderForm({ title, email, phone, fax }: OrderFormProps) {
 
         {/* Submit Button - Positioned at the bottom */}
         <div className="p-4 flex justify-center">
-          <Button type="submit" size="lg" disabled={isLoading || !!error} className="rounded-sm">
-            Submit Order
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isLoading || !!fetchError || isRHFSubmitting || isFormspreeSubmitting}
+            className="rounded-sm"
+          >
+            {isRHFSubmitting || isFormspreeSubmitting ? "Submitting..." : "Submit Order"}
           </Button>
         </div>
+        {formspreeSubmit.errors && (
+          <div className="p-4 pt-0 text-center text-red-600 text-sm">
+            There was an error submitting your order. Please try again.
+          </div>
+        )}
       </form>
     </Card>
     </Container>
-
   )
 } 
