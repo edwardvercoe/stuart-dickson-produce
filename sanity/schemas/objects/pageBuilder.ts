@@ -27,6 +27,9 @@ const pageBuilder = defineField({
     {
       type: 'googleMaps',
     },
+    {
+      type: 'orderForm',
+    },
   ],
 })
 

@@ -1,23 +1,29 @@
-import type { Metadata, ResolvingMetadata } from 'next'
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { toPlainText } from 'next-sanity'
 
 import { Page } from '@/components/pages/page/Page'
 import { defineSanityMetadata } from '@/lib/utils'
+import { sanityFetchWithDefaults } from '@/sanity/lib/live'
+import { pagesBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
-import { loadPage, loadSettings } from '@/sanity/loader/loadQuery'
-const PagePreview = dynamic(() => import('@/components/pages/page/PagePreview'))
+import type { PagePayload, SettingsPayload } from '@/types'
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
   const [{ data: settings }, { data: page }] = await Promise.all([
-    loadSettings(),
-    loadPage(params.slug),
+    sanityFetchWithDefaults<SettingsPayload>({
+      query: settingsQuery,
+      stega: false,
+    }),
+    sanityFetchWithDefaults<PagePayload>({
+      query: pagesBySlugQuery,
+      params: { slug: params.slug },
+      stega: false,
+    }),
   ])
 
   return defineSanityMetadata(page, settings)
@@ -27,16 +33,16 @@ export function generateStaticParams() {
   return generateStaticSlugs('page')
 }
 
-export default async function PageSlugRoute({ params }: Props) {
-  const initial = await loadPage(params.slug)
+export default async function PageSlugRoute(props: Props) {
+  const params = await props.params
+  const { data } = await sanityFetchWithDefaults<PagePayload>({
+    query: pagesBySlugQuery,
+    params: { slug: params.slug },
+  })
 
-  if (draftMode().isEnabled) {
-    return <PagePreview params={params} initial={initial} />
-  }
-
-  if (!initial.data) {
+  if (!data) {
     notFound()
   }
 
-  return <Page data={initial.data} />
+  return <Page data={data} />
 }

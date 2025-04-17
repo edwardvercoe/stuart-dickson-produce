@@ -9,12 +9,7 @@ export function Page({ data }: PageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { pageBuilder = [] } = data ?? {}
 
-  return (
-    <div>
-      {/* Page Builder */}
-      <PageBuilder data={pageBuilder} />
-    </div>
-  )
+  return <PageBuilder data={pageBuilder} />
 }
 
 export default Page

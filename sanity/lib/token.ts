@@ -8,8 +8,14 @@ if (!token) {
   throw new Error('Missing SANITY_API_READ_TOKEN')
 }
 
+// Ensure token is never exposed to the client
 experimental_taintUniqueValue(
   'Do not pass the sanity API read token to the client.',
   process,
   token,
 )
+
+// Export a function that can only be used server-side
+export function getToken() {
+  return token
+}

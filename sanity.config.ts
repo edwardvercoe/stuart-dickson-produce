@@ -17,6 +17,8 @@ import farm from '@/sanity/schemas/documents/farm'
 import page from '@/sanity/schemas/documents/page'
 import home from '@/sanity/schemas/singletons/home'
 import settings from '@/sanity/schemas/singletons/settings'
+import category from '@/sanity/schemas/documents/category'
+import product from '@/sanity/schemas/documents/product'
 
 import carouselCTA from './sanity/schemas/objects/blocks/carouselCTA'
 import carouselItem from './sanity/schemas/objects/blocks/carouselItem'
@@ -30,14 +32,15 @@ import link from './sanity/schemas/objects/link'
 import restrictedRichText from './sanity/schemas/objects/restrictedRichText'
 import richText from './sanity/schemas/objects/richText'
 import seo from './sanity/schemas/objects/seo'
+import { orderForm } from './sanity/schemas/objects/orderForm'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'SDP'
 const mapsAPI = process.env.NEXT_PUBLIC_SANITY_GOOGLE_MAPS_API || ''
 
 export default defineConfig({
-  basePath: studioUrl,
-  projectId: projectId || '',
-  dataset: dataset || '',
+  basePath: '/studio',
+  projectId,
+  dataset,
   title,
   schema: {
     // If you want more content types, you can add them to this array
@@ -48,11 +51,14 @@ export default defineConfig({
       // Documents
       page,
       farm,
+      category,
+      product,
       // Objects
       richText,
       restrictedRichText,
       link,
       seo,
+      orderForm,
       // block objects
       hero,
       featuredCTA,
@@ -65,14 +71,11 @@ export default defineConfig({
     ],
   },
   plugins: [
-    structureTool({
-      structure: pageStructure([home, settings]),
-    }),
+    structureTool(),
     presentationTool({
-      resolve,
       previewUrl: {
-        previewMode: {
-          enable: '/api/draft',
+        draftMode: {
+          enable: '/api/draft-mode/enable',
         },
       },
     }),

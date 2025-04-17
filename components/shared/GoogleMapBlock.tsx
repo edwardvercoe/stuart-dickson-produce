@@ -2,11 +2,13 @@
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api'
 import React, { useMemo } from 'react'
 
+import type { GoogleMaps } from '@/types/sanity.types'
+
 import SanityLink from '../SanityComponents/SanityLink'
-import Button from './Button'
+import { buttonStyles } from './Button'
 
 type MapProps = {
-  data: any
+  data: GoogleMaps
 }
 
 export const GoogleMapBlock = ({ data }: MapProps) => {
@@ -45,13 +47,15 @@ export const GoogleMapBlock = ({ data }: MapProps) => {
         {buttons && (
           <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full justify-center mb-6">
             {buttons.map((button, index) => (
-              <SanityLink data={button} key={button._key}>
-                <Button
-                  className="w-full sm:w-auto"
-                  variant={index === 0 ? 'primary' : 'secondary'}
-                >
-                  {button.linkText}
-                </Button>
+              <SanityLink
+                key={button._key}
+                data={button}
+                className={buttonStyles({
+                  variant: index === 0 ? 'primary' : 'secondary',
+                  className: 'w-full sm:w-auto',
+                })}
+              >
+                <span className="font-medium">{button.linkText}</span>
               </SanityLink>
             ))}
           </div>
