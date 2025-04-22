@@ -85,6 +85,22 @@ const Components: Partial<PortableTextReactComponents> = {
       <li className="mb-2 ml-4 list-decimal">{processChildren(children)}</li>
     ),
   },
+  marks: {
+    link: ({ children, value }) => {
+      const rel = !value.href.startsWith('/')
+        ? 'noreferrer noopener'
+        : undefined
+      return (
+        <a
+          href={value.href}
+          rel={rel}
+          className="text-brand-orange hover:underline"
+        >
+          {children}
+        </a>
+      )
+    },
+  },
 }
 
 export default Components
