@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import EVLogo from '@/assets/svg/edward-vercoe-logo-right-align.svg'
 import LogoWhite from '@/assets/svg/logoWhite.svg'
 import SanityLink from '@/components/SanityComponents/SanityLink'
 import Container from '@/components/shared/Container'
@@ -64,13 +63,6 @@ export function Footer({ settings }: FooterProps) {
                 All Rights Reserved
               </p>
             </div>
-            <Link
-              href="https://www.edwardvercoe.dev"
-              target="_blank"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            >
-              <Image src={EVLogo} alt="logo" width="134" height="39" />
-            </Link>
           </div>
         </Container>
       </footer>
